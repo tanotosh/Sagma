@@ -1,4 +1,12 @@
-# Sagma
-CSC207 Project - Meal Plan Swap  
-Jiya, Gaia, Abeera, Amal, Shannon, Max  
-jiyag, GaMicc, abeera22, amalirshad999, tanotosh, MaxNguyen5040
+# Sagma  
+## Tinder but for food  
+CSC207 Project  
+--------------  
+## Team  
+-------  
+Jiya, jiyag  
+Gaia, GaMicc  
+Abeera, abeera22  
+Amal, amalirshad999  
+Shannon, tanotosh  
+Max, MaxNguyen5040  
