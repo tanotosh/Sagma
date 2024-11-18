@@ -24,8 +24,7 @@ public class CommonUser implements User {
         return password;
     }
 
-    public void uploadFood(String name, int quantity, String[] ingredients, String[] dietaryRestrictions, File image){
-        this.food = new Food(name, quantity, ingredients, dietaryRestrictions, image);
+    public void uploadFood(String name, int quantity, String[] ingredients, String[] dietaryRestrictions, File image, String cuisine){
+        this.food = new Food(name, quantity, ingredients, dietaryRestrictions, image, cuisine);
     }
-
 }
