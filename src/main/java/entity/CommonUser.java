@@ -35,10 +35,9 @@ public class CommonUser implements User {
         return password;
     }
 
-
     public void uploadFood(String name, int quantity, List<String> ingredients, List<String> dietaryRestrictions,
-                           File image, String cuisine){
-        this.currentFood = new Food(name, quantity, ingredients, dietaryRestrictions, image, cuisine);
+                           File image){
+        this.currentFood = new Food(name, quantity, ingredients, dietaryRestrictions, image);
     }
 
     public void swipeRight(Food food) {
@@ -49,4 +48,5 @@ public class CommonUser implements User {
     public void swipeLeft(Food food) {
         food.addSwipedNo(this);
     }
+
 }

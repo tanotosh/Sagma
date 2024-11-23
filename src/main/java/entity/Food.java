@@ -12,11 +12,11 @@ public class Food {
     private File image;
     private List<CommonUser> swipedYes; //list of people that have swiped right on the food
     private List<CommonUser> swipedNo; //list of people that have swiped left on the food
-    private String cuisine; //INPUT: drop down menu
+    private String category; //INPUT: drop down menu
     private List<Integer> ratings; // adds to list as ratings get added
 
     public Food(String name, int quantity, List<String> ingredients, List<String> dietaryRestrictions, File image,
-                String cuisine) {
+                String category) {
         this.name = name;
         this.quantity = quantity;
         this.ingredients = ingredients;
@@ -24,7 +24,7 @@ public class Food {
         this.image = image;
         this.swipedYes = new ArrayList<>();
         this.swipedNo = new ArrayList<>();
-        this.cuisine = cuisine;
+        this.category = category;
         this.ratings = new ArrayList<>();
     }
 
