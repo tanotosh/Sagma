@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import entity.User;
-import entity.UserFactory;
+import entity.SagmaFactory;
 import use_case.change_password.ChangePasswordUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
@@ -30,7 +30,7 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface,
     private final Map<String, User> accounts = new HashMap<>();
     private String currentUsername;
 
-    public FileUserDataAccessObject(String csvPath, UserFactory userFactory) throws IOException {
+    public FileUserDataAccessObject(String csvPath, SagmaFactory userFactory) throws IOException {
 
         csvFile = new File(csvPath);
         headers.put("username", 0);

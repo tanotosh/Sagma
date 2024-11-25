@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import data_access.InMemoryUserDataAccessObject;
-import entity.CommonUserFactory;
-import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.change_password.ChangePasswordController;
 import interface_adapter.change_password.ChangePasswordPresenter;
@@ -37,6 +35,7 @@ import view.LoggedInView;
 import view.LoginView;
 import view.SignupView;
 import view.ViewManager;
+import entity.SagmaFactory;
 
 /**
  * The AppBuilder class is responsible for putting together the pieces of
@@ -53,7 +52,7 @@ public class AppBuilder {
     private final JPanel cardPanel = new JPanel();
     private final CardLayout cardLayout = new CardLayout();
     // thought question: is the hard dependency below a problem?
-    private final UserFactory userFactory = new CommonUserFactory();
+    private final SagmaFactory sagmaFactory = new SagmaFactory();
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
     private final ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
 
@@ -112,7 +111,7 @@ public class AppBuilder {
         final SignupOutputBoundary signupOutputBoundary = new SignupPresenter(viewManagerModel,
                 signupViewModel, loginViewModel);
         final SignupInputBoundary userSignupInteractor = new SignupInteractor(
-                userDataAccessObject, signupOutputBoundary, userFactory);
+                userDataAccessObject, signupOutputBoundary, sagmaFactory);
 
         final SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
@@ -143,7 +142,7 @@ public class AppBuilder {
                 new ChangePasswordPresenter(loggedInViewModel);
 
         final ChangePasswordInputBoundary changePasswordInteractor =
-                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, userFactory);
+                new ChangePasswordInteractor(userDataAccessObject, changePasswordOutputBoundary, sagmaFactory);
 
         final ChangePasswordController changePasswordController =
                 new ChangePasswordController(changePasswordInteractor);
