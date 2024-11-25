@@ -7,23 +7,37 @@ import java.util.*;
  * A simple implementation of the User interface.
  */
 public class User {
+    private final int userID;
     private final String name;
+    private final String email;
     private final String password;
     private Food currentFood;
-    private List<Food> foodUploads; // past foods which there are no more servings of
     private float rating; // the average of all the ratings of all the foods in foodUploads AND currentFood (1). Has to be updated every time a new rating is updated, or gets re calculated every time it’s displayed. Probably better to update it each time something gets uploaded
     private int ratingsCount; // number of ratings in current rating tally
     private String dietaryRestrictions;
-    private int userID;
 
     public User(String name, String password) {
         this.name = name;
         this.password = password;
-        this.currentFood = null;
-        this.foodUploads = new ArrayList<Food>();
         this.rating = 0;
         this.ratingsCount = 0;
         this.dietaryRestrictions = null;
+        this.userID = -1;
+        this.email = "";
+
+    }
+
+    public User(int userID, String name, String email, String password, float rating, int ratingsCount, String dietaryRestrictions, Food food) {
+
+        this.userID = userID;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.rating = rating;
+        this.ratingsCount = ratingsCount;
+        this.dietaryRestrictions = dietaryRestrictions;
+        this.currentFood = food;
+
     }
 
     public String getName() {
@@ -71,19 +85,23 @@ public class User {
         this.ratingsCount = ratingsCount;
     }
 
-    public List<Food> getFoodUploads() {
-        return foodUploads;
-    }
-
-    public void setFoodUploads(List<Food> foodUploads) {
-        this.foodUploads = foodUploads;
-    }
-
     public String getDietaryRestrictions() {
         return dietaryRestrictions;
     }
 
     public void setDietaryRestrictions(String dietaryRestrictions) {
         this.dietaryRestrictions = dietaryRestrictions;
+    }
+
+    public void setCurrentFood(entity.Food currentFood) {
+        this.currentFood = currentFood;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
