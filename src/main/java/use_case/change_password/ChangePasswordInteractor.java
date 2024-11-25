@@ -1,7 +1,7 @@
 package use_case.change_password;
 
 import entity.User;
-import entity.UserFactory;
+import entity.SagmaFactory;
 
 /**
  * The Change Password Interactor.
@@ -9,19 +9,19 @@ import entity.UserFactory;
 public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
     private final ChangePasswordUserDataAccessInterface userDataAccessObject;
     private final ChangePasswordOutputBoundary userPresenter;
-    private final UserFactory userFactory;
+    private final SagmaFactory sagmaFactory;
 
     public ChangePasswordInteractor(ChangePasswordUserDataAccessInterface changePasswordDataAccessInterface,
                                     ChangePasswordOutputBoundary changePasswordOutputBoundary,
-                                    UserFactory userFactory) {
+                                    SagmaFactory sagmaFactory) {
         this.userDataAccessObject = changePasswordDataAccessInterface;
         this.userPresenter = changePasswordOutputBoundary;
-        this.userFactory = userFactory;
+        this.sagmaFactory = sagmaFactory;
     }
 
     @Override
     public void execute(ChangePasswordInputData changePasswordInputData) {
-        final User user = userFactory.create(changePasswordInputData.getUsername(),
+        final User user = sagmaFactory.create(changePasswordInputData.getUsername(),
                                              changePasswordInputData.getPassword());
         userDataAccessObject.changePassword(user);
 

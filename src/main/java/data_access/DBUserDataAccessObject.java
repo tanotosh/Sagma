@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import entity.User;
-import entity.UserFactory;
+import entity.SagmaFactory;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -31,10 +31,10 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String MESSAGE = "message";
-    private final UserFactory userFactory;
+    private final SagmaFactory sagmaFactory;
 
-    public DBUserDataAccessObject(UserFactory userFactory) {
-        this.userFactory = userFactory;
+    public DBUserDataAccessObject(SagmaFactory sagmaFactory) {
+        this.sagmaFactory = sagmaFactory;
         // No need to do anything to reinitialize a user list! The data is the cloud that may be miles away.
     }
 
@@ -56,7 +56,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
                 final String name = userJSONObject.getString(USERNAME);
                 final String password = userJSONObject.getString(PASSWORD);
 
-                return userFactory.create(name, password);
+                return sagmaFactory.create(name, password);
             }
             else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
