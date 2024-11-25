@@ -14,6 +14,7 @@ public class User {
     private float rating; // the average of all the ratings of all the foods in foodUploads AND currentFood (1). Has to be updated every time a new rating is updated, or gets re calculated every time it’s displayed. Probably better to update it each time something gets uploaded
     private int ratingsCount; // number of ratings in current rating tally
     private String dietaryRestrictions;
+    private int userID;
 
     public User(String name, String password) {
         this.name = name;
