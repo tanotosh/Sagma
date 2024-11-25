@@ -10,6 +10,10 @@ public class UserDAO {
 
     public static final Logger logger = Logger.getLogger(UserDAO.class.getName());
 
+    public static void addUser(User user){
+        addUser(user.getName(), user.getEmail(), user.getPassword(), 0, 0, null);
+    }
+
     // Add a new user
     public static void addUser(String name, String email, String password, float rating, int ratingsCount,
                                String dietaryRestrictions) {
@@ -31,7 +35,7 @@ public class UserDAO {
     }
 
     // Get all users as User objects
-    public static List<String> getUsers() {
+    public static List<User> getUsers() {
         List<String> users = new ArrayList<>();
         String sql = "SELECT user_id, name, email, password, rating, ratings_count, dietary_restrictions FROM Users";
         try (Connection connection = DatabaseConnection.connect();
