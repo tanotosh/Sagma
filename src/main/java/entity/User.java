@@ -3,32 +3,38 @@ package entity;
 import java.io.File;
 import java.util.*;
 
-/**
- * A simple implementation of the User interface.
- */
 public class User {
     private final int userID;
     private final String name;
     private final String email;
     private final String password;
     private Food currentFood;
-    private float rating; // the average of all the ratings of all the foods in foodUploads AND currentFood (1). Has to be updated every time a new rating is updated, or gets re calculated every time it’s displayed. Probably better to update it each time something gets uploaded
-    private int ratingsCount; // number of ratings in current rating tally
-    private String dietaryRestrictions;
+    private float rating;
+    private int ratingsCount;
+    private List<String> dietaryRestrictions;
 
     public User(String name, String password) {
         this.name = name;
+        this.email = "";
         this.password = password;
         this.rating = 0;
         this.ratingsCount = 0;
         this.dietaryRestrictions = null;
         this.userID = -1;
-        this.email = "";
-
     }
 
-    public User(int userID, String name, String email, String password, float rating, int ratingsCount, String dietaryRestrictions, Food food) {
+    /* public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.rating = 0;
+        this.ratingsCount = 0;
+        this.dietaryRestrictions = null;
+        this.userID = -1;
+    } */
 
+    public User(int userID, String name, String email, String password, float rating, int ratingsCount,
+                List<String> dietaryRestrictions, Food food) {
         this.userID = userID;
         this.name = name;
         this.email = email;
@@ -37,7 +43,6 @@ public class User {
         this.ratingsCount = ratingsCount;
         this.dietaryRestrictions = dietaryRestrictions;
         this.currentFood = food;
-
     }
 
     public String getName() {
@@ -48,25 +53,16 @@ public class User {
         return password;
     }
 
-    public void uploadFood(String name, int quantity, String ingredients, String dietaryRestrictions,
-                           File image, String category){
-        this.currentFood = new Food(name, quantity, ingredients, dietaryRestrictions, image, category);
+    public int getUserID() {
+        return userID;
     }
 
-    public void swipeRight(Food food) {
-        food.addSwipedYes(this);
-    }
-
-    public void swipeLeft(Food food) {
-        food.addSwipedNo(this);
+    public String getEmail() {
+        return email;
     }
 
     public Food getCurrentFood() {
         return currentFood;
-    }
-
-    public void setCurrentFood(Food currentFood) {
-        this.currentFood = currentFood;
     }
 
     public float getRating() {
@@ -85,23 +81,34 @@ public class User {
         this.ratingsCount = ratingsCount;
     }
 
-    public String getDietaryRestrictions() {
+    public List<String> getDietaryRestrictions() {
         return dietaryRestrictions;
     }
 
-    public void setDietaryRestrictions(String dietaryRestrictions) {
+    public void setDietaryRestrictions(List<String> dietaryRestrictions) {
         this.dietaryRestrictions = dietaryRestrictions;
     }
 
-    public void setCurrentFood(entity.Food currentFood) {
-        this.currentFood = currentFood;
+
+    public void uploadFood(String name, int quantity, String ingredients, List<String> dietaryRestrictions,
+                           String category) {
+        this.currentFood = new Food(name, quantity, ingredients, dietaryRestrictions, category, this);
     }
 
-    public int getUserID() {
-        return userID;
+    public void swipeRight(Food food) {
+        food.addSwipedYes(this);
     }
 
-    public String getEmail() {
-        return email;
+    public void swipeLeft(Food food) {
+        food.addSwipedNo(this);
     }
+
+    public void rateFood(Food food) {
+
+    }
+
+    public List<Food> getMatches() {
+        return null;
+    }
+
 }

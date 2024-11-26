@@ -10,16 +10,27 @@ public class SwipeDAO {
 
     private static final Logger logger = Logger.getLogger(SwipeDAO.class.getName());
 
+    // SQL query constants
+    private static final String INSERT_SWIPE =
+            "INSERT INTO Swipes (user_id, food_id, is_right_swipe) VALUES (?, ?, ?)";
+    private static final String SELECT_SWIPE_YES =
+            "SELECT user_id FROM Swipes WHERE food_id = ? AND is_right_swipe = TRUE";
+    private static final String SELECT_SWIPE_NO =
+            "SELECT user_id FROM Swipes WHERE food_id = ? AND is_right_swipe = FALSE";
+    private static final String SELECT_USER_SWIPES =
+            "SELECT food_id FROM Swipes WHERE user_id = ?";
+    private static final String DELETE_SWIPE =
+            "DELETE FROM Swipes WHERE food_id = ?";
+
     public static void addSwipe(User user, Food food, boolean isRightSwipe) {
-        addSwipe(user.getUserId(), food.getFoodId(), isRightSwipe); // Calls the ID-based method
+        addSwipe(user.getUserID(), food.getFoodID(), isRightSwipe); // Calls the ID-based method
     }
 
     // Add a swipe (right or left)
     public static void addSwipe(int userId, int foodId, boolean isRightSwipe) {
-        String sql = "INSERT INTO Swipes (user_id, food_id, is_right_swipe) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(INSERT_SWIPE)) {
 
             stmt.setInt(1, userId);
             stmt.setInt(2, foodId);
@@ -36,10 +47,9 @@ public class SwipeDAO {
     // Get users who swiped right on a specific food (swipedYes)
     public static List<User> getSwipedYes(int foodId) {
         List<User> swipedYes = new ArrayList<>();
-        String sql = "SELECT user_id FROM Swipes WHERE food_id = ? AND is_right_swipe = TRUE";
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(SELECT_SWIPE_YES)) {
 
             stmt.setInt(1, foodId);
             ResultSet rs = stmt.executeQuery();
@@ -60,10 +70,9 @@ public class SwipeDAO {
     // Get users who swiped left on a specific food (swipedNo)
     public static List<User> getSwipedNo(int foodId) {
         List<User> swipedNo = new ArrayList<>();
-        String sql = "SELECT user_id FROM Swipes WHERE food_id = ? AND is_right_swipe = FALSE";
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(SELECT_SWIPE_NO)) {
 
             stmt.setInt(1, foodId);
             ResultSet rs = stmt.executeQuery();
@@ -84,10 +93,9 @@ public class SwipeDAO {
     // Get all swipes made by a specific user
     public static List<Food> getUserSwipes(int userId) {
         List<Food> swipedFoods = new ArrayList<>();
-        String sql = "SELECT food_id FROM Swipes WHERE user_id = ?";
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(SELECT_USER_SWIPES)) {
 
             stmt.setInt(1, userId); // Bind the user ID
             ResultSet rs = stmt.executeQuery();
@@ -109,17 +117,16 @@ public class SwipeDAO {
         return swipedFoods;
     }
 
-    // Delete all swipes for a specific food item
+    // Delete all swipes for a specific food item when food is deleted
     public static void deleteSwipe(int foodId) {
-        String sql = "DELETE FROM Swipes WHERE food_id = ?";
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(DELETE_SWIPE)) {
 
             stmt.setInt(1, foodId); // Bind the food ID
             stmt.executeUpdate();
 
-            logger.info("Deteled swipes for food ID: " + foodId);
+            logger.info("Deteled swipes for food!");
 
         } catch (SQLException e) {
             logger.severe("Failed to clear swipes for food ID " + foodId + ": " + e.getMessage());

@@ -54,6 +54,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 final JSONObject userJSONObject = responseBody.getJSONObject("user");
                 final String name = userJSONObject.getString(USERNAME);
+                // final String email = userJSONObject.getString(EMAIL);
                 final String password = userJSONObject.getString(PASSWORD);
 
                 return sagmaFactory.create(name, password);

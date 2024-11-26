@@ -1,17 +1,25 @@
 package data_access;
 
 import java.util.*;
+import java.util.logging.Logger;
 import entity.User;
 import entity.Food;
 
 public class DataManager {
+
+    private static final Logger logger = Logger.getLogger(DataManager.class.getName());
+
     private List<User> users;   // Loaded users
-    private List<Food> foods;        // Loaded foods
+    private List<Food> foods;   // Loaded foods
 
     public DataManager() {
         this.users = new ArrayList<>();
         this.foods = new ArrayList<>();
     }
+
+    public List<User> getUsers() { return users; }
+
+    public List<Food> getFoods() { return foods; }
 
     // Add a new user
     public void addUser(User user) {
@@ -30,10 +38,10 @@ public class DataManager {
         users = UserDAO.getUsers();                 // Load all users
         foods = FoodDAO.getFoods();                 // Load all food items
         for (Food food : foods) {
-            food.setSwipedYes(SwipeDAO.getSwipedYes(food.getFoodId()));
-            food.setSwipedNo(SwipeDAO.getSwipedNo(food.getFoodId()));
+            food.setSwipedYes(SwipeDAO.getSwipedYes(food.getFoodID()));
+            food.setSwipedNo(SwipeDAO.getSwipedNo(food.getFoodID()));
         }
-        System.out.println("Data loaded successfully.");
+        logger.info("Data loaded successfully.");
     }
 
     // Save all changes back to the database
@@ -44,19 +52,19 @@ public class DataManager {
 
         for (Food food : foods) {
             if (food.getQuantity() > 0) {
-                FoodDAO.updateFood(food.getFoodId(), food.getQuantity()); // Save food changes
+                FoodDAO.updateFood(food.getFoodID(), food.getQuantity(), food.getRating(), food.getRatingsCount()); // Save food changes
             } else {
-                FoodDAO.deleteFood(food.getFoodId()); // Remove food if quantity is zero
-                SwipeDAO.clearSwipesForFood(food.getFoodId());
+                FoodDAO.deleteFood(food.getFoodID()); // Remove food if quantity is zero
+                SwipeDAO.deleteSwipe(food.getFoodID());
             }
         }
-        System.out.println("Data saved successfully.");
+        logger.info("Data saved successfully.");
     }
 
     // Get a user by ID
     public User getUserById(int userId) {
         for (User user : users) {
-            if (user.getUserId() == userId) {
+            if (user.getUserID() == userId) {
                 return user;
             }
         }
@@ -66,10 +74,12 @@ public class DataManager {
     // Get a food by ID
     public Food getFoodById(int foodId) {
         for (Food food : foods) {
-            if (food.getFoodId() == foodId) {
+            if (food.getFoodID() == foodId) {
                 return food;
             }
         }
         return null;
     }
+
+    // handle food upload
 }
