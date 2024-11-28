@@ -1,28 +1,68 @@
 package use_case.login;
 
-import data_access.InMemoryUserDataAccessObject;
+import data_access.UserDAO;
+import entity.SagmaFactory;
 import entity.User;
-import org.junit.jupiter.api.Test;
+import interface_adapter.state.LoginSessionState;
+import org.junit.jupiter.api.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoginInteractorTest {
 
+    private static final String TEST_DB_URL = "jdbc:sqlite:test.db";
+
+    @BeforeAll
+    static void setupTestDatabase() {
+        try (Connection connection = DriverManager.getConnection(TEST_DB_URL);
+             Statement statement = connection.createStatement()) {
+            // Create the test schema
+            statement.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS Users (" +
+                            "user_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                            "name TEXT NOT NULL," +
+                            "email TEXT UNIQUE NOT NULL," +
+                            "password TEXT NOT NULL," +
+                            "rating FLOAT DEFAULT 0," +
+                            "ratings_count INTEGER DEFAULT 0," +
+                            "dietary_restrictions TEXT," +
+                            "current_food_id INTEGER DEFAULT 0" +
+                            ");"
+            );
+
+            statement.executeUpdate("DELETE FROM Users;"); // Clean slate
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to set up test database", e);
+        }
+    }
+
+    @BeforeEach
+    void populateDatabase() {
+        UserDAO.addUser("Paul", "paul@email.com", "password", 4.5f, 10,
+                null);
+    }
+
+    @AfterEach
+    void clearDatabase() {
+        try (Connection connection = DriverManager.getConnection(TEST_DB_URL);
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate("DELETE FROM Users;");
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to clear test database", e);
+        }
+    }
+
     @Test
     void successTest() {
-        LoginInputData inputData = new LoginInputData("Paul", "password");
-        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
+        LoginInputData inputData = new LoginInputData("paul@email.com", "password");
 
-        // For the success test, we need to add Paul to the data access repository before we log in.
-        UserFactory factory = new CommonUserFactory();
-        User user = factory.create("Paul", "password");
-        userRepository.save(user);
-
-        // This creates a successPresenter that tests whether the test case is as we expect.
         LoginOutputBoundary successPresenter = new LoginOutputBoundary() {
             @Override
             public void prepareSuccessView(LoginOutputData user) {
-                assertEquals("Paul", user.getUsername());
+                assertEquals("paul@email.com", user.getEmail());
             }
 
             @Override
@@ -31,25 +71,23 @@ class LoginInteractorTest {
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, successPresenter);
+        LoginInputBoundary interactor = new LoginInteractor(successPresenter);
         interactor.execute(inputData);
     }
-
     @Test
     void successUserLoggedInTest() {
-        LoginInputData inputData = new LoginInputData("Paul", "password");
-        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
+        LoginInputData inputData = new LoginInputData("paul@email.com", "password");
 
-        // For the success test, we need to add Paul to the data access repository before we log in.
-        UserFactory factory = new CommonUserFactory();
-        User user = factory.create("Paul", "password");
-        userRepository.save(user);
+        // Populate the database with the test user
+        UserDAO.addUser("Paul", "paul@email.com", "password", 4.5f, 10,
+                null);
 
         // This creates a successPresenter that tests whether the test case is as we expect.
         LoginOutputBoundary successPresenter = new LoginOutputBoundary() {
             @Override
             public void prepareSuccessView(LoginOutputData user) {
-                assertEquals("Paul", userRepository.getCurrentUsername());
+                // Assert that the user's username matches the one in the database
+                assertEquals("paul@email.com", LoginSessionState.getInstance().getEmail());
             }
 
             @Override
@@ -58,63 +96,55 @@ class LoginInteractorTest {
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, successPresenter);
-        assertEquals(null, userRepository.getCurrentUsername());
+        LoginInputBoundary interactor = new LoginInteractor(successPresenter);
+
+        assertFalse(LoginSessionState.getInstance().isLoggedIn());
+        assertNull(LoginSessionState.getInstance().getUsername());
 
         interactor.execute(inputData);
+
+        assertTrue(LoginSessionState.getInstance().isLoggedIn());
+        assertEquals("Paul", LoginSessionState.getInstance().getUsername());
     }
+
 
     @Test
     void failurePasswordMismatchTest() {
-        LoginInputData inputData = new LoginInputData("Paul", "wrong");
-        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
+        LoginInputData inputData = new LoginInputData("paul@email.com", "wrong_password");
 
-        // For this failure test, we need to add Paul to the data access repository before we log in, and
-        // the passwords should not match.
-        UserFactory factory = new CommonUserFactory();
-        User user = factory.create("Paul", "password");
-        userRepository.save(user);
-
-        // This creates a presenter that tests whether the test case is as we expect.
         LoginOutputBoundary failurePresenter = new LoginOutputBoundary() {
             @Override
             public void prepareSuccessView(LoginOutputData user) {
-                // this should never be reached since the test case should fail
                 fail("Use case success is unexpected.");
             }
 
             @Override
             public void prepareFailView(String error) {
-                assertEquals("Incorrect password for \"Paul\".", error);
+                assertEquals("Invalid password.", error);
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, failurePresenter);
+        LoginInputBoundary interactor = new LoginInteractor(failurePresenter);
         interactor.execute(inputData);
     }
 
     @Test
     void failureUserDoesNotExistTest() {
-        LoginInputData inputData = new LoginInputData("Paul", "password");
-        LoginUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
+        LoginInputData inputData = new LoginInputData("nonexistent@email.com", "password");
 
-        // Add Paul to the repo so that when we check later they already exist
-
-        // This creates a presenter that tests whether the test case is as we expect.
         LoginOutputBoundary failurePresenter = new LoginOutputBoundary() {
             @Override
             public void prepareSuccessView(LoginOutputData user) {
-                // this should never be reached since the test case should fail
                 fail("Use case success is unexpected.");
             }
 
             @Override
             public void prepareFailView(String error) {
-                assertEquals("Paul: Account does not exist.", error);
+                assertEquals("User not found.", error);
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(userRepository, failurePresenter);
+        LoginInputBoundary interactor = new LoginInteractor(failurePresenter);
         interactor.execute(inputData);
     }
 }

@@ -1,42 +1,80 @@
 package entity;
 
-import java.io.File;
+// import java.io.File;
 import java.util.*;
 
 public class Food {
-    private User Owner;
+    private User owner;
+    private int foodID;
     private String name;
     private int quantity;
-    private String ingredients; // wont users just input a string of ingredients, comma separated? are we converting that to a list?
-    private String dietaryRestrictions; // similar comment as ingrdients
-    private File image;
-    private List<User> swipedYes; //list of people that have swiped right on the food
-    private List<User> swipedNo; //list of people that have swiped left on the food
-    private String category; //INPUT: drop down menu
-    private float rating; // the average of all the ratings that have been submitted for this specific food
-    private int ratingsCount; // the number of ratings that have been submitted so far for this food
+    private String ingredients;
+    private List<String> dietaryRestrictions;
+    private String imagePath;
+    private List<User> swipedYes;
+    private List<User> swipedNo;
+    private String category;
+    private float rating;
+    private int ratingsCount;
 
-    public Food(String name, int quantity, String ingredients, String dietaryRestrictions, File image,
-                String category) {
+    // at the time of food upload
+    public Food(String name, int quantity, String ingredients, List<String> dietaryRestrictions, String category,
+                User owner) {
         this.name = name;
         this.quantity = quantity;
         this.ingredients = ingredients;
         this.dietaryRestrictions = dietaryRestrictions;
-        this.image = image;
+        this.category = category;
+        this.owner = owner;
         this.swipedYes = new ArrayList<>();
         this.swipedNo = new ArrayList<>();
-        this.category = category;
-        this.rating = 0;
-        this.ratingsCount = 0;
     }
+
+    // at the time of data load from database
+    public Food(int foodID, String name, int quantity, String ingredients, List<String> dietaryRestrictions,
+                String category, User owner, List<User> swipedYes, List<User> swipedNo) {
+        this.foodID = foodID;
+        this.name = name;
+        this.quantity = quantity;
+        this.ingredients = ingredients;
+        this.dietaryRestrictions = dietaryRestrictions;
+        this.category = category;
+        this.owner = owner;
+        this.swipedYes = swipedYes;
+        this.swipedNo = swipedNo;
+    }
+
+
+    public void addSwipedYes(User user){
+        this.swipedYes.add(user);
+        // DataManager.handleSwipe(user, food, true);
+    }
+
+    public void addSwipedNo(User user){
+        this.swipedNo.add(user);
+        // DataManager.handleSwipe(user, food, false);
+    }
+
+    // might need to compute matches
+    public boolean hasSwiped(User user) {
+        return false;
+    }
+
+    public void addRating(int rating) {
+
+    }
+
+    // call from getMatches function...
+    public void reduceQuantity() {
+        // setQuantity... this.quantity -= 1;
+    }
+
 
     public User getOwner() {
-        return Owner;
+        return owner;
     }
 
-    public void setOwner(User Owner) {
-        this.Owner = Owner;
-    }
+    public void setOwner(User owner) { this.owner = owner; }
 
     public String getName() {
         return name;
@@ -62,79 +100,39 @@ public class Food {
         this.ingredients = ingredients;
     }
 
-    public String getDietaryRestrictions() {
+    public List<String> getDietaryRestrictions() {
         return dietaryRestrictions;
     }
 
-    public void setDietaryRestrictions(String dietaryRestrictions) {
+    public void setDietaryRestrictions(List<String> dietaryRestrictions) {
         this.dietaryRestrictions = dietaryRestrictions;
     }
 
-    public File getImage() {
-        return image;
-    }
+    public String getImagePath() { return imagePath; }
 
-    public void setImage(File image) {
-        this.image = image;
-    }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
-    public List<User> getSwipedYes() {
-        return swipedYes;
-    }
+    public List<User> getSwipedYes() { return swipedYes; }
 
-    public void setSwipedYes(List<User> swipedYes) {
-        this.swipedYes = swipedYes;
-    }
+    public void setSwipedYes(List<User> swipedYes) { this.swipedYes = swipedYes; }
 
-    public List<User> getSwipedNo() {
-        return swipedNo;
-    }
+    public List<User> getSwipedNo() { return swipedNo; }
 
-    public void setSwipedNo(List<User> swipedNo) {
-        this.swipedNo = swipedNo;
-    }
+    public void setSwipedNo(List<User> swipedNo) { this.swipedNo = swipedNo; }
 
-    public String getCategory() {
-        return category;
-    }
+    public String getCategory() { return category; }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    public void setCategory(String category) { this.category = category; }
 
-    public float getRating() {
-        return rating;
-    }
+    public float getRating() { return rating; }
 
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
+    public void setRating(float rating) { this.rating = rating; }
 
-    public int getRatingsCount() {
-        return ratingsCount;
-    }
+    public int getRatingsCount() { return ratingsCount; }
 
-    public void setRatingsCount(int ratingsCount) {
-        this.ratingsCount = ratingsCount;
-    }
+    public void setRatingsCount(int ratingsCount) { this.ratingsCount = ratingsCount; }
 
-
-
-
-
-    public void addSwipedYes(User user){
-        this.swipedYes.add(user);
-        // dataManager.handleSwipe(user, food, true);
-    }
-
-    public void addSwipedNo(User user){
-        this.swipedNo.add(user);
-        // dataManager.handleSwipe(user, food, false);
-    }
-    // i know that we are making these lists to do the match handling but it kinda breaks down when we try to generate
-    // the feed that each user sees. it would be so tedious to go through every list of every food just to see who
-    // swiped no on which food so we don't show them that food. maybe we go back to having swipedYes and No lists (as a
-    // list of food) in the user class so everything's easier?
+    public int getFoodID() { return foodID; }
 
 }
 

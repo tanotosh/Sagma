@@ -11,25 +11,35 @@ public class FoodDAO {
 
     private static final Logger logger = Logger.getLogger(FoodDAO.class.getName());
 
-    public static void addFood(Food food){
-        addFood(food.getName(), food.getQuantity(), food.getIngredients(), food.getDietaryRestrictions(),
-                food.getCategory(), food.getOwner().getUserID());
-    }
+    // SQL Query Constants
+    private static final String INSERT_FOOD =
+            "INSERT INTO Foods (name, quantity, ingredients, dietary_restrictions, category, owner_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String SELECT_ALL_FOODS =
+            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id FROM Foods";
+    private static final String SELECT_FOOD_BY_ID =
+            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id FROM Foods " +
+                    "WHERE food_id = ?";
+    private static final String UPDATE_FOOD =
+            "UPDATE Foods SET quantity = ?, rating = ?, ratings_count = ? WHERE food_id = ?";
+    private static final String DELETE_FOOD =
+            "DELETE FROM Foods WHERE food_id = ?";
+    /* private static final String SELECT_FOODS_BY_CATEGORY =
+            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id FROM Foods " +
+            WHERE category = ?"; */
     
     // Add a new food item to the database
     public static void addFood(Food food) {
-        String sql = "INSERT INTO Foods (name, quantity, ingredients, dietary_restrictions, category, owner_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(INSERT_FOOD)) {
 
             stmt.setString(1, food.getName());
             stmt.setInt(2, food.getQuantity());
             stmt.setString(3, food.getIngredients());
-            stmt.setString(4, food.getDietaryRestrictions());
+            stmt.setString(4, String.join(",", food.getDietaryRestrictions()));
             stmt.setString(5, food.getCategory());
-            stmt.setInt(6, food.getOwner().getUserId());
+            stmt.setInt(6, food.getOwner().getUserID());
             stmt.executeUpdate();
 
             logger.info("Food item added successfully.");
@@ -42,31 +52,13 @@ public class FoodDAO {
     // Get all food items from the database
     public static List<Food> getFoods() {
         List<Food> foods = new ArrayList<>();
-        String sql = "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id FROM Foods";
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql);
+             PreparedStatement stmt = connection.prepareStatement(SELECT_ALL_FOODS);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                int foodId = rs.getInt("food_id");
-                String name = rs.getString("name");
-                int quantity = rs.getInt("quantity");
-                String[] ingredients = rs.getString("ingredients").split(",");
-                String[] dietaryRestrictions = rs.getString("dietary_restrictions").split(",");
-                String category = rs.getString("category");
-                int ownerId = rs.getInt("owner_id");
-
-                // Fetch the User object for the owner
-                User owner = UserDAO.getUserById(ownerId);
-
-                // Fetch swipedYes and swipedNo lists
-                List<User> swipedYes = SwipeDAO.getSwipedYes(foodId);
-                List<User> swipedNo = SwipeDAO.getSwipedNo(foodId);
-
-                // Create a Food object
-                Food food = new Food(foodId, name, quantity, ingredients, dietaryRestrictions, category, owner);
-                foods.add(food);
+                foods.add(mapResultSetToFood(rs));
             }
 
         } catch (SQLException e) {
@@ -78,14 +70,15 @@ public class FoodDAO {
 
     // Update an existing food item
     // Need function calls in the setter functions based on quantity (> 0)
-    public static void updateFood(int foodId, int quantity) {
-        String sql = "UPDATE Foods SET quantity = ? WHERE food_id = ?";
+    public static void updateFood(int foodId, int quantity, float rating, int ratingsCount) {
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(UPDATE_FOOD)) {
 
-            stmt.setInt(1, quantity); // Bind the new quantity
-            stmt.setInt(2, foodId);   // Bind the food ID
+            stmt.setInt(1, quantity);
+            stmt.setFloat(2, rating);
+            stmt.setInt(3, ratingsCount);
+            stmt.setInt(4, foodId);
             stmt.executeUpdate();
 
             logger.info("Food quantity updated successfully.");
@@ -95,16 +88,14 @@ public class FoodDAO {
         }
     }
 
-
     // Delete a food item
     // Need function calls in the setter functions based on quantity (== 0)
-    public static void deleteFood(int foodId) {
-        String sql = "DELETE FROM Foods WHERE food_id = ?";
+    public static void deleteFood(int foodID) {
 
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(DELETE_FOOD)) {
 
-            stmt.setInt(1, foodId); // Bind the food ID
+            stmt.setInt(1, foodID);
             stmt.executeUpdate();
 
             logger.info("Food item deleted successfully.");
@@ -114,39 +105,64 @@ public class FoodDAO {
         }
     }
 
-    public static Food getFoodById(int foodId) {
-        String sql = "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id " +
-                "FROM Foods WHERE food_id = ?";
-        Food food = null;
-
+    public static Food getFoodById(int foodID) {
         try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+             PreparedStatement stmt = connection.prepareStatement(SELECT_FOOD_BY_ID)) {
 
-            stmt.setInt(1, foodId);
+            stmt.setInt(1, foodID);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String name = rs.getString("name");
-                int quantity = rs.getInt("quantity");
-                String ingredients = rs.getString("ingredients");
-                String dietaryRestrictions = rs.getString("dietary_restrictions");
-                String category = rs.getString("category");
-                int ownerId = rs.getInt("owner_id");
-
-                User owner = UserDAO.getUserById(ownerId);
-
-                List<User> swipedYes = SwipeDAO.getSwipedYes(foodId);
-                List<User> swipedNo = SwipeDAO.getSwipedNo(foodId);
-
-                food = new Food(owner, name, quantity, ingredients, dietaryRestrictions, swipedYes, swipedNo, category);
+                return mapResultSetToFood(rs);
             }
 
         } catch (SQLException e) {
-            logger.severe("Failed to fetch food by ID " + foodId + ": " + e.getMessage());
+            logger.severe("Failed to fetch food by ID " + foodID + ": " + e.getMessage());
         }
 
-        return food;
+        logger.warning("No food found!");
+        return null;
     }
+
+    private static Food mapResultSetToFood(ResultSet rs) throws SQLException {
+        int foodId = rs.getInt("food_id");
+        String name = rs.getString("name");
+        int quantity = rs.getInt("quantity");
+        String ingredients = rs.getString("ingredients");
+        String dietaryRestrictionsString = rs.getString("dietary_restrictions");
+        String category = rs.getString("category");
+        int ownerId = rs.getInt("owner_id");
+
+        // Convert dietary restrictions back to a List
+        List<String> dietaryRestrictions = dietaryRestrictionsString != null && !dietaryRestrictionsString.isEmpty()
+                ? Arrays.asList(dietaryRestrictionsString.split(","))
+                : new ArrayList<>();
+
+        User owner = UserDAO.getUserById(ownerId);
+        List<User> swipedYes = SwipeDAO.getSwipedYes(foodId);
+        List<User> swipedNo = SwipeDAO.getSwipedNo(foodId);
+
+        return new Food(foodId, name, quantity, ingredients, dietaryRestrictions, category, owner, swipedYes, swipedNo);
+    }
+
+    /*      public static List<Food> getFoodsByCategory(String category) {
+        List<Food> foods = new ArrayList<>();
+        try (Connection connection = DatabaseConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(SELECT_FOODS_BY_CATEGORY)) {
+
+            stmt.setString(1, category);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                foods.add(mapResultSetToFood(rs));
+            }
+
+        } catch (SQLException e) {
+            logger.severe("Failed to fetch foods by category: " + e.getMessage());
+        }
+
+        return foods;
+    } */
 
 }
 

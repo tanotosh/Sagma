@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.util.logging.Logger;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:sqlite:/Users/jiya/Desktop/CSC207/Sagma/src/schema.db";
+    private static final String URL = "jdbc:sqlite:/Users/jiya/Desktop/CSC207/Sagma/src/sagma.db";
     private static final Logger logger = Logger.getLogger(DatabaseConnection.class.getName());
 
     // Method to establish a connection to the database

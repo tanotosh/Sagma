@@ -1,7 +1,7 @@
 package use_case.logout;
 
-import data_access.InMemoryUserDataAccessObject;
 import entity.User;
+import entity.SagmaFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,8 +14,8 @@ class LogoutInteractorTest {
         InMemoryUserDataAccessObject userRepository = new InMemoryUserDataAccessObject();
 
         // For the success test, we need to add Paul to the data access repository before we log in.
-        UserFactory factory = new CommonUserFactory();
-        User user = factory.create("Paul", "password");
+        SagmaFactory factory = new SagmaFactory();
+        User user = factory.create("Paul", "paul@email.com", "password");
         userRepository.save(user);
         userRepository.setCurrentUsername("Paul");
 
@@ -24,7 +24,7 @@ class LogoutInteractorTest {
             @Override
             public void prepareSuccessView(LogoutOutputData user) {
                 // check that the output data contains the username of who logged out
-                assertEquals("Paul", user.getUsername());
+                assertEquals("paul@email.com", user.getEmail());
             }
 
             @Override
@@ -33,7 +33,7 @@ class LogoutInteractorTest {
             }
         };
 
-        LogoutInputBoundary interactor = new LogoutInteractor(userRepository, successPresenter);
+        LogoutInputBoundary interactor = new LogoutInteractor(successPresenter);
         interactor.execute(inputData);
         // check that the user was logged out
         assertNull(userRepository.getCurrentUsername());
