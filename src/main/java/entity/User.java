@@ -13,7 +13,7 @@ public class User {
     private int ratingsCount;
     private List<String> dietaryRestrictions;
 
-    public User(String name, String password) {
+    /*public User(String name, String password) {
         this.name = name;
         this.email = "";
         this.password = password;
@@ -21,9 +21,9 @@ public class User {
         this.ratingsCount = 0;
         this.dietaryRestrictions = null;
         this.userID = -1;
-    }
+    }*/
 
-    /* public User(String name, String email, String password) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -31,7 +31,7 @@ public class User {
         this.ratingsCount = 0;
         this.dietaryRestrictions = null;
         this.userID = -1;
-    } */
+    }
 
     public User(int userID, String name, String email, String password, float rating, int ratingsCount,
                 List<String> dietaryRestrictions, Food food) {

@@ -12,11 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
-import interface_adapter.change_password.ChangePasswordController;
-import interface_adapter.change_password.LoggedInState;
-import interface_adapter.change_password.LoggedInViewModel;
-import interface_adapter.login.LoginState;
+import interface_adapter.state.LoginSessionState;
 import interface_adapter.logout.LogoutController;
 
 /**
@@ -25,120 +21,68 @@ import interface_adapter.logout.LogoutController;
 public class LoggedInView extends JPanel implements PropertyChangeListener {
 
     private final String viewName = "logged in";
-    private final LoggedInViewModel loggedInViewModel;
-    private final JLabel passwordErrorField = new JLabel();
-    private ChangePasswordController changePasswordController;
+
     private LogoutController logoutController;
 
-    private final JLabel username;
-
+    private final JLabel usernameLabel;
     private final JButton logOut;
 
-    private final JTextField passwordInputField = new JTextField(15);
-    private final JButton changePassword;
-
     @SuppressWarnings({"checkstyle:LambdaBodyLength", "checkstyle:SuppressWarnings"})
-    public LoggedInView(LoggedInViewModel loggedInViewModel) {
-        this.loggedInViewModel = loggedInViewModel;
-        this.loggedInViewModel.addPropertyChangeListener(this);
+    public LoggedInView() {
 
         final JLabel title = new JLabel("Logged In Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        final LabelTextPanel passwordInfo = new LabelTextPanel(
-                new JLabel("Password"), passwordInputField);
-
         final JLabel usernameInfo = new JLabel("Currently logged in: ");
-        username = new JLabel();
+        usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        usernameLabel = new JLabel();
+        usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         final JPanel buttons = new JPanel();
         logOut = new JButton("Log Out");
         buttons.add(logOut);
 
-        changePassword = new JButton("Change Password");
-        buttons.add(changePassword);
+        // Add components to panel
+        this.add(title);
+        this.add(usernameInfo);
+        this.add(usernameLabel);
+        this.add(logOut);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        passwordInputField.getDocument().addDocumentListener(new DocumentListener() {
-
-            private void documentListenerHelper() {
-                final LoggedInState currentState = loggedInViewModel.getState();
-                currentState.setPassword(passwordInputField.getText());
-                loggedInViewModel.setState(currentState);
-            }
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                documentListenerHelper();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                documentListenerHelper();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                documentListenerHelper();
+        logOut.addActionListener(evt -> {
+            if (evt.getSource().equals(logOut)) {
+                final LoginSessionState sessionState = LoginSessionState.getInstance();
+                if (sessionState.isLoggedIn()) {
+                    logoutController.execute(sessionState.getEmail());
+                } else {
+                    JOptionPane.showMessageDialog(this, "No user is currently logged in.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
-        changePassword.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                evt -> {
-                    if (evt.getSource().equals(changePassword)) {
-                        final LoggedInState currentState = loggedInViewModel.getState();
-
-                        this.changePasswordController.execute(
-                                currentState.getUsername(),
-                                currentState.getPassword()
-                        );
-                    }
-                }
-        );
-
-        logOut.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                evt -> {
-                    if (evt.getSource().equals(logOut)) {
-                        final LoggedInState currentState = loggedInViewModel.getState();
-
-                        logoutController.execute(
-                                currentState.getUsername()
-                        );
-                    }
-                }
-        );
-
-        this.add(title);
-        this.add(usernameInfo);
-        this.add(username);
-
-        this.add(passwordInfo);
-        this.add(passwordErrorField);
-        this.add(buttons);
+        // Update username label with current session data
+        updateUsernameDisplay();
     }
 
-    @SuppressWarnings({"checkstyle:RightCurly", "checkstyle:SuppressWarnings"})
+    /**
+     * Updates the username display with the current session username.
+     */
+    private void updateUsernameDisplay() {
+        final LoginSessionState sessionState = LoginSessionState.getInstance();
+        usernameLabel.setText(sessionState.isLoggedIn() ? sessionState.getUsername() : "No user logged in.");
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("state")) {
-            final LoggedInState state = (LoggedInState) evt.getNewValue();
-            username.setText(state.getUsername());
-        } else if (evt.getPropertyName().equals("password")) {
-            final LoggedInState state = (LoggedInState) evt.getNewValue();
-            JOptionPane.showMessageDialog(null, "password updated for " + state.getUsername());
+        if ("state".equals(evt.getPropertyName())) {
+            updateUsernameDisplay();
         }
-
     }
 
     public String getViewName() {
         return viewName;
-    }
-
-    public void setChangePasswordController(ChangePasswordController changePasswordController) {
-        this.changePasswordController = changePasswordController;
     }
 
     public void setLogoutController(LogoutController logoutController) {
