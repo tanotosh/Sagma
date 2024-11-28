@@ -10,7 +10,7 @@ public class Food {
     private int quantity;
     private String ingredients;
     private List<String> dietaryRestrictions;
-    // private File image;
+    private String imagePath;
     private List<User> swipedYes;
     private List<User> swipedNo;
     private String category;
@@ -43,6 +43,32 @@ public class Food {
         this.swipedYes = swipedYes;
         this.swipedNo = swipedNo;
     }
+
+
+    public void addSwipedYes(User user){
+        this.swipedYes.add(user);
+        // DataManager.handleSwipe(user, food, true);
+    }
+
+    public void addSwipedNo(User user){
+        this.swipedNo.add(user);
+        // DataManager.handleSwipe(user, food, false);
+    }
+
+    // might need to compute matches
+    public boolean hasSwiped(User user) {
+        return false;
+    }
+
+    public void addRating(int rating) {
+
+    }
+
+    // call from getMatches function...
+    public void reduceQuantity() {
+        // setQuantity... this.quantity -= 1;
+    }
+
 
     public User getOwner() {
         return owner;
@@ -82,13 +108,9 @@ public class Food {
         this.dietaryRestrictions = dietaryRestrictions;
     }
 
-    /* public File getImage() {
-        return image;
-    }
+    public String getImagePath() { return imagePath; }
 
-    public void setImage(File image) {
-        this.image = image;
-    } */
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
     public List<User> getSwipedYes() { return swipedYes; }
 
@@ -111,31 +133,6 @@ public class Food {
     public void setRatingsCount(int ratingsCount) { this.ratingsCount = ratingsCount; }
 
     public int getFoodID() { return foodID; }
-
-
-    public void addSwipedYes(User user){
-        this.swipedYes.add(user);
-        // DataManager.handleSwipe(user, food, true);
-    }
-
-    public void addSwipedNo(User user){
-        this.swipedNo.add(user);
-        // DataManager.handleSwipe(user, food, false);
-    }
-
-    // might need to compute matches
-    public boolean hasSwiped(User user) {
-        return false;
-    }
-
-    public void addRating(int rating) {
-
-    }
-
-    // call from getMatches function...
-    public void reduceQuantity() {
-        // setQuantity... this.quantity -= 1;
-    }
 
 }
 

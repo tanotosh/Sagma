@@ -45,6 +45,29 @@ public class User {
         this.currentFood = food;
     }
 
+
+    public void uploadFood(String name, int quantity, String ingredients, List<String> dietaryRestrictions,
+                           String category) {
+        this.currentFood = new Food(name, quantity, ingredients, dietaryRestrictions, category, this);
+    }
+
+    public void swipeRight(Food food) {
+        food.addSwipedYes(this);
+    }
+
+    public void swipeLeft(Food food) {
+        food.addSwipedNo(this);
+    }
+
+    public void rateFood(Food food) {
+
+    }
+
+    public List<Food> getMatches() {
+        return null;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -87,28 +110,6 @@ public class User {
 
     public void setDietaryRestrictions(List<String> dietaryRestrictions) {
         this.dietaryRestrictions = dietaryRestrictions;
-    }
-
-
-    public void uploadFood(String name, int quantity, String ingredients, List<String> dietaryRestrictions,
-                           String category) {
-        this.currentFood = new Food(name, quantity, ingredients, dietaryRestrictions, category, this);
-    }
-
-    public void swipeRight(Food food) {
-        food.addSwipedYes(this);
-    }
-
-    public void swipeLeft(Food food) {
-        food.addSwipedNo(this);
-    }
-
-    public void rateFood(Food food) {
-
-    }
-
-    public List<Food> getMatches() {
-        return null;
     }
 
 }

@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS Foods (
     dietary_restrictions TEXT,
     cuisine TEXT,
     owner_id INTEGER,
+    image_path TEXT,
     FOREIGN KEY (owner_id) REFERENCES Users(user_id)
 );
 
