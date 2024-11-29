@@ -1,5 +1,7 @@
 package view;
 
+import entity.Food;
+import entity.User;
 import use_case.Search;
 
 import javax.swing.*;
@@ -12,7 +14,12 @@ import java.util.List;
  * The View for the Search Page
  */
 
-public class SearchPageView {
+public class SearchPageView{
+    private static User currentUser;
+
+    public SearchPageView(User user){
+        this.currentUser = user;
+    }
     public static void main(String[] args) {
         JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(new Color(164, 179,148));
@@ -30,7 +37,7 @@ public class SearchPageView {
         panel.add(title, c);
 
         //dropdown panel
-        List<String> choices = Search.getCuisines();
+        List<String> choices = Search.getCategory();
         JComboBox<String> options = new JComboBox<String>((ComboBoxModel<String>) choices);
         options.setFont(new Font("Arial", Font.PLAIN, 13));
         options.setBackground(new Color(234, 223, 214));
@@ -59,7 +66,9 @@ public class SearchPageView {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String cuisine = options.getSelectedItem().toString();
+                List<Food> listFilteredFoods = Search.getFilteredFoods(currentUser, cuisine);
+                //function to go to swipping page
             }
         });
 

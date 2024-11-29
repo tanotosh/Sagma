@@ -144,25 +144,5 @@ public class FoodDAO {
 
         return new Food(foodId, name, quantity, ingredients, dietaryRestrictions, category, owner, swipedYes, swipedNo);
     }
-
-    /*      public static List<Food> getFoodsByCategory(String category) {
-        List<Food> foods = new ArrayList<>();
-        try (Connection connection = DatabaseConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(SELECT_FOODS_BY_CATEGORY)) {
-
-            stmt.setString(1, category);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                foods.add(mapResultSetToFood(rs));
-            }
-
-        } catch (SQLException e) {
-            logger.severe("Failed to fetch foods by category: " + e.getMessage());
-        }
-
-        return foods;
-    } */
-
 }
 
