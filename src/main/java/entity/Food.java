@@ -61,7 +61,11 @@ public class Food {
     }
 
     public void addRating(int rating) {
-
+        float count = this.rating * this.ratingsCount;
+        count = count + rating;
+        this.ratingsCount = this.ratingsCount + 1;
+        this.rating = count/this.ratingsCount;
+        this.owner.updateRating(rating); //when a food's rating gets updated, the owner's rating does as well.
     }
 
     // call from getMatches function...
