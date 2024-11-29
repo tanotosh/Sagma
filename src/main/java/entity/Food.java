@@ -1,6 +1,8 @@
 package entity;
 
 // import java.io.File;
+import data_access.FoodDAO;
+
 import java.util.*;
 
 public class Food {
@@ -65,6 +67,7 @@ public class Food {
         count = count + rating;
         this.ratingsCount = this.ratingsCount + 1;
         this.rating = count/this.ratingsCount;
+        FoodDAO.updateFood(this.foodID, this.quantity, this.rating, this.ratingsCount);
         this.owner.updateRating(rating); //when a food's rating gets updated, the owner's rating does as well.
     }
 

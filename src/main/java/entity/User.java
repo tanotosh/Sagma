@@ -1,5 +1,7 @@
 package entity;
 
+import data_access.UserDAO;
+
 import java.io.File;
 import java.util.*;
 
@@ -75,6 +77,7 @@ public class User {
         count = count + rating;
         this.ratingsCount = this.ratingsCount + 1;
         this.rating = count/this.ratingsCount;
+        UserDAO.updateUser(this);
     }
 
     public List<Food> getMatches() {
