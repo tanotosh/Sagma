@@ -59,8 +59,22 @@ public class User {
         food.addSwipedNo(this);
     }
 
-    public void rateFood(Food food) {
+    /*
+    Leaves a rating on someone else's food. Uses the food function addRating to modify the food's rating. Takes the food
+    to leave the rating for and the rating (1, 2, 3, 4, or 5)
+     */
+    public void rateFood(Food food, int rating) {
+        food.addRating(rating);
+    }
 
+    /*
+    changes user's rating. called every time the user's foods get a new rating.
+     */
+    public void updateRating(int rating) {
+        float count = this.rating * this.ratingsCount;
+        count = count + rating;
+        this.ratingsCount = this.ratingsCount + 1;
+        this.rating = count/this.ratingsCount;
     }
 
     public List<Food> getMatches() {
