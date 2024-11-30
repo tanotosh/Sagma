@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/HomeScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/MatchPage.java" afterDir="false" />
+    <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="Added HomeScreen and MatchPage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/Food.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/Food.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +126,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731963243265</updated>
-      <workItem from="1732933538667" duration="989000" />
+      <workItem from="1732933538667" duration="1668000" />
     </task>
     <task id="LOCAL-00001" summary="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class">
       <option name="closed" value="true" />
@@ -164,7 +160,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732576029628</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added HomeScreen and MatchPage">
+      <option name="closed" value="true" />
+      <created>1732934800170</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732934800170</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +176,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class" />
+    <MESSAGE value="Added HomeScreen and MatchPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HomeScreen and MatchPage" />
   </component>
 </project>
