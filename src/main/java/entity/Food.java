@@ -30,6 +30,8 @@ public class Food {
         this.owner = owner;
         this.swipedYes = new ArrayList<>();
         this.swipedNo = new ArrayList<>();
+        this.rating = 0;
+        this.ratingsCount = 0;
     }
 
     // at the time of data load from database
