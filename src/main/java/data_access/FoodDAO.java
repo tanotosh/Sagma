@@ -143,6 +143,7 @@ public class FoodDAO {
         List<User> swipedNo = SwipeDAO.getSwipedNo(foodId);
 
         Food food = new Food(name, owner, quantity, ingredients, dietaryRestrictions, image_path, category);
+        food.setFoodID(foodId);
         food.setSwipedYes(swipedYes);
         food.setSwipedNo(swipedNo);
 
