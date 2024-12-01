@@ -1,11 +1,13 @@
 package view;
 
+import entity.User;
 import use_case.Search;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,6 +20,8 @@ public class UploadFoodPage extends JFrame {
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
         Color darkGreen = new Color(40,54,24);
+
+        User user = new User("123", "temp@gmail.com", "password"); // THIS IS TEMPORARY WHILE THINGS ARENT CONNECTED
 
         // Create the main frame
         JFrame frame = new JFrame("Upload New Food");
@@ -67,11 +71,25 @@ public class UploadFoodPage extends JFrame {
         imagePanel.setBackground(pink);
 
         // Upload button
-        JButton uploadButton = new JButton("Select Food");
+        JButton uploadButton = new JButton("Upload Food");
         uploadButton.setBackground(brown);
         uploadButton.setForeground(pink);
         uploadButton.setOpaque(true);
         uploadButton.setPreferredSize(new Dimension(200, 40));
+
+        uploadButton.addActionListener(e -> {
+            String name = nameField.getText();
+            String ingredients = ingredientsField.getText();
+            int quantity = Integer.parseInt((String) servingsBox.getSelectedItem());
+            List<String> dietaryRestrictions = Arrays.asList("None"); // REPLACE?
+            String category = "Uncategorized"; // REPLACE?
+
+            user.uploadFood(name, quantity, ingredients, dietaryRestrictions, category);
+            uploadButton.setBackground(pink);
+            uploadButton.setForeground(brown);
+        });
+
+        // DO WE NEED A BACK BUTTON? Because after you upload it doesn't go anywhere. Or should it bring you back to the home page? Also need to figure out the image and the restrictions and category.
 
         rightPanel.add(imagePanel, BorderLayout.CENTER);
         rightPanel.add(uploadButton, BorderLayout.SOUTH);
