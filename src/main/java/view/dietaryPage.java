@@ -2,19 +2,21 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class dietaryPage extends JFrame {
-    public static void main(String[] args) {
+public class dietaryPage extends JPanel {
+    public dietaryPage() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
         Color darkGreen = new Color(40, 54, 24);
 
-        // Create the main frame
-        JFrame frame = new JFrame("Set Dietary Restrictions");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(green);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
 
         // Configure GBC
         GridBagConstraints gbc = new GridBagConstraints();
@@ -92,21 +94,36 @@ public class dietaryPage extends JFrame {
         mainPanel.add(checkboxPanel, gbc);
 
         // Back button at bottom
-        JButton backButton = new JButton("Back");
-        backButton.setBackground(brown);
-        backButton.setForeground(pink);
-        backButton.setPreferredSize(new Dimension(100, 40));
+        Dimension buttonSize = new Dimension(175, 30);
+        JButton backButton = createStyledButton("Back", brown, pink, buttonSize);
+        // Fix the back button action listener
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container parent = dietaryPage.this.getParent();
+                if (parent != null) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "HOME");
+                }
+            }
+        });
 
         gbc.gridy = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         mainPanel.add(backButton, gbc);
 
         // Set up and display frame
-        frame.add(mainPanel);
-        frame.setPreferredSize(new Dimension(600, 400));
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        add(mainPanel);
+    }
+
+    private JButton createStyledButton(String text, Color bgColor, Color fgColor, Dimension size) {
+        JButton button = new JButton(text);
+        button.setBackground(bgColor);
+        button.setForeground(fgColor);
+        button.setPreferredSize(size);
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        return button;
     }
 
 }

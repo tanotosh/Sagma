@@ -1,4 +1,4 @@
-package view;
+package view.lab5;
 
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
@@ -9,9 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+
 import interface_adapter.state.LoginSessionState;
 import interface_adapter.logout.LogoutController;
 
