@@ -9,7 +9,6 @@ public class LoginSessionState {
     private static final LoginSessionState instance = new LoginSessionState();
 
     private int userID;        // Unique identifier for the logged-in user
-    private String username;   // Username of the logged-in user
     private String email;      // Email of the logged-in user
     private boolean isLoggedIn; // Flag indicating if the user is logged in
 
@@ -34,8 +33,6 @@ public class LoginSessionState {
     public int getUserId() { return userID; }
 
     public void setUserId(int userId) { this.userID = userId; }
-
-    public String getUsername() { return username; }
 
     public String getEmail() { return email; }
 

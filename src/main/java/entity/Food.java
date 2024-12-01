@@ -20,32 +20,23 @@ public class Food {
     private int ratingsCount;
 
     // at the time of food upload
-    public Food(String name, int quantity, String ingredients, List<String> dietaryRestrictions, String category,
-                User owner) {
+    public Food(String name, User owner, int quantity, String ingredients, List<String> dietaryRestrictions,
+                String imagePath, String category) {
         this.name = name;
+        this.owner = owner;
         this.quantity = quantity;
         this.ingredients = ingredients;
-        this.dietaryRestrictions = dietaryRestrictions;
+        this.dietaryRestrictions = dietaryRestrictions != null ? dietaryRestrictions : new ArrayList<>();
         this.category = category;
-        this.owner = owner;
+        this.imagePath = imagePath;
+
+        // Default values for database fields
+        this.foodID = 0; // Will be set when saved to the database
         this.swipedYes = new ArrayList<>();
         this.swipedNo = new ArrayList<>();
-        this.rating = 0;
+        this.rating = 0.0f;
         this.ratingsCount = 0;
-    }
 
-    // at the time of data load from database
-    public Food(int foodID, String name, int quantity, String ingredients, List<String> dietaryRestrictions,
-                String category, User owner, List<User> swipedYes, List<User> swipedNo) {
-        this.foodID = foodID;
-        this.name = name;
-        this.quantity = quantity;
-        this.ingredients = ingredients;
-        this.dietaryRestrictions = dietaryRestrictions;
-        this.category = category;
-        this.owner = owner;
-        this.swipedYes = swipedYes;
-        this.swipedNo = swipedNo;
     }
 
 
@@ -139,9 +130,13 @@ public class Food {
 
     public int getRatingsCount() { return ratingsCount; }
 
-    public void setRatingsCount(int ratingsCount) { this.ratingsCount = ratingsCount; }
+    public void setRatingsCount(int ratingsCount) {
+        this.ratingsCount = ratingsCount;
+    }
 
     public int getFoodID() { return foodID; }
+
+    public void setFoodID(int foodID) { this.foodID = foodID; }
 
 }
 

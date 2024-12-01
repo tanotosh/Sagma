@@ -13,20 +13,18 @@ public class FoodDAO {
 
     // SQL Query Constants
     private static final String INSERT_FOOD =
-            "INSERT INTO Foods (name, quantity, ingredients, dietary_restrictions, category, owner_id) " +
+            "INSERT INTO Foods (name, quantity, ingredients, dietary_restrictions, category, owner_id, image_path) " +
                     "VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL_FOODS =
-            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id FROM Foods";
+            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id, image_path FROM " +
+                    "Foods";
     private static final String SELECT_FOOD_BY_ID =
-            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id FROM Foods " +
-                    "WHERE food_id = ?";
+            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id, image_path FROM " +
+                    "Foods WHERE food_id = ?";
     private static final String UPDATE_FOOD =
             "UPDATE Foods SET quantity = ?, rating = ?, ratings_count = ? WHERE food_id = ?";
     private static final String DELETE_FOOD =
             "DELETE FROM Foods WHERE food_id = ?";
-    /* private static final String SELECT_FOODS_BY_CATEGORY =
-            "SELECT food_id, name, quantity, ingredients, dietary_restrictions, category, owner_id FROM Foods " +
-            WHERE category = ?"; */
     
     // Add a new food item to the database
     public static void addFood(Food food) {
@@ -40,6 +38,7 @@ public class FoodDAO {
             stmt.setString(4, String.join(",", food.getDietaryRestrictions()));
             stmt.setString(5, food.getCategory());
             stmt.setInt(6, food.getOwner().getUserID());
+            stmt.setString(7, food.getImagePath());
             stmt.executeUpdate();
 
             logger.info("Food item added successfully.");
@@ -132,6 +131,7 @@ public class FoodDAO {
         String dietaryRestrictionsString = rs.getString("dietary_restrictions");
         String category = rs.getString("category");
         int ownerId = rs.getInt("owner_id");
+        String image_path = rs.getString("image_path");
 
         // Convert dietary restrictions back to a List
         List<String> dietaryRestrictions = dietaryRestrictionsString != null && !dietaryRestrictionsString.isEmpty()
@@ -142,7 +142,12 @@ public class FoodDAO {
         List<User> swipedYes = SwipeDAO.getSwipedYes(foodId);
         List<User> swipedNo = SwipeDAO.getSwipedNo(foodId);
 
-        return new Food(foodId, name, quantity, ingredients, dietaryRestrictions, category, owner, swipedYes, swipedNo);
+        Food food = new Food(name, owner, quantity, ingredients, dietaryRestrictions, image_path, category);
+        food.setFoodID(foodId);
+        food.setSwipedYes(swipedYes);
+        food.setSwipedNo(swipedNo);
+
+        return food;
     }
 }
 
