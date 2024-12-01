@@ -33,19 +33,29 @@ public class dietaryPage extends JFrame {
         mainPanel.add(titleLabel, gbc);
 
         // Checkbox panel in the middle
-        JPanel checkboxPanel = new JPanel(new GridLayout(4, 1, 0, 10));
+        JPanel checkboxPanel = new JPanel(new GridLayout(3, 3, 0, 10));
         checkboxPanel.setBackground(green);
 
         JCheckBox vegetarianBox = new JCheckBox("Vegetarian");
         JCheckBox veganBox = new JCheckBox("Vegan");
         JCheckBox glutenFreeBox = new JCheckBox("Gluten-Free");
         JCheckBox HalalBox = new JCheckBox("Halal");
+        JCheckBox diaryBox = new JCheckBox("Dairy-free");
+        JCheckBox kosherBox = new JCheckBox("Kosher");
+        JCheckBox nutBox = new JCheckBox("Nut-free");
+        JCheckBox shellfishBox = new JCheckBox("Shellfish-free");
+        JCheckBox otherBox = new JCheckBox("Other");
 
         // Style checkboxes
         vegetarianBox.setBackground(green);
         veganBox.setBackground(green);
         glutenFreeBox.setBackground(green);
         HalalBox.setBackground(green);
+        diaryBox.setBackground(green);
+        kosherBox.setBackground(green);
+        nutBox.setBackground(green);
+        shellfishBox.setBackground(green);
+        otherBox.setBackground(green);
 
         // Add listener to handle selections
         ItemListener dietaryListener = new ItemListener() {
@@ -60,11 +70,21 @@ public class dietaryPage extends JFrame {
         veganBox.addItemListener(dietaryListener);
         glutenFreeBox.addItemListener(dietaryListener);
         HalalBox.addItemListener(dietaryListener);
+        diaryBox.addItemListener(dietaryListener);
+        kosherBox.addItemListener(dietaryListener);
+        nutBox.addItemListener(dietaryListener);
+        shellfishBox.addItemListener(dietaryListener);
+        otherBox.addItemListener(dietaryListener);
 
         checkboxPanel.add(vegetarianBox);
         checkboxPanel.add(veganBox);
         checkboxPanel.add(glutenFreeBox);
         checkboxPanel.add(HalalBox);
+        checkboxPanel.add(diaryBox);
+        checkboxPanel.add(kosherBox);
+        checkboxPanel.add(nutBox);
+        checkboxPanel.add(shellfishBox);
+        checkboxPanel.add(otherBox);
 
         // Add checkbox panel
         gbc.gridy = 1;
