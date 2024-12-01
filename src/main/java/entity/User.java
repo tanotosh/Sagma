@@ -3,6 +3,9 @@ package entity;
 import java.io.File;
 import java.util.*;
 
+import data_access.UserDAO;
+import interface_adapter.state.*;
+
 public class User {
     private final int userID;
     private final String name;
@@ -12,16 +15,6 @@ public class User {
     private float rating;
     private int ratingsCount;
     private List<String> dietaryRestrictions;
-
-    /*public User(String name, String password) {
-        this.name = name;
-        this.email = "";
-        this.password = password;
-        this.rating = 0;
-        this.ratingsCount = 0;
-        this.dietaryRestrictions = null;
-        this.userID = -1;
-    }*/
 
     public User(String name, String email, String password) {
         this.name = name;
@@ -47,8 +40,8 @@ public class User {
 
 
     public void uploadFood(String name, int quantity, String ingredients, List<String> dietaryRestrictions,
-                           String category) {
-        this.currentFood = new Food(name, quantity, ingredients, dietaryRestrictions, category, this);
+                           String image_path, String category) {
+        this.currentFood = new Food(name, this, quantity, ingredients, dietaryRestrictions, image_path, category);
     }
 
     public void swipeRight(Food food) {

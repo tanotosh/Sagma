@@ -10,7 +10,7 @@ public class DataManager {
     private static final Logger logger = Logger.getLogger(DataManager.class.getName());
 
     private List<User> users;   // Loaded users
-    private List<Food> foods;   // Loaded foods
+    private List<Food> foods;  // Loaded foods
 
     public DataManager() {
         this.users = new ArrayList<>();
@@ -61,25 +61,4 @@ public class DataManager {
         logger.info("Data saved successfully.");
     }
 
-    // Get a user by ID
-    public User getUserById(int userId) {
-        for (User user : users) {
-            if (user.getUserID() == userId) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    // Get a food by ID
-    public Food getFoodById(int foodId) {
-        for (Food food : foods) {
-            if (food.getFoodID() == foodId) {
-                return food;
-            }
-        }
-        return null;
-    }
-
-    // handle food upload
 }

@@ -15,8 +15,9 @@ public class SagmaFactory {
     }
 
     // Create a Food
-    public Food create(String name, int quantity, String ingredients, List<String> dietaryRestrictions, String category, User owner) {
-        return new Food(name, quantity, ingredients, dietaryRestrictions, category, owner);
+    public Food create(String name, User owner, int quantity, String ingredients, List<String> dietaryRestrictions,
+                       String image_path, String category) {
+        return new Food(name, owner, quantity, ingredients, dietaryRestrictions, image_path, category);
     }
 
     // Create DAOs (if needed, even though their methods are static)
