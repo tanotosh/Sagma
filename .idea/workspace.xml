@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/data_access/DataManager.java" afterDir="false" />
+    <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="Added HomeScreen and MatchPage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/FoodDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="jiya-edits" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,22 +33,22 @@
     &quot;assignee&quot;: &quot;jiyag&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tanotosh/Sagma.git&quot;,
-    &quot;accountId&quot;: &quot;c5c4f476-e14c-45a5-9f9a-92d44c61aeea&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tanotosh/Sagma.git",
+    "accountId": "7f33d744-7bc3-4498-b18d-f5b70213cf61"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;tanotosh&quot;,
-    &quot;repository&quot;: &quot;Sagma&quot;
+    "owner": "tanotosh",
+    "repository": "Sagma"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -70,16 +66,24 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.HomeScreen.executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.MatchPage.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "#23 on database-edits",
+    "git-widget-placeholder": "figma-screens",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
@@ -96,11 +100,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
       <method v="2" />
@@ -111,6 +110,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -119,6 +126,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731963243265</updated>
+      <workItem from="1732933538667" duration="1668000" />
     </task>
     <task id="LOCAL-00001" summary="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class">
       <option name="closed" value="true" />
@@ -152,11 +160,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732576029628</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added HomeScreen and MatchPage">
+      <option name="closed" value="true" />
+      <created>1732934800170</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732934800170</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class" />
+    <MESSAGE value="Added HomeScreen and MatchPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HomeScreen and MatchPage" />
   </component>
 </project>
