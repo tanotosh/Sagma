@@ -16,8 +16,6 @@ public class Food {
     private List<User> swipedYes;
     private List<User> swipedNo;
     private String category;
-    private float rating;
-    private int ratingsCount;
 
     // at the time of food upload
     public Food(String name, User owner, int quantity, String ingredients, List<String> dietaryRestrictions,
@@ -34,8 +32,6 @@ public class Food {
         this.foodID = 0; // Will be set when saved to the database
         this.swipedYes = new ArrayList<>();
         this.swipedNo = new ArrayList<>();
-        this.rating = 0.0f;
-        this.ratingsCount = 0;
 
     }
 
@@ -56,12 +52,7 @@ public class Food {
     }
 
     public void addRating(int rating) {
-        float count = this.rating * this.ratingsCount;
-        count = count + rating;
-        this.ratingsCount = this.ratingsCount + 1;
-        this.rating = count/this.ratingsCount;
-        FoodDAO.updateFood(this.foodID, this.quantity, this.rating, this.ratingsCount);
-        this.owner.updateRating(rating); //when a food's rating gets updated, the owner's rating does as well.
+        this.owner.updateRating(rating); //when food gets a rating, the owner's rating gets updated.
     }
 
     // call from getMatches function...
@@ -123,16 +114,6 @@ public class Food {
     public String getCategory() { return category; }
 
     public void setCategory(String category) { this.category = category; }
-
-    public float getRating() { return rating; }
-
-    public void setRating(float rating) { this.rating = rating; }
-
-    public int getRatingsCount() { return ratingsCount; }
-
-    public void setRatingsCount(int ratingsCount) {
-        this.ratingsCount = ratingsCount;
-    }
 
     public int getFoodID() { return foodID; }
 
