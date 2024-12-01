@@ -1,4 +1,4 @@
-package view;
+package view.lab5;
 
 import java.awt.CardLayout;
 import java.beans.PropertyChangeEvent;

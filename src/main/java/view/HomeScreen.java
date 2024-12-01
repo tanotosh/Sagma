@@ -9,90 +9,107 @@ import java.awt.GridBagConstraints;
  * The view for the user homepage
  */
 
-public class HomeScreen {
-    public static void main(String[] args) {
-
+public class HomeScreen extends JPanel {
+    public HomeScreen() {
         Color green = new Color(164, 179, 148);
-        Color brown = new Color(123, 86,    61);
-        Color pink = new Color(234, 223,   214);
+        Color brown = new Color(123, 86, 61);
+        Color pink = new Color(234, 223, 214);
 
-        JLabel usernameText = new JLabel("<html>Username: <b>Peppapig14</b></html>\n");
-        usernameText.setFont(new Font("Arial", Font.PLAIN, 16));
-        usernameText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        setBackground(green);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JLabel ratingText = new JLabel("Your rating: ★★★★☆");
-        ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));
-        ratingText.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        Dimension buttonSize = new Dimension(150, 30);
-
-        JButton yourFoodsButton = new JButton("Your foods");
-        yourFoodsButton.setBackground(brown);
-        yourFoodsButton.setForeground(pink);
-        yourFoodsButton.setPreferredSize(buttonSize);
-
-        JButton uploadButton = new JButton("Upload food");
-        uploadButton.setBackground(brown);
-        uploadButton.setForeground(pink);
-        uploadButton.setPreferredSize(buttonSize);
-
-        JButton matchesButton = new JButton("Your matches");
-        matchesButton.setBackground(brown);
-        matchesButton.setForeground(pink);
-        matchesButton.setPreferredSize(buttonSize);
-
-        JButton dietaryRestButton = new JButton("Dietary restrictions");
-        dietaryRestButton.setBackground(brown);
-        dietaryRestButton.setForeground(pink);
-        dietaryRestButton.setPreferredSize(buttonSize);
-
-        JButton swipingButton = new JButton("Start swiping!");
-        swipingButton.setBackground(brown);
-        swipingButton.setForeground(pink);
-        swipingButton.setPreferredSize(buttonSize);
-
-        JPanel mainPanel = new JPanel();
-        mainPanel.setBackground(green);
-
-        JPanel textPanel = new JPanel();
+        // Text panel with better formatting
+        JPanel textPanel = new JPanel(new GridBagLayout());
         textPanel.setBackground(green);
-        textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
-        textPanel.setBorder(BorderFactory.createEmptyBorder(50, 10, 10, 50));
+        GridBagConstraints textConstraints = new GridBagConstraints();
+
+        // Username formatting
+        JLabel usernameText = new JLabel("Username: Peppapig14");
+        usernameText.setFont(new Font("Arial", Font.PLAIN, 20));
+        textConstraints.gridx = 0;
+        textConstraints.gridy = 0;
+        textConstraints.anchor = GridBagConstraints.WEST;
+        textConstraints.insets = new Insets(0, 20, 0, 20);
+        textPanel.add(usernameText, textConstraints);
+
+        // Rating formatting
+        JLabel ratingText = new JLabel("Your rating: ★★★★☆");
+        ratingText.setFont(new Font("Dialog", Font.PLAIN, 20));
+        textConstraints.gridy = 1;
+        textConstraints.insets = new Insets(0, 20, 0, 20);
+        textPanel.add(ratingText, textConstraints);
+
+        Dimension buttonSize = new Dimension(175, 30);
+
+        // Create buttons with action listeners
+        JButton yourFoodsButton = createStyledButton("Your foods", brown, pink, buttonSize);
+        yourFoodsButton.addActionListener(e -> {
+            CardLayout cl = (CardLayout) getParent().getLayout();
+            cl.show(getParent(), "FOODS");
+        });
+
+        JButton uploadButton = createStyledButton("Upload food", brown, pink, buttonSize);
+        uploadButton.addActionListener(e -> {
+            CardLayout cl = (CardLayout) getParent().getLayout();
+            cl.show(getParent(), "UPLOAD");
+        });
+
+        JButton matchesButton = createStyledButton("Your matches", brown, pink, buttonSize);
+        matchesButton.addActionListener(e -> {
+            CardLayout cl = (CardLayout) getParent().getLayout();
+            cl.show(getParent(), "MATCHES");
+        });
+
+        JButton dietaryRestButton = createStyledButton("Dietary restrictions", brown, pink, buttonSize);
+        dietaryRestButton.addActionListener(e -> {
+            CardLayout cl = (CardLayout) getParent().getLayout();
+            cl.show(getParent(), "DIETARY");
+        });
+
+        JButton swipingButton = createStyledButton("Start swiping!", brown, pink, buttonSize);
+        swipingButton.addActionListener(e -> {
+            CardLayout cl = (CardLayout) getParent().getLayout();
+            cl.show(getParent(), "SEARCH");
+        });
+
+        // Button panel
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        buttonPanel.setBackground(green);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         GridBagConstraints c = new GridBagConstraints();
-
         c.insets = new Insets(10, 10, 10, 10);
 
-        textPanel.add(usernameText, c);
-        textPanel.add(ratingText, c);
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(green);
-        buttonPanel.setLayout(new GridBagLayout());
-
-        buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         c.gridx = 0;
         c.gridy = 0;
         buttonPanel.add(yourFoodsButton, c);
+
         c.gridx = 1;
         buttonPanel.add(uploadButton, c);
+
         c.gridx = 0;
         c.gridy = 1;
         buttonPanel.add(matchesButton, c);
+
         c.gridx = 1;
         buttonPanel.add(dietaryRestButton, c);
+
         c.gridy = 2;
         c.gridx = 0;
         c.gridwidth = 2;
         buttonPanel.add(swipingButton, c);
 
-        mainPanel.add(textPanel);
-        mainPanel.add(buttonPanel);
+        add(textPanel);
+        add(buttonPanel);
+    }
 
-        JFrame frame = new JFrame("User Homepage");
-        frame.setSize(500, 400);
-        frame.setContentPane(mainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    private JButton createStyledButton(String text, Color bgColor, Color fgColor, Dimension size) {
+        JButton button = new JButton(text);
+        button.setBackground(bgColor);
+        button.setForeground(fgColor);
+        button.setPreferredSize(size);
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        return button;
     }
 }

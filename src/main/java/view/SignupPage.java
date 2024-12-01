@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
@@ -9,18 +11,16 @@ import java.io.IOException;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
 
-public class SignupPage extends JFrame {
-    public static void main(String[] args) {
+public class SignupPage extends JPanel {
+    public SignupPage() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
         Color darkGreen = new Color(40, 54, 24);
 
-        // Create the main frame
-        JFrame frame = new JFrame("Signup");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(green);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Creating main panel
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -110,22 +110,55 @@ public class SignupPage extends JFrame {
             }
         });
 
-        // Signup button
-        JButton signupButton = new JButton("Sign up");
-        signupButton.setBackground(brown);
-        signupButton.setForeground(pink);
-        signupButton.setOpaque(true);
+        // Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container parent = SignupPage.this.getParent();
+                if (parent != null) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "LOGIN");
+                }
+            }
+        });
+        backButton.setBackground(brown);
+        backButton.setForeground(pink);
+        backButton.setOpaque(true);
         gbc.insets = new Insets(15, 0, 0, 0); // More space above password
         gbc.gridx = 0;
         gbc.gridy = 4;
-        mainPanel.add(signupButton, gbc);
+        gbc.gridwidth = 1; // Important: reset gridwidth to 1
+        gbc.weightx = 0.50; // Give each button equal horizontal weight
+
+        // Signup button
+        JButton signupButton = new JButton("Sign up");
+        signupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container parent = SignupPage.this.getParent();
+                if (parent != null) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "HOME");
+                }
+            }
+        });
+        signupButton.setBackground(brown);
+        signupButton.setForeground(pink);
+        signupButton.setOpaque(true);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        buttonPanel.setBackground(green);
+        buttonPanel.add(backButton);
+        buttonPanel.add(signupButton);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(buttonPanel, gbc);
 
         // Pack frame
-        frame.add(mainPanel);
-        frame.setPreferredSize(new Dimension(600, 400));
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        add(mainPanel);
     }
 
 }

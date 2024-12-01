@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
@@ -9,18 +11,16 @@ import java.io.IOException;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
 
-public class LoginPage extends JFrame {
-    public static void main(String[] args) {
+public class LoginPage extends JPanel {
+    public LoginPage() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
         Color darkGreen = new Color(40, 54, 24);
 
-        // Create the main frame
-        JFrame frame = new JFrame("Log In");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(green);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Creating main panel
         JPanel mainPanel = new JPanel(new GridBagLayout());
@@ -123,6 +123,16 @@ public class LoginPage extends JFrame {
 
         // Signup button
         JButton signupButton = new JButton("Sign up");
+        signupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container parent = LoginPage.this.getParent();
+                if (parent != null) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "SIGNUP");
+                }
+            }
+        });
         signupButton.setBackground(brown);
         signupButton.setForeground(pink);
         signupButton.setOpaque(true);
@@ -134,6 +144,16 @@ public class LoginPage extends JFrame {
 
         // Login button
         JButton loginButton = new JButton("Login");
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container parent = LoginPage.this.getParent();
+                if (parent != null) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "HOME");
+                }
+            }
+        });
         loginButton.setBackground(brown);
         loginButton.setForeground(pink);
         loginButton.setOpaque(true);
@@ -149,11 +169,7 @@ public class LoginPage extends JFrame {
         mainPanel.add(buttonPanel, gbc);
 
         // Pack frame
-        frame.add(mainPanel);
-        frame.setPreferredSize(new Dimension(600, 400));
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        add(mainPanel);
     }
 
 }
