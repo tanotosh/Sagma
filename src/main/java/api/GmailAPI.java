@@ -1,3 +1,7 @@
+package api;
+
+import entity.User;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -23,7 +27,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
-public class gMailer {
+public class GmailAPI {
 
     /**
      * Global instance of the JSON factory.
@@ -43,7 +47,7 @@ public class gMailer {
 
     private Gmail service;
 
-    public gMailer() throws Exception {
+    public GmailAPI() throws Exception {
         NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName("Swipe by Sagma")
@@ -60,7 +64,7 @@ public class gMailer {
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT)
             throws IOException {
         // Load client secrets.
-        InputStream in = gMailer.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = GmailAPI.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -84,7 +88,7 @@ public class gMailer {
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress("swipebysagma@gmail.com"));
         email.addRecipient(javax.mail.Message.RecipientType.TO,
-                new InternetAddress("swipebysagma@gmail.com"));
+                new InternetAddress(User.getEmail()));
         email.setSubject(subject);
         email.setText(message);
 
@@ -111,7 +115,3 @@ public class gMailer {
     }
     }
 
-    public void main(String[] args) throws Exception {
-    gMailer mailer = new gMailer();
-    mailer.sendMail("Test email", "Testing....");
-    }
