@@ -39,7 +39,7 @@ public class SwapAppBuilder {
         mainFrame.setSize(600, 400);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
-        cardLayout.show(mainPanel, "LOGIN");
+        cardLayout.show(mainPanel, "REVIEW");
         mainFrame.setVisible(true);
 
     }

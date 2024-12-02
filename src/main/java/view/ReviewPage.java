@@ -23,7 +23,7 @@ public class ReviewPage extends JPanel {
         Color pink = new Color(234,	223,	214);
 
         User user = new User("123", "temp@gmail.com", "password"); // THIS IS TEMPORARY WHILE THINGS ARENT CONNECTED
-        Food food = new Food("poutine", 5, "fries", Arrays.asList("dietary restrictions"), "category", user);
+        Food food = new Food("poutine", user,5, "fries, gravy", Arrays.asList("dietary restrictions"), "/home/gaia/Photos/LunarNewYearPhotos/DSC_0563.JPG", "category");
 
         setBackground(green);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

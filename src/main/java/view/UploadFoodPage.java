@@ -3,10 +3,14 @@ package view;
 import entity.User;
 import use_case.Search;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -117,9 +121,46 @@ public class UploadFoodPage extends JFrame {
         mainPanel.add(dietaryPanel, gbc);
 
         // Image panel
-        JPanel imagePanel = new JPanel();
-        imagePanel.setPreferredSize(new Dimension(200, 200));
+        JPanel imagePanel = new JPanel(new BorderLayout());
         imagePanel.setBackground(pink);
+
+        // Label that will display image or blank
+        JLabel imageLabel = new JLabel();
+        imageLabel.setPreferredSize(new Dimension(200, 200));
+        imageLabel.setOpaque(true);
+        imageLabel.setBackground(Color.WHITE);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        // upload image button and listener
+        JButton uploadImageButton = new JButton("Upload Image");
+        uploadImageButton.setBackground(brown);
+        uploadImageButton.setForeground(pink);
+        uploadImageButton.setOpaque(true);
+
+        final String[] uploadedImageFilePath = {null};
+        uploadImageButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+            int result = fileChooser.showOpenDialog(frame);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                try {
+                    File file = fileChooser.getSelectedFile();
+                    uploadedImageFilePath[0] = file.getAbsolutePath();
+
+                    BufferedImage image = ImageIO.read(file);
+                    imageLabel.setIcon(new ImageIcon(image));
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                    JOptionPane.showMessageDialog(frame, "ERROR: Unable to load image.");
+                }
+            }
+        });
+
+        // adding imageLabel and uploadImageButton to imagePanel
+        imagePanel.add(imageLabel, BorderLayout.CENTER);
+        imagePanel.add(uploadImageButton, BorderLayout.SOUTH);
+
 
         //category of food panel
         JLabel title = new JLabel("What type of cuisine is this?");
@@ -162,7 +203,7 @@ public class UploadFoodPage extends JFrame {
 
             String category = (String) options.getSelectedItem();
 
-            user.uploadFood(name, quantity, ingredients, dietaryRestrictions, category);
+            user.uploadFood(name, quantity, ingredients, dietaryRestrictions, uploadedImageFilePath[0], category);
             uploadButton.setBackground(pink);
             uploadButton.setForeground(brown);
         });
