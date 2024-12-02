@@ -18,9 +18,9 @@ import java.util.List;
  * The swiping page
  */
 
-public class SwipingPage extends JFrame {
+public class SwipingPage extends JPanel{
 
-    public static void main(String[] args) {
+    public SwipingPage() {
 
         User user = null;
 
@@ -35,9 +35,13 @@ public class SwipingPage extends JFrame {
         DataManager data = new DataManager();
         List<Food> foodsList= data.getFoods();
 
+
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86,    61);
         Color pink = new Color(234, 223,   214);
+
+        setBackground(green);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         Integer[] index = {0};
         Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
@@ -93,8 +97,17 @@ public class SwipingPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 userFoodPair.swipeRight();
                 if (userFoodPair.checkFood()) {
-                    userFoodPair.matchMade();
-//                    CONNECT TO MATCH MADE PAGE
+                    try {
+                        userFoodPair.matchMade();
+                        Container parent = SwipingPage.this.getParent();
+                        if (parent != null) {
+                            CardLayout cl = (CardLayout) parent.getLayout();
+                            cl.show(parent, "MATCH");
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace(); // Log or handle the exception
+                        JOptionPane.showMessageDialog(null, "An error occurred while making the match.");
+                    }
                 } else {
                     userFoodPair.currentfood = foodsList.get(index[0]);
                     if (!userFoodPair.checkFood()) {
@@ -148,10 +161,6 @@ public class SwipingPage extends JFrame {
         c.gridy = 0;
         mainpanel.add(yesButton, c);
 
-        JFrame frame = new JFrame("Swiping Page");
-        frame.setSize(500, 400);
-        frame.setContentPane(mainpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        add(mainpanel);
     }
 }

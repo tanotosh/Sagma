@@ -25,25 +25,33 @@ public class Swiping {
         return currentuser.isMatch(currentfood.getOwner());
     }
 
-    public void matchMade() throws Exception {
-        Food user1food = currentuser.getCurrentFood();
-        Food user2food = currentfood;
-        User user1 = currentuser;
-        User user2 = currentfood.getOwner();
+    public void matchMade() throws Exception{
 
-        user1food.setQuantity(user1food.getQuantity() - 1);
-        user2food.setQuantity(user2food.getQuantity() - 1);
+        try {
+            // Code that throws Exception
+            Food user1food = currentuser.getCurrentFood();
+            Food user2food = currentfood;
+            User user1 = currentuser;
+            User user2 = currentfood.getOwner();
 
-        if (user1food.getQuantity() == 0) {
-            user1.setCurrentFood(null);
+            user1food.setQuantity(user1food.getQuantity() - 1);
+            user2food.setQuantity(user2food.getQuantity() - 1);
+
+            if (user1food.getQuantity() == 0) {
+                user1.setCurrentFood(null);
+            }
+
+            if (user2food.getQuantity() == 0) {
+                user2.setCurrentFood(null);
+            }
+
+            GmailAPI mailer = new GmailAPI();
+            mailer.sendMail("Exciting News!!", "You've got a match! Log on to see!!");
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle the exception
         }
 
-        if (user2food.getQuantity() == 0) {
-            user2.setCurrentFood(null);
-        }
 
-        GmailAPI mailer = new GmailAPI();
-        mailer.sendMail("Exciting News!!", "You've got a match! Log on to see!!");
 
     }
 
