@@ -1,62 +1,115 @@
 package view;
 
+import data_access.DataManager;
+import entity.Food;
+import entity.User;
+import use_case.Swiping;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The swiping page
  */
 
-public class SwipingPage extends JPanel {
-    public SwipingPage() {
+public class SwipingPage extends JFrame {
+
+    public static void main(String[] args) {
+
+        User user = null;
+
+//        foodsList.add("Hello");
+//        foodsList.add("World");
+//        foodsList.add("Java");
+//        foodsList.add("Swing");
+//        foodsList.add("C");
+//        foodsList.add("C++");
+//        foodsList.add("Python");
+
+        DataManager data = new DataManager();
+        List<Food> foodsList= data.getFoods();
 
         Color green = new Color(164, 179, 148);
-        Color brown = new Color(123, 86,	61);
-        Color pink = new Color(234,	223,	214);
+        Color brown = new Color(123, 86,    61);
+        Color pink = new Color(234, 223,   214);
 
-        setBackground(green);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        Integer[] index = {0};
+        Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
+        if (!userFoodPair.checkFood()) {
+            do {
+                index[0]++;
+                userFoodPair.currentfood = foodsList.get(index[0]);
+            } while (!userFoodPair.checkFood());
+        }
 
-        JLabel titleText = new JLabel("<html><b>Poutine</b> by <b>Twilightsparkles23</b></html>\n");
+
+//        JLabel titleText = new JLabel("<html><b>Poutine</b> by <b>Twilightsparkles23</b></html>\n");
+        JLabel titleText = new JLabel(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
         titleText.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        JLabel ratingText = new JLabel("Rating: ★★★★★");
+        JLabel ratingText = new JLabel(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
         ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));
 
-        JLabel ingredientsText = new JLabel("Ingredients: Fries, Gravy, Cheese");
+        JLabel ingredientsText = new JLabel(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
         ingredientsText.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JButton yesButton = new JButton("Yes :)");
-        yesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Container parent = SwipingPage.this.getParent();
-                if (parent != null) {
-                    CardLayout cl = (CardLayout) parent.getLayout();
-                    cl.show(parent, "MATCH");
-                }
-            }
-        });
         yesButton.setBackground(brown);
         yesButton.setForeground(pink);
 
         JButton noButton = new JButton("No :(");
+        noButton.setBackground(brown);
+        noButton.setForeground(pink);
+
         noButton.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = SwipingPage.this.getParent();
-                if (parent != null) {
-                    CardLayout cl = (CardLayout) parent.getLayout();
-                    cl.show(parent, "SWIPE");
+
+                userFoodPair.swipeLeft();
+                index[0]++;
+                userFoodPair.currentfood = foodsList.get(index[0]);
+                if (!userFoodPair.checkFood()) {
+                    do {
+                        index[0]++;
+                        userFoodPair.currentfood = foodsList.get(index[0]);
+                    } while (!userFoodPair.checkFood());
+                }
+                titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
+                ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
+                ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+            }
+        });
+
+        yesButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                userFoodPair.swipeRight();
+                if (userFoodPair.checkFood()) {
+                    userFoodPair.matchMade();
+//                    CONNECT TO MATCH MADE PAGE
+                } else {
+                    userFoodPair.currentfood = foodsList.get(index[0]);
+                    if (!userFoodPair.checkFood()) {
+                        do {
+                            index[0]++;
+                            userFoodPair.currentfood = foodsList.get(index[0]);
+                        } while (!userFoodPair.checkFood());
+                    }
+                    titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
+                    ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
+                    ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+
                 }
             }
         });
-        noButton.setBackground(brown);
-        noButton.setForeground(pink);
 
         JPanel whiteSquare = new JPanel();
         whiteSquare.setBackground(Color.WHITE);
@@ -95,6 +148,10 @@ public class SwipingPage extends JPanel {
         c.gridy = 0;
         mainpanel.add(yesButton, c);
 
-        add(mainpanel);
+        JFrame frame = new JFrame("Swiping Page");
+        frame.setSize(500, 400);
+        frame.setContentPane(mainpanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
