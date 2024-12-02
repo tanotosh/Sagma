@@ -74,9 +74,21 @@ public class User {
     }
 
     public List<Food> getMatches() {
-        return null;
+        List<Food> matches = new ArrayList<>();
+        for (User potentialMatch : currentFood.getSwipedYes()) {
+            if (potentialMatch.currentFood.getSwipedYes().contains(this)) {
+                matches.add(potentialMatch.currentFood);
+            }
+        }
+       return matches;
     }
 
+    public Boolean isMatch(User user2) {
+        if (this.currentFood.getSwipedYes().contains(user2)) {
+            return user2.currentFood.getSwipedYes().contains(this);
+        }
+        return false;
+    }
 
     public String getName() {
         return name;
@@ -96,6 +108,10 @@ public class User {
 
     public Food getCurrentFood() {
         return currentFood;
+    }
+
+    public void setCurrentFood(Food currentFood) {
+        this.currentFood = currentFood;
     }
 
     public float getRating() {
