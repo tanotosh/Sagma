@@ -21,12 +21,15 @@ import java.awt.event.ItemListener;
  * The view when a user is asked for a rating
  */
 
-public class UploadFoodPage extends JFrame {
-    public static void main(String[] args) {
+public class UploadFoodPage extends JPanel {
+    public UploadFoodPage() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
         Color darkGreen = new Color(40,54,24);
+
+        setBackground(green);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         User user = new User("123", "temp@gmail.com", "password"); // THIS IS TEMPORARY WHILE THINGS ARENT CONNECTED
 
@@ -223,13 +226,7 @@ public class UploadFoodPage extends JFrame {
 
 
         // Set up and display frame
-        frame.add(mainPanel, BorderLayout.CENTER);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-
-        frame.revalidate(); //trying to see frame
-        frame.repaint(); // trying to see frame
+        add(mainPanel);
     }
 
     private static JPanel createInputPanel(JLabel label, JComponent input, Color bgColor) {
