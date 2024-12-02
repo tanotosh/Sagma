@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="Added HomeScreen and MatchPage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,22 +34,22 @@
     &quot;assignee&quot;: &quot;jiyag&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tanotosh/Sagma.git",
-    "accountId": "7f33d744-7bc3-4498-b18d-f5b70213cf61"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tanotosh/Sagma.git&quot;,
+    &quot;accountId&quot;: &quot;5b10ae3d-f19d-4d56-8ecd-e00555088994&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "tanotosh",
-    "repository": "Sagma"
+    &quot;owner&quot;: &quot;tanotosh&quot;,
+    &quot;repository&quot;: &quot;Sagma&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -72,7 +73,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "figma-screens",
+    "git-widget-placeholder": "amal",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -127,6 +128,8 @@
       <option name="presentableId" value="Default" />
       <updated>1731963243265</updated>
       <workItem from="1732933538667" duration="1668000" />
+      <workItem from="1733082392779" duration="1260000" />
+      <workItem from="1733166325068" duration="1712000" />
     </task>
     <task id="LOCAL-00001" summary="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class">
       <option name="closed" value="true" />
