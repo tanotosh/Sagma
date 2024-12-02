@@ -52,7 +52,8 @@ public class DataManager {
 
         for (Food food : foods) {
             if (food.getQuantity() > 0) {
-                FoodDAO.updateFood(food.getFoodID(), food.getQuantity(), food.getRating(), food.getRatingsCount()); // Save food changes
+                FoodDAO.updateFood(food.getFoodID(), food.getQuantity(), food.getOwner().getRating(),
+                        food.getOwner().getRatingsCount()); // Save food changes
             } else {
                 FoodDAO.deleteFood(food.getFoodID()); // Remove food if quantity is zero
                 SwipeDAO.deleteSwipe(food.getFoodID());
