@@ -6,7 +6,65 @@
   <component name="ChangeListManager">
     <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="Added HomeScreen and MatchPage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/lab5/LabelTextPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/lab5/LoggedInView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/lab5/LoginView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/lab5/SignupView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/lab5/ViewManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/AppBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/DataManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/DatabaseConnection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/FoodDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/SwipeDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/UserDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/Food.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/SagmaFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/ViewManagerModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/ViewModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/login/LoginViewModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/logout/LogoutPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupPresenter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/signup/SignupViewModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/state/LoginSessionState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/state/SignupSessionState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginInteractor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginOutputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/login/LoginOutputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutInteractor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutOutputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/logout/LogoutUserDataAccessInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupInteractor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupOutputBoundary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/signup/SignupOutputData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LabelTextPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoggedInView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/LoginView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/SignupView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/ViewManager.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +131,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "amal",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
