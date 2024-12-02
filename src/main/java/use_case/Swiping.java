@@ -1,10 +1,8 @@
 package use_case;
 
-import data_access.DataManager;
 import entity.Food;
 import entity.User;
-
-import java.util.List;
+import api.GmailAPI;
 
 public class Swiping {
     public User currentuser;
@@ -27,7 +25,7 @@ public class Swiping {
         return currentuser.isMatch(currentfood.getOwner());
     }
 
-    public void matchMade() {
+    public void matchMade() throws Exception {
         Food user1food = currentuser.getCurrentFood();
         Food user2food = currentfood;
         User user1 = currentuser;
@@ -43,6 +41,10 @@ public class Swiping {
         if (user2food.getQuantity() == 0) {
             user2.setCurrentFood(null);
         }
+
+        GmailAPI mailer = new GmailAPI();
+        mailer.sendMail("Exciting News!!", "You've got a match! Log on to see!!");
+
     }
 
     public boolean checkFood() {

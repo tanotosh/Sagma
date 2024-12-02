@@ -11,7 +11,7 @@ import interface_adapter.state.*;
 public class User {
     private final int userID;
     private final String name;
-    private final String email;
+    private static String email;
     private final String password;
     private Food currentFood;
     private float rating;
@@ -102,7 +102,7 @@ public class User {
         return userID;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
