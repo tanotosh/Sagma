@@ -23,6 +23,7 @@ public class SwapAppBuilder {
         SwipingPage swipingPage = new SwipingPage();
         MatchPage matchPage = new MatchPage();
         ReviewPage reviewPage = new ReviewPage();
+        UploadFoodPage uploadFoodPage = new UploadFoodPage();
 
         // Add pages to main panel
         mainPanel.add(loginPage, "LOGIN");
@@ -33,6 +34,7 @@ public class SwapAppBuilder {
         mainPanel.add(swipingPage, "SWIPE");
         mainPanel.add(matchPage, "MATCH");
         mainPanel.add(reviewPage, "REVIEW");
+        mainPanel.add(uploadFoodPage, "UPLOAD");
 
         // Setup main frame
         mainFrame.add(mainPanel);
