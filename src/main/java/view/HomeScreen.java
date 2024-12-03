@@ -1,5 +1,7 @@
 package view;
 
+import entity.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.GridBagLayout;
@@ -10,6 +12,8 @@ import java.awt.GridBagConstraints;
  */
 
 public class HomeScreen extends JPanel {
+    private static User currentUser;
+
     public HomeScreen() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
@@ -111,5 +115,9 @@ public class HomeScreen extends JPanel {
         button.setOpaque(true);
         button.setBorderPainted(false);
         return button;
+    }
+
+    public static User getCurrentUser(){
+        return currentUser;
     }
 }

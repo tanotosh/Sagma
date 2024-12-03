@@ -32,8 +32,7 @@ public class SwipingPage extends JPanel{
 //        foodsList.add("C++");
 //        foodsList.add("Python");
 
-        DataManager data = new DataManager();
-        List<Food> foodsList= data.getFoods();
+        List<Food> foodsList= (List<Food>) SearchPageView.getFilteredFoods();
 
 
         Color green = new Color(164, 179, 148);
