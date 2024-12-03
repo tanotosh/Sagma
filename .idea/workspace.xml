@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="--">
-      <change afterPath="$PROJECT_DIR$/src/test/java/data/DatabaseConnectionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/Swiping/SwipingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data_access/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data_access/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/test.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.db.sqbpro" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/test.db.sqbpro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/logout/LogoutInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/logout/LogoutInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/signup/SignupInteractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data_access/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/DatabaseConnection.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +36,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="db" />
+        <entry key="$PROJECT_DIR$" value="swiping-test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,22 +47,22 @@
     &quot;assignee&quot;: &quot;jiyag&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tanotosh/Sagma.git&quot;,
-    &quot;accountId&quot;: &quot;c5c4f476-e14c-45a5-9f9a-92d44c61aeea&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tanotosh/Sagma.git",
+    "accountId": "5b10ae3d-f19d-4d56-8ecd-e00555088994"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;tanotosh&quot;,
-    &quot;repository&quot;: &quot;Sagma&quot;
+    "owner": "tanotosh",
+    "repository": "Sagma"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -96,7 +88,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "ddb",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -115,7 +107,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/data" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DatabaseConnectionTest">
+  <component name="RunManager">
     <configuration name="DatabaseConnectionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.DatabaseConnectionTest" />
       <module name="homework-5" />
@@ -159,13 +151,21 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SignupInteractorTest" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DatabaseConnectionTest" />
         <item itemvalue="Application.DatabaseConnectionTest" />
         <item itemvalue="JUnit.SignupInteractorTest" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.SignupInteractorTest" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -178,6 +178,7 @@
       <workItem from="1732933538667" duration="1668000" />
       <workItem from="1733082392779" duration="1260000" />
       <workItem from="1733166325068" duration="1712000" />
+      <workItem from="1733240902058" duration="5165000" />
     </task>
     <task id="LOCAL-00001" summary="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class">
       <option name="closed" value="true" />
