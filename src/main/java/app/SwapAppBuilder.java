@@ -17,7 +17,7 @@ public class SwapAppBuilder {
         // Initialize pages as JPanels
         LoginPage loginPage = new LoginPage();
         HomeScreen homePage = new HomeScreen();
-        dietaryPage dietaryPage = new dietaryPage();
+//        dietaryPage dietaryPage = new dietaryPage();
         SignupPage signupPage = new SignupPage();
         SearchPageView searchPageView = new SearchPageView();
         SwipingPage swipingPage = new SwipingPage();
@@ -30,7 +30,7 @@ public class SwapAppBuilder {
         mainPanel.add(signupPage, "SIGNUP");
         mainPanel.add(searchPageView, "SEARCH");
         mainPanel.add(homePage, "HOME");
-        mainPanel.add(dietaryPage, "DIETARY");
+//        mainPanel.add(dietaryPage, "DIETARY");
         mainPanel.add(swipingPage, "SWIPE");
         mainPanel.add(matchPage, "MATCH");
         mainPanel.add(reviewPage, "REVIEW");

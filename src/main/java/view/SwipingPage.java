@@ -18,46 +18,51 @@ import java.util.List;
  * The swiping page
  */
 
-public class SwipingPage extends JFrame {
+public class SwipingPage extends JPanel {
 
-    public static void main(String[] args) {
+    public SwipingPage() {
 
         User user = null;
 
-//        foodsList.add("Hello");
-//        foodsList.add("World");
-//        foodsList.add("Java");
-//        foodsList.add("Swing");
-//        foodsList.add("C");
-//        foodsList.add("C++");
-//        foodsList.add("Python");
+        List<String> foodsList = new ArrayList<>(); //
+        foodsList.add("Poutine"); //
+        foodsList.add("Ramen"); //
+        foodsList.add("Sushi"); //
+        foodsList.add("Sushi"); //
+        foodsList.add("Soup"); //
+        foodsList.add("Shawarma"); //
+        foodsList.add("Tacos"); //
 
-        DataManager data = new DataManager();
-        List<Food> foodsList= data.getFoods();
+
+//        DataManager data = new DataManager();
+//        List<Food> foodsList= data.getFoods();
 
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86,    61);
         Color pink = new Color(234, 223,   214);
 
+        setBackground(green);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         Integer[] index = {0};
-        Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
-        if (!userFoodPair.checkFood()) {
-            do {
-                index[0]++;
-                userFoodPair.currentfood = foodsList.get(index[0]);
-            } while (!userFoodPair.checkFood());
-        }
+//        Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
+//        if (!userFoodPair.checkFood()) {
+//            do {
+//                index[0]++;
+//                userFoodPair.currentfood = foodsList.get(index[0]);
+//            } while (!userFoodPair.checkFood());
+//        }
 
 
-//        JLabel titleText = new JLabel("<html><b>Poutine</b> by <b>Twilightsparkles23</b></html>\n");
-        JLabel titleText = new JLabel(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
+        JLabel titleText = new JLabel(foodsList.get(index[0]));
+//        JLabel titleText = new JLabel(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
         titleText.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        JLabel ratingText = new JLabel(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-        ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));
-
-        JLabel ingredientsText = new JLabel(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
-        ingredientsText.setFont(new Font("Arial", Font.PLAIN, 16));
+//        JLabel ratingText = new JLabel(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
+//        ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));
+//
+//        JLabel ingredientsText = new JLabel(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+//        ingredientsText.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JButton yesButton = new JButton("Yes :)");
         yesButton.setBackground(brown);
@@ -72,18 +77,19 @@ public class SwipingPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                userFoodPair.swipeLeft();
+//                userFoodPair.swipeLeft();
                 index[0]++;
-                userFoodPair.currentfood = foodsList.get(index[0]);
-                if (!userFoodPair.checkFood()) {
-                    do {
-                        index[0]++;
-                        userFoodPair.currentfood = foodsList.get(index[0]);
-                    } while (!userFoodPair.checkFood());
-                }
-                titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-                ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-                ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+//                userFoodPair.currentfood = foodsList.get(index[0]);
+//                if (!userFoodPair.checkFood()) {
+//                    do {
+//                        index[0]++;
+//                        userFoodPair.currentfood = foodsList.get(index[0]);
+//                    } while (!userFoodPair.checkFood());
+//                }
+                titleText.setText(foodsList.get(index[0]));
+//                titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
+//                ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
+//                ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
             }
         });
 
@@ -91,23 +97,24 @@ public class SwipingPage extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                userFoodPair.swipeRight();
-                if (userFoodPair.checkFood()) {
-                    userFoodPair.matchMade();
+//                userFoodPair.swipeRight();
+//                if (userFoodPair.checkFood()) {
+//                    userFoodPair.matchMade();
 //                    CONNECT TO MATCH MADE PAGE
-                } else {
-                    userFoodPair.currentfood = foodsList.get(index[0]);
-                    if (!userFoodPair.checkFood()) {
-                        do {
-                            index[0]++;
-                            userFoodPair.currentfood = foodsList.get(index[0]);
-                        } while (!userFoodPair.checkFood());
-                    }
-                    titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-                    ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-                    ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+//                } else {
+//                    userFoodPair.currentfood = foodsList.get(index[0]);
+//                    if (!userFoodPair.checkFood()) {
+//                        do {
+//                            index[0]++;
+//                            userFoodPair.currentfood = foodsList.get(index[0]);
+//                        } while (!userFoodPair.checkFood());
+//                    }
+                titleText.setText(foodsList.get(index[0]));
+//                    titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
+//                    ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
+//                    ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
 
-                }
+//                }
             }
         });
 
@@ -138,20 +145,16 @@ public class SwipingPage extends JFrame {
         c.insets = new Insets(3, 3, 3, 3);
         c.gridx = 1;
         c.gridy = 2;
-        mainpanel.add(ratingText, c);
+//        mainpanel.add(ratingText, c);
 
         c.gridx = 1;
         c.gridy = 3;
-        mainpanel.add(ingredientsText, c);
+//        mainpanel.add(ingredientsText, c);
 
         c.gridx = 2;
         c.gridy = 0;
         mainpanel.add(yesButton, c);
 
-        JFrame frame = new JFrame("Swiping Page");
-        frame.setSize(500, 400);
-        frame.setContentPane(mainpanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        add(mainpanel);
     }
 }

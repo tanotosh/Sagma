@@ -69,7 +69,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
      */
     private void updateUsernameDisplay() {
         final LoginSessionState sessionState = LoginSessionState.getInstance();
-        usernameLabel.setText(sessionState.isLoggedIn() ? sessionState.getUsername() : "No user logged in.");
+        usernameLabel.setText(sessionState.isLoggedIn() ? sessionState.getEmail() : "No user logged in.");
     }
 
     @Override
