@@ -9,12 +9,15 @@ Andrew Max Nguyen: MaxNguyen5040
 Shannon Arlene Tanoto: tanotosh
 
 Project Purpose
-What does Swap by Sagma do?
-This program implements a swipe-based interface, similar to dating apps, to facilitate trading of meal preps. When you’ve prepped a bunch of food but don’t want to eat the same thing for a week, upload a picture, description, and list of ingredients and then start swiping! You can filter meals based on what you’re feeling like and your dietary restrictions. If you get a match, you get to swap food and get a diverse blend of cuisines for the week! After you get a meal, you can rate it. 
-
-Why was Swap by Sagma made?
 
 What Problems can be solved by Swap by Sagma?
+Swap by Sagma sets out to help people who rely on meal prepping due to limited time or a dislike of cooking, but grow tired of eating the same thing repeatedly.
+
+Why was Swap by Sagma made?
+This program was made to provide help people who meal prep diversify their meal options by trading meals with other meal preppers.
+
+What does Swap by Sagma do?
+This program implements a swipe-based interface, similar to dating apps, to facilitate trading of meal preps. When you’ve prepped a bunch of food but don’t want to eat the same thing for a week, upload information on it and then start swiping! You can filter meals based on what you’re feeling like and your dietary restrictions. If two users like each other's meals, a balanced trade occurs and they get to swap foods and get a diverse blend of cuisines for the week!
 
 
 Table of Contents
@@ -24,23 +27,26 @@ Table of Contents
 Software Features
 
 1. Login/Signup
-Bartholomew Twilight Sparkle logs in to her profile. She can see the status of her foods and any matches. 
-Pinkie Pie decides she wants to join the app so she creates a profile and log in info.
-View  “Your Foods” & “Your Matches”
+User decides she wants to join the app so she runs it and creates a profile. She is added as a user to the database. She can leave and log back in to access her information. \[Jiya's story\]
 
 2. Upload Food
-Tim has heard of this new meal plan prep app and wants to upload the poutine he just made onto the website for others to see. He wants to upload a short description as well as an image and an ingredients list.
-Set “Your Dietary Restrictions”
+User wants to upload the food she made for others to see. She clicks the upload food button on the user home page and is prompted to enter the food's name, ingredients, number of servings, dietary restrictions, type of cuisine, and an image. When she clicks upload food, the program stores the food in the database. \[Gaia's story\]
 
-3. Search
-Katie is a university student who prepares one dish every week as a meal prep, she wants to trade her meal with another student with the same intention. She runs the software and gets a list of possible “matches” for her preferences. Since she only eats halal, she only wants to be shown meals that fulfill this dietary restriction. She puts on the filter for that particular dietary restriction, and now is shown and matched exclusively with meals that are halal.
-“Start Swiping!”
+3. Set Dietary Restrictions
+User wants to register her dietary restriction of being dairy free. She clicks on dietary restrictions and is able to select her dietary restrictions. \[Abeera's story\]
 
-4. “You’ve matched!”
-Zach swipes right on Cody’s soup and it’s a match! A serving of each of their foods is taken off the market. If this was the last available serving of the food, it’s removed from their profile (added to the past foods) and no longer available in the swiping database. A Match is Displayed and an email is sent to the inactive user, notifying them a match has been made.
+4. Search
+User now wants to look for other foods. She runs the software and gets a list of possible “matches” for her preferences. Since she is dairy free, the program only shows her dairy free options. She can also decide what category of cuisine she wants, and she will only be shown meals that are that type of cuisine. \[Shannon's story\]
 
-5. Rate Your Food
-Giulia recently finished eating a sandwich she got from a swap with Henry. She found it disgusting. She uses the software to leave Henry a low rating that reflects her low opinion of his sandwich
+5. Swiping
+User is able to swipe on foods that match her specifications. She can decide yes or no. Her swipes are stored in the database and if she gets a match, this is announced. A serving of each food is taken off the market and the other user is notified via email that they got a match. \[Amal's story\]
+
+6. Rating
+Later, the user is prompted to leave a rating for the food they tried. They can select between 1 and 5 stars. This rating is added to the User who made that food's rating. \[Gaia's story\]
+
+7. View Foods and Matches
+The user wants to see their matches and the food they have uploaded. They can click the view foods and matches buttons on the user homepage and see this. \[Max's story\]
+
 
 
 Installation Instructions
