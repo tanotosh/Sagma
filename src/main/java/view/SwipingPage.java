@@ -54,13 +54,13 @@ public class SwipingPage extends JPanel{
 
 
 //        JLabel titleText = new JLabel("<html><b>Poutine</b> by <b>Twilightsparkles23</b></html>\n");
-        JLabel titleText = new JLabel(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
+        JLabel titleText = new JLabel(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
         titleText.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        JLabel ratingText = new JLabel(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
+        JLabel ratingText = new JLabel("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
         ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));
 
-        JLabel ingredientsText = new JLabel(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+        JLabel ingredientsText = new JLabel("Ingredients: " + foodsList.get(index[0]).getIngredients());
         ingredientsText.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JButton yesButton = new JButton("Yes :)");
@@ -85,9 +85,9 @@ public class SwipingPage extends JPanel{
                         userFoodPair.currentfood = foodsList.get(index[0]);
                     } while (!userFoodPair.checkFood());
                 }
-                titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-                ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-                ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+                titleText.setText(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
+                ratingText.setText("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
+                ingredientsText.setText("Ingredients: " + foodsList.get(index[0]).getIngredients());
             }
         });
 
@@ -116,9 +116,9 @@ public class SwipingPage extends JPanel{
                             userFoodPair.currentfood = foodsList.get(index[0]);
                         } while (!userFoodPair.checkFood());
                     }
-                    titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-                    ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-                    ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+                    titleText.setText(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
+                    ratingText.setText("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
+                    ingredientsText.setText("Ingredients: " + foodsList.get(index[0]).getIngredients());
 
                 }
             }
