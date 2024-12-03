@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +29,7 @@ public class UploadFoodPage extends JPanel {
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
         Color darkGreen = new Color(40,54,24);
+//        setPreferredSize(new Dimension(1000, 600));
 
         setBackground(green);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -45,7 +48,7 @@ public class UploadFoodPage extends JPanel {
 
         // Create the left panel
         JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new GridLayout(3, 1, 0, 25));
+        leftPanel.setLayout(new GridLayout(4, 1, 0, 25));
         leftPanel.setBackground(green);
 
         // Food name field
@@ -67,10 +70,30 @@ public class UploadFoodPage extends JPanel {
         servingsBox.setBackground(pink);
         servingsLabel.setForeground(darkGreen);
 
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Container parent = UploadFoodPage.this.getParent();
+                if (parent != null) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "HOME");
+                }
+            }
+        });
+        backButton.setBackground(brown);
+        backButton.setForeground(pink);
+        backButton.setPreferredSize(new Dimension(100, 40));
+        backButton.setOpaque(true);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(green);
+        buttonPanel.add(backButton);
+
         // Create and add input panels to left panel
         leftPanel.add(createInputPanel(nameLabel, nameField, green));
         leftPanel.add(createInputPanel(ingredientsLabel, ingredientsField, green));
         leftPanel.add(createInputPanel(servingsLabel, servingsBox, green));
+        leftPanel.add(buttonPanel);
 
         // Add left panel to main panel
         gbc.gridx = 0;
@@ -135,7 +158,7 @@ public class UploadFoodPage extends JPanel {
         imageLabel.setHorizontalAlignment(JLabel.CENTER);
 
         // upload image button and listener
-        JButton uploadImageButton = new JButton("Upload Image");
+        JButton uploadImageButton = new JButton("Select Image");
         uploadImageButton.setBackground(brown);
         uploadImageButton.setForeground(pink);
         uploadImageButton.setOpaque(true);
@@ -168,7 +191,7 @@ public class UploadFoodPage extends JPanel {
         //category of food panel
         JLabel title = new JLabel("What type of cuisine is this?");
         title.setForeground(darkGreen);
-        title.setFont(new Font("Helvetica", Font.BOLD, 20));
+//        title.setFont(new Font("Helvetica", Font.BOLD, 20));
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 1;

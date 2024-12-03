@@ -107,8 +107,8 @@ public class dietaryPage extends JPanel {
         mainPanel.add(checkboxPanel, gbc);
 
         // Back button at bottom
-        Dimension buttonSize = new Dimension(175, 30);
-        JButton backButton = createStyledButton("Back", brown, pink, buttonSize);
+        Dimension buttonSize = new Dimension(200, 30);
+        JButton backButton = createStyledButton("Save Preferences", brown, pink, buttonSize);
         // Fix the back button action listener
         backButton.addActionListener(new ActionListener() {
             @Override
