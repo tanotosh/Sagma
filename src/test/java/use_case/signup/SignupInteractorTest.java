@@ -39,7 +39,7 @@ class SignupInteractorTest {
                 User createdUser = UserDAO.getUserByEmail("paul@email.com");
                 assertNotNull(createdUser);
                 assertEquals("Paul", createdUser.getName());
-                assertEquals("paul@email.com", createdUser.getEmail());
+                assertEquals("paul@email.com", User.getEmail());
                 assertEquals("password", createdUser.getPassword());
             }
 
