@@ -1,5 +1,8 @@
 package view;
 
+import entity.User;
+import use_case.DietaryRestriction;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +11,11 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class dietaryPage extends JPanel {
-    public dietaryPage() {
+
+    private final User user;
+
+    public dietaryPage(User user) {
+        this.user = user;
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
@@ -63,8 +70,14 @@ public class dietaryPage extends JPanel {
         ItemListener dietaryListener = new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
                 JCheckBox source = (JCheckBox) e.getSource();
+                String label = source.getText();
                 boolean selected = (e.getStateChange() == ItemEvent.SELECTED);
-                // Handle the selection here
+                DietaryRestriction dietaryRestriction = new DietaryRestriction(user, label);
+                if (selected) {
+                    dietaryRestriction.addRestriction();
+                } else {
+                    dietaryRestriction.removeRestriction();
+                }
             }
         };
         // Add listeners to checkboxes

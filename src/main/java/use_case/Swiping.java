@@ -5,8 +5,8 @@ import entity.User;
 import api.GmailAPI;
 
 public class Swiping {
-    public User currentuser;
-    public Food currentfood;
+    private final User currentuser;
+    private final Food currentfood;
 
     public Swiping(User currentuser, Food currentfood) {
         this.currentuser = currentuser;
@@ -56,6 +56,9 @@ public class Swiping {
     }
 
     public boolean checkFood() {
+        if (currentfood.getQuantity() == 0){
+            return false;
+        }
         for (String userRestriction : currentuser.getDietaryRestrictions()) {
             if (!currentfood.getDietaryRestrictions().contains(userRestriction)) {
                 return false;
