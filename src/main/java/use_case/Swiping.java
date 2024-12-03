@@ -59,6 +59,7 @@ public class Swiping {
         if (currentfood.getQuantity() == 0){
             return false;
         }
+
         for (String userRestriction : currentuser.getDietaryRestrictions()) {
             if (!currentfood.getDietaryRestrictions().contains(userRestriction)) {
                 return false;
