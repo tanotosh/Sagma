@@ -5,8 +5,8 @@ import entity.User;
 import api.GmailAPI;
 
 public class Swiping {
-    private final User currentuser;
-    private final Food currentfood;
+    public User currentuser;
+    public Food currentfood;
 
     public Swiping(User currentuser, Food currentfood) {
         this.currentuser = currentuser;
