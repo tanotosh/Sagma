@@ -35,10 +35,12 @@ class SignupInteractorTest {
         SignupOutputBoundary successPresenter = new SignupOutputBoundary() {
             @Override
             public void prepareSuccessView(SignupOutputData user) {
-                // Verify the user exists in the database and matches the expected values
-                User createdUser = UserDAO.getUserByEmail("paul@example.com");
+                // Verify the user exists in the database and matches expected values
+                User createdUser = UserDAO.getUserByEmail("paul@email.com");
                 assertNotNull(createdUser);
                 assertEquals("Paul", createdUser.getName());
+                assertEquals("paul@email.com", createdUser.getEmail());
+                assertEquals("password", createdUser.getPassword());
             }
 
             @Override
@@ -86,9 +88,9 @@ class SignupInteractorTest {
     @Test
     void failureUserExistsTest() {
         // Add Paul to the database
-        UserDAO.addUser(new User("Paul", "paul@example.com", "pwd"));
+        UserDAO.addUser(new User("Paul", "paul@email.com", "pwd"));
 
-        SignupInputData inputData = new SignupInputData("Paul", "paul@email.cok", "password",
+        SignupInputData inputData = new SignupInputData("Paul", "paul@email.com", "password",
                 "password");
 
         // This creates a presenter that tests whether the test case is as we expect.

@@ -1,7 +1,8 @@
 package use_case.logout;
 
+import data_access.UserDAO;
 import entity.User;
-import entity.SagmaFactory;
+import interface_adapter.state.LoginSessionState;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,33 +11,37 @@ class LogoutInteractorTest {
 
     @Test
     void successTest() {
-        LogoutInputData inputData = new LogoutInputData("Paul");
-        InMemoryUserDataAccessObject userRepository = new InMemoryUserDataAccessObject();
+        // Prepare the test data
+        LogoutInputData inputData = new LogoutInputData("paul@email.com");
 
-        // For the success test, we need to add Paul to the data access repository before we log in.
-        SagmaFactory factory = new SagmaFactory();
-        User user = factory.create("Paul", "paul@email.com", "password");
-        userRepository.save(user);
-        userRepository.setCurrentUsername("Paul");
+        // Add a user to the database for testing
+        User testUser = new User("Paul", "paul@email.com", "password");
+        UserDAO.addUser(testUser); // Save the user in the database
 
-        // This creates a successPresenter that tests whether the test case is as we expect.
+        // Set the current user in the LoginSessionState
+        LoginSessionState.getInstance().setLoggedInUser(testUser);
+
+        // Create a success presenter to verify test case behavior
         LogoutOutputBoundary successPresenter = new LogoutOutputBoundary() {
             @Override
             public void prepareSuccessView(LogoutOutputData user) {
-                // check that the output data contains the username of who logged out
+                // Check that the output data contains the email of the user who logged out
                 assertEquals("paul@email.com", user.getEmail());
             }
 
             @Override
             public void prepareFailView(String error) {
-                fail("Use case failure is unexpected.");
+                fail("Use case failure is unexpected: " + error);
             }
         };
 
+        // Create and execute the interactor
         LogoutInputBoundary interactor = new LogoutInteractor(successPresenter);
         interactor.execute(inputData);
-        // check that the user was logged out
-        assertNull(userRepository.getCurrentUsername());
+
+        // Verify the user was logged out (session cleared)
+        assertNull(LoginSessionState.getInstance().getEmail());
+        assertFalse(LoginSessionState.getInstance().isLoggedIn());
     }
 
 }
