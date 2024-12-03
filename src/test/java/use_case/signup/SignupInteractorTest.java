@@ -2,7 +2,6 @@ package use_case.signup;
 
 import data_access.UserDAO;
 import entity.User;
-import entity.SagmaFactory;
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -39,7 +38,7 @@ class SignupInteractorTest {
                 User createdUser = UserDAO.getUserByEmail("paul@email.com");
                 assertNotNull(createdUser);
                 assertEquals("Paul", createdUser.getName());
-                assertEquals("paul@email.com", createdUser.getEmail());
+                assertEquals("paul@email.com", User.getEmail());
                 assertEquals("password", createdUser.getPassword());
             }
 
