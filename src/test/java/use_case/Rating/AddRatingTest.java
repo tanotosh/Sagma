@@ -28,19 +28,18 @@ public class AddRatingTest {
             // the statement will only populate the attributes / columns that are needed for testing specific use cases
             // this stays true for food and swipes table as well
             stmt.execute("INSERT into User (user_id, name, email, password, rating, ratings_count, " +
-                    "dietary_restrictions, current_food_id) VALUES (1,'jiya', 'jiya@email.com', 'password', 5, 5, " +
-                    "'vegetarian', 1) ");
-            stmt.execute("INSERT into User (user_id, name, email, password, rating, ratings_count, " +
-                    "dietary_restrictions, current_food_id) VALUES (2,'gaia', 'gaia@email.com', 'passwordd', 5, 5, " +
-                    "'vegan', 2) ");
+                    "dietary_restrictions, current_food_id) VALUES " +
+                    "(1,'jiya', 'jiya@email.com', 'password', 5, 5, 'vegetarian', 1)," +
+                    "(2,'gaia', 'gaia@email.com', 'passwordd', 5, 5,'vegan', 2)");
 
             stmt.execute("INSERT into Foods (food_id, name, quantity, ingredients, dietary_restrictions, cuisine, " +
-                    "owner_id, image_path) VALUES (1, 'pizza', 2, 'cheese', 'vegetarian', 'italian', 1, NULL)");
-            stmt.execute("INSERT into Foods (food_id, name, quantity, ingredients, dietary_restrictions, cuisine, " +
-                    "owner_id, image_path) VALUES (2, 'pasta', 3, 'cheese', 'vegan', 'italian', 2, NULL)");
+                    "owner_id, image_path) VALUES " +
+                    "(1, 'pizza', 2, 'cheese', 'vegetarian', 'italian', 1, NULL)," +
+                    "(2, 'pasta', 3, 'cheese', 'vegan', 'italian', 2, NULL)");
 
-            stmt.execute("INSERT into Swipes (swipe_id, user_id, food_id, is_right_swipe) VALUES (1, 1, 2, 1)");
-            stmt.execute("INSERT into Swipes (swipe_id, user_id, food_id, is_right_swipe) VALUES (2, 2, 1, 1)");
+            stmt.execute("INSERT into Swipes (swipe_id, user_id, food_id, is_right_swipe) VALUES " +
+                    "(1, 1, 2, 1), " +
+                    "(2, 2, 1, 1)");
         }
 
     }
@@ -50,17 +49,11 @@ public class AddRatingTest {
     static void tearDownAll() throws Exception {
         try (Connection connection = DriverManager.getConnection(DB_URL);
              Statement stmt = connection.createStatement()) {
-            // Disable foreign key constraints
-            stmt.execute("PRAGMA foreign_keys = OFF;");
 
-            // Delete all data from the database
-            stmt.execute("DELETE FROM Users");
-            stmt.execute("DELETE FROM Foods");
-            stmt.execute("DELETE FROM Swipes");
+            // Delete from parent tables; cascading will clean up child tables
+            stmt.execute("DELETE FROM Users;");
+            stmt.execute("DELETE FROM Foods;");
 
-            // Re-enable foreign key constraints
-            stmt.execute("PRAGMA foreign_keys = ON;");
-            // Add any additional tables if necessary
         } catch (Exception e) {
             e.printStackTrace();
         }
