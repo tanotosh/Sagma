@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import use_case.Swiping;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
