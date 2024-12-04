@@ -22,7 +22,7 @@ public class SwapAppBuilder {
         DietaryView dietaryViewPage = new DietaryView(new User("test","email@email.com","passwrod123"));
         SignupView signupView = new SignupView();
         SearchPageView searchPageView = new SearchPageView();
-        SwipingView swipingView = new SwipingView();
+        SwipingView swipingView = new SwipingView(new User("test","email@email.com","passwrod123"));
         MatchView matchView = new MatchView();
         RatingView reviewView = new RatingView();
         UploadFoodView uploadFoodView = new UploadFoodView();
