@@ -10,9 +10,9 @@ import data_access.UserDAO;
 import interface_adapter.state.*;
 
 public class User {
-    private final int userID;
+    private int userID;
     private final String name;
-    private static String email;
+    private final String email;
     private final String password;
     private Food currentFood;
     private float rating;
@@ -26,7 +26,7 @@ public class User {
         this.rating = 0;
         this.ratingsCount = 0;
         this.dietaryRestrictions = null;
-        this.userID = -1;
+        this.currentFood = null;
     }
 
     public User(int userID, String name, String email, String password, float rating, int ratingsCount,
@@ -104,7 +104,7 @@ public class User {
         return userID;
     }
 
-    public static String getEmail() {
+    public String getEmail() {
         return email;
     }
 
