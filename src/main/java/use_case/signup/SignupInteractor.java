@@ -9,13 +9,14 @@ import interface_adapter.session.SignupSessionState;
  */
 public class SignupInteractor implements SignupInputBoundary {
     private final SignupOutputBoundary userPresenter;
-    private final SignupSessionState signupSessionState = new SignupSessionState();
+    private final UserDAO userDAO;
+    private final SignupSessionState signupSessionState;
     // private final SagmaFactory sagmaFactory;
 
-    public SignupInteractor(SignupOutputBoundary signupOutputBoundary) {
-        // this.userDAO = signupDataAccessInterface;
-        this.userPresenter = signupOutputBoundary;
-        // this.sagmaFactory = sagmaFactory;
+    public SignupInteractor(SignupOutputBoundary userPresenter, UserDAO userDAO, SignupSessionState signupSessionState) {
+        this.userPresenter = userPresenter;
+        this.userDAO = userDAO;
+        this.signupSessionState = signupSessionState;
     }
 
     @Override
@@ -26,7 +27,7 @@ public class SignupInteractor implements SignupInputBoundary {
         String repeatPassword = signupInputData.getRepeatPassword();
 
         // Check if the email already exists
-        if (UserDAO.existsByEmail(email)) {
+        if (userDAO.existsByEmail(email)) {
             userPresenter.prepareFailView("Email already exists.");
             return;
         }
@@ -39,7 +40,7 @@ public class SignupInteractor implements SignupInputBoundary {
 
         // Add user to the database
         User user = new User(username, email, password);
-        UserDAO.addUser(user);
+        userDAO.addUser(user);
 
         signupSessionState.setSignupDetails(user); // Set session details
         SignupOutputData signupOutputData = new SignupOutputData(email, true);

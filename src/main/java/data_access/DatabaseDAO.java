@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 public class DatabaseDAO implements DatabaseRepository{
     private static final Logger logger = Logger.getLogger(DatabaseDAO.class.getName());
 
-    private final List<User> USERS = new ArrayList<>();
-    private final List<Food> FOODS = new ArrayList<>();
+    private List<User> USERS;
+    private List<Food> FOODS;
     private final Map<Integer, User> userMap = new HashMap<>();
     private final Map<Integer, Food> foodMap = new HashMap<>();
 
@@ -24,11 +24,19 @@ public class DatabaseDAO implements DatabaseRepository{
     }
 
     public DatabaseDAO() {
+        this.USERS = new ArrayList<>();
+        this.FOODS = new ArrayList<>();
+    }
+
+    public DatabaseDAO(boolean useDatabase) {
         loadData();
     }
 
     @Override
     public void loadData() {
+        this.USERS = new ArrayList<>();
+        this.FOODS = new ArrayList<>();
+
         try (Connection connection = DatabaseConnection.connect()) {
             logger.info("Loading data from the database...");
             loadUsers(connection);
