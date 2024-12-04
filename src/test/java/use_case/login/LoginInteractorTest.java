@@ -1,8 +1,7 @@
 package use_case.login;
 
 import data_access.UserDAO;
-import entity.User;
-import interface_adapter.state.LoginSessionState;
+import interface_adapter.session.LoginSessionState;
 import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.DriverManager;

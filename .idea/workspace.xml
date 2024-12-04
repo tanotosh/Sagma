@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="--">
-      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/Swiping/SwipingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/login/LoginPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/logout/LogoutPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/logout/LogoutPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/state/LoginSessionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/session/LoginSessionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interface_adapter/state/SignupSessionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interface_adapter/session/SignupSessionState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/login/LoginInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/login/LoginInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/logout/LogoutInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/logout/LogoutInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/use_case/signup/SignupInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/use_case/signup/SignupInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SearchPageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SearchPageView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/lab5/LoggedInView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/lab5/LoggedInView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/Rating/AddRatingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/Rating/AddRatingTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/login/LoginInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/logout/LogoutInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/logout/LogoutInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/use_case/uploadFood/UploadFoodTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/use_case/uploadFood/UploadFoodTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +49,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="swiping-test" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,22 +60,22 @@
     &quot;assignee&quot;: &quot;jiyag&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tanotosh/Sagma.git",
-    "accountId": "5b10ae3d-f19d-4d56-8ecd-e00555088994"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tanotosh/Sagma.git&quot;,
+    &quot;accountId&quot;: &quot;5b10ae3d-f19d-4d56-8ecd-e00555088994&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "tanotosh",
-    "repository": "Sagma"
+    &quot;owner&quot;: &quot;tanotosh&quot;,
+    &quot;repository&quot;: &quot;Sagma&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -88,7 +101,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "mainn",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -107,7 +120,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/data" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DatabaseConnectionTest">
     <configuration name="DatabaseConnectionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.DatabaseConnectionTest" />
       <module name="homework-5" />
