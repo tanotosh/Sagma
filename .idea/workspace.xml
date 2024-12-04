@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="Added HomeScreen and MatchPage">
+    <list default="true" id="4a9becdd-5aae-4d16-ad3a-bb722c1d7ebb" name="Changes" comment="--">
+      <change afterPath="$PROJECT_DIR$/src/test/java/use_case/Swiping/SwipingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,9 +21,22 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="db" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="swiping-test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,22 +47,22 @@
     &quot;assignee&quot;: &quot;jiyag&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/tanotosh/Sagma.git&quot;,
-    &quot;accountId&quot;: &quot;5b10ae3d-f19d-4d56-8ecd-e00555088994&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/tanotosh/Sagma.git",
+    "accountId": "5b10ae3d-f19d-4d56-8ecd-e00555088994"
   },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
     },
-    &quot;owner&quot;: &quot;tanotosh&quot;,
-    &quot;repository&quot;: &quot;Sagma&quot;
+    "owner": "tanotosh",
+    "repository": "Sagma"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -67,27 +80,47 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.DatabaseConnectionTest.executor": "Run",
     "Application.HomeScreen.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.MatchPage.executor": "Run",
+    "JUnit.SignupInteractorTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "git-widget-placeholder": "amal",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/data" />
+    </key>
+  </component>
   <component name="RunManager">
+    <configuration name="DatabaseConnectionTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.DatabaseConnectionTest" />
+      <module name="homework-5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="homework-5" />
@@ -101,13 +134,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2" />
+    <configuration name="SignupInteractorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="homework-5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="use_case.signup.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="use_case.signup" />
+      <option name="MAIN_CLASS_NAME" value="use_case.signup.SignupInteractorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SignupInteractorTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DatabaseConnectionTest" />
+        <item itemvalue="Application.DatabaseConnectionTest" />
+        <item itemvalue="JUnit.SignupInteractorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -130,6 +178,7 @@
       <workItem from="1732933538667" duration="1668000" />
       <workItem from="1733082392779" duration="1260000" />
       <workItem from="1733166325068" duration="1712000" />
+      <workItem from="1733240902058" duration="5165000" />
     </task>
     <task id="LOCAL-00001" summary="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class">
       <option name="closed" value="true" />
@@ -171,7 +220,47 @@
       <option name="project" value="LOCAL" />
       <updated>1732934800170</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixing errors, trying to test if database connection is fine">
+      <option name="closed" value="true" />
+      <created>1733179196853</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733179196853</updated>
+    </task>
+    <task id="LOCAL-00007" summary="--">
+      <option name="closed" value="true" />
+      <created>1733180797218</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1733180797218</updated>
+    </task>
+    <task id="LOCAL-00008" summary="--">
+      <option name="closed" value="true" />
+      <created>1733180858869</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733180858869</updated>
+    </task>
+    <task id="LOCAL-00009" summary="--">
+      <option name="closed" value="true" />
+      <created>1733181156819</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733181156819</updated>
+    </task>
+    <task id="LOCAL-00010" summary="--">
+      <option name="closed" value="true" />
+      <created>1733199036172</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1733199036172</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +269,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fixed CommonUser and Food attributes. added swipe handling skeleton. added a rough DataManager class" />
     <MESSAGE value="Added HomeScreen and MatchPage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added HomeScreen and MatchPage" />
+    <MESSAGE value="fixing errors, trying to test if database connection is fine" />
+    <MESSAGE value="--" />
+    <option name="LAST_COMMIT_MESSAGE" value="--" />
   </component>
 </project>

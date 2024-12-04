@@ -133,7 +133,7 @@ public class UploadFoodPage extends JPanel {
         }
 
         // add dietary panel
-        JLabel dietaryLabel = new JLabel("What Dietary Restrictions is this food compatible with:");
+        JLabel dietaryLabel = new JLabel("What Dietary Restrictions does this food violate:");
         dietaryLabel.setForeground(darkGreen);
         gbc.gridx = 1;
         gbc.gridy = 0;

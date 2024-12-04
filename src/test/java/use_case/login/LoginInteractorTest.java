@@ -1,7 +1,6 @@
 package use_case.login;
 
 import data_access.UserDAO;
-import entity.SagmaFactory;
 import entity.User;
 import interface_adapter.state.LoginSessionState;
 import org.junit.jupiter.api.*;
@@ -78,10 +77,6 @@ class LoginInteractorTest {
     void successUserLoggedInTest() {
         LoginInputData inputData = new LoginInputData("paul@email.com", "password");
 
-        // Populate the database with the test user
-        UserDAO.addUser("Paul", "paul@email.com", "password", 4.5f, 10,
-                null);
-
         // This creates a successPresenter that tests whether the test case is as we expect.
         LoginOutputBoundary successPresenter = new LoginOutputBoundary() {
             @Override
@@ -98,13 +93,16 @@ class LoginInteractorTest {
 
         LoginInputBoundary interactor = new LoginInteractor(successPresenter);
 
+        // Assert the session is initially empty
         assertFalse(LoginSessionState.getInstance().isLoggedIn());
-        assertNull(LoginSessionState.getInstance().getUsername());
+        assertNull(LoginSessionState.getInstance().getEmail());
 
+        // Execute the login
         interactor.execute(inputData);
 
+        // Assert session state after login
         assertTrue(LoginSessionState.getInstance().isLoggedIn());
-        assertEquals("Paul", LoginSessionState.getInstance().getUsername());
+        assertEquals("paul@email.com", LoginSessionState.getInstance().getEmail());
     }
 
 

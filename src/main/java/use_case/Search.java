@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Search {
-    private static HashMap<String, List<Food>> categoryToFood;
+    private static final HashMap<String, List<Food>> categoryToFood = new HashMap<>();
 
     public Search() {
         DataManager data = new DataManager();

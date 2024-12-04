@@ -18,8 +18,8 @@ import java.util.List;
  * The swiping page
  */
 
-public class SwipingPage extends JPanel {
 
+public class SwipingPage extends JPanel{
     public SwipingPage() {
 
         User user = null;
@@ -33,9 +33,8 @@ public class SwipingPage extends JPanel {
         foodsList.add("Shawarma"); //
         foodsList.add("Tacos"); //
 
+        List<Food> foodsList= (List<Food>) SearchPageView.getFilteredFoods();
 
-//        DataManager data = new DataManager();
-//        List<Food> foodsList= data.getFoods();
 
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86,    61);
@@ -54,6 +53,7 @@ public class SwipingPage extends JPanel {
 //        }
 
 
+
         JLabel titleText = new JLabel(foodsList.get(index[0]));
 //        JLabel titleText = new JLabel(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
         titleText.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -63,6 +63,15 @@ public class SwipingPage extends JPanel {
 //
 //        JLabel ingredientsText = new JLabel(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
 //        ingredientsText.setFont(new Font("Arial", Font.PLAIN, 16));
+//        JLabel titleText = new JLabel("<html><b>Poutine</b> by <b>Twilightsparkles23</b></html>\n");
+        JLabel titleText = new JLabel(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
+        titleText.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        JLabel ratingText = new JLabel("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
+        ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));
+
+        JLabel ingredientsText = new JLabel("Ingredients: " + foodsList.get(index[0]).getIngredients());
+        ingredientsText.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JButton yesButton = new JButton("Yes :)");
         yesButton.setBackground(brown);
@@ -79,6 +88,7 @@ public class SwipingPage extends JPanel {
 
 //                userFoodPair.swipeLeft();
                 index[0]++;
+
 //                userFoodPair.currentfood = foodsList.get(index[0]);
 //                if (!userFoodPair.checkFood()) {
 //                    do {
@@ -86,10 +96,21 @@ public class SwipingPage extends JPanel {
 //                        userFoodPair.currentfood = foodsList.get(index[0]);
 //                    } while (!userFoodPair.checkFood());
 //                }
-                titleText.setText(foodsList.get(index[0]));
+//                titleText.setText(foodsList.get(index[0]));
 //                titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
 //                ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
 //                ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
+
+                userFoodPair.currentfood = foodsList.get(index[0]);
+                if (!userFoodPair.checkFood()) {
+                    do {
+                        index[0]++;
+                        userFoodPair.currentfood = foodsList.get(index[0]);
+                    } while (!userFoodPair.checkFood());
+                }
+                titleText.setText(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
+                ratingText.setText("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
+                ingredientsText.setText("Ingredients: " + foodsList.get(index[0]).getIngredients());
             }
         });
 
@@ -97,6 +118,7 @@ public class SwipingPage extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+
 //                userFoodPair.swipeRight();
 //                if (userFoodPair.checkFood()) {
 //                    userFoodPair.matchMade();
@@ -109,12 +131,40 @@ public class SwipingPage extends JPanel {
 //                            userFoodPair.currentfood = foodsList.get(index[0]);
 //                        } while (!userFoodPair.checkFood());
 //                    }
-                titleText.setText(foodsList.get(index[0]));
+//                titleText.setText(foodsList.get(index[0]));
 //                    titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
 //                    ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
 //                    ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
 
 //                }
+
+                userFoodPair.swipeRight();
+                if (userFoodPair.checkMatch()) {
+                    try {
+                        userFoodPair.matchMade();
+                        Container parent = SwipingPage.this.getParent();
+                        if (parent != null) {
+                            CardLayout cl = (CardLayout) parent.getLayout();
+                            cl.show(parent, "MATCH");
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace(); // Log or handle the exception
+                        JOptionPane.showMessageDialog(null, "An error occurred while making the match.");
+                    }
+                } else {
+                    index[0]++;
+                    userFoodPair.currentfood = foodsList.get(index[0]);
+                    if (!userFoodPair.checkFood()) {
+                        do {
+                            index[0]++;
+                            userFoodPair.currentfood = foodsList.get(index[0]);
+                        } while (!userFoodPair.checkFood());
+                    }
+                    titleText.setText(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
+                    ratingText.setText("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
+                    ingredientsText.setText("Ingredients: " + foodsList.get(index[0]).getIngredients());
+
+                }
             }
         });
 
