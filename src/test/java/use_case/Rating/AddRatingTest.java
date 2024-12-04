@@ -4,7 +4,6 @@ import data_access.UserDAO;
 import data_access.FoodDAO;
 import entity.User;
 import entity.Food;
-import interface_adapter.state.LoginSessionState;
 import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -7,13 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 /**
  * The View for the Search Page
  */
 
 public class SearchPageView extends JPanel{
-    private static List filteredFoods;
+    private static java.util.List<Food> filteredFoods = null;
+
     public SearchPageView(){
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
@@ -38,8 +40,8 @@ public class SearchPageView extends JPanel{
         mainPanel.add(title, c);
 
         //dropdown mainPanel
-        List choices = (List) Search.getCategory();
-        JComboBox<String> options = new JComboBox<String>((ComboBoxModel<String>) choices);
+        java.util.List<String> choices = Search.getCategory();
+        JComboBox<String> options = new JComboBox<String>(new Vector<>(choices));
         options.setFont(new Font("Arial", Font.PLAIN, 13));
         options.setBackground(new Color(234, 223, 214));
         options.setForeground(new Color(123,86,61));
@@ -68,7 +70,7 @@ public class SearchPageView extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cuisine = options.getSelectedItem().toString();
-                filteredFoods = (List) Search.getFilteredFoods(HomeScreen.getCurrentUser(), cuisine);
+                filteredFoods = Search.getFilteredFoods(HomeScreen.getCurrentUser(), cuisine);
 
                 Container parent = SearchPageView.this.getParent();
                 if (parent != null) {
@@ -81,7 +83,7 @@ public class SearchPageView extends JPanel{
         add(mainPanel);
     }
 
-    public static List getFilteredFoods() {
+    public static java.util.List<Food> getFilteredFoods() {
         return filteredFoods;
     }
 }

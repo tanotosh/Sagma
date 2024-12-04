@@ -1,6 +1,6 @@
 package use_case.logout;
 
-import interface_adapter.state.LoginSessionState;
+import interface_adapter.session.LoginSessionState;
 
 /**
  * The Logout Interactor.

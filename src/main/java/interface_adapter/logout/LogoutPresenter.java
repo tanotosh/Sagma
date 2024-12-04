@@ -3,7 +3,7 @@ package interface_adapter.logout;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
-import interface_adapter.state.LoginSessionState;
+import interface_adapter.session.LoginSessionState;
 import use_case.logout.LogoutOutputBoundary;
 import use_case.logout.LogoutOutputData;
 
