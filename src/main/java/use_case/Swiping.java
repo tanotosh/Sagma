@@ -51,8 +51,6 @@ public class Swiping {
             e.printStackTrace(); // Handle the exception
         }
 
-
-
     }
 
     public boolean checkFood() {
