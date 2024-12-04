@@ -1,6 +1,6 @@
 **Swap by Sagma**
 
-Members of Sagma: 
+**Members of Sagma:** 
 Amal Nouman Irshad: amalirshad999
 Abeera Fatima: abeera22
 Jiya Garg: jiyag
@@ -8,7 +8,7 @@ Gaia Micciancio: GaMicc
 Andrew Max Nguyen: MaxNguyen5040
 Shannon Arlene Tanoto: tanotosh
 
-Project Purpose
+**Project Purpose**
 
 What Problems can be solved by Swap by Sagma?
 Swap by Sagma sets out to help people who rely on meal prepping due to limited time or a dislike of cooking, but grow tired of eating the same thing repeatedly.
@@ -20,11 +20,11 @@ What does Swap by Sagma do?
 This program implements a swipe-based interface, similar to dating apps, to facilitate trading of meal preps. When you’ve prepped a bunch of food but don’t want to eat the same thing for a week, upload information on it and then start swiping! You can filter meals based on what you’re feeling like and your dietary restrictions. If two users like each other's meals, a balanced trade occurs and they get to swap foods and get a diverse blend of cuisines for the week!
 
 
-Table of Contents
+**Table of Contents**
 //TODO
 
 
-Software Features
+**Software Features**
 
 1. Login/Signup
 User decides she wants to join the app so she runs it and creates a profile. She is added as a user to the database. She can leave and log back in to access her information. \[Jiya's story\]
@@ -49,24 +49,46 @@ The user wants to see their matches and the food they have uploaded. They can cl
 
 
 
-Installation Instructions
-Software/Packages required
-Installation Guide
-Software Limitation
-FAQ
+**Installation Instructions**
+This program is designed to run on any operating system with Java installed. Before running the application, ensure you have enabled the Gmail API on your Google Cloud Console and downloaded the credentials.json file. In order to install the program, simply fork this repository. Then, replace our credentials.json file with your downloaded file and also replace the email address "swipebysagma@gmail.com" in GmailAPI.java line 89 with yours. Finally, run the program with your preferred Java IDE! 
+
+FAQ: 
 
 
-Usage Guide
-1. Run the program
-2. 
+
+**Usage Guide**
+1. Run the main file on your preferred Java IDE
+2. A screen will pop up. The app starts at the login page. 
+- If you don't have an account, proceed to the signup page by clicking the Signup button. Once you are in the Signup Page, fill out a new username and password then clicked the Signup button and it will take you back to the Login Page.
+- Otherwise, fill out your username and password and click the Login button.
+3. You will now be on the UserHomepage.
+- To view foods you have uploaded or if you've made a match, click Your Foods/Matches button
+  - On the Your Food/Matches Page, click the Back button to return to the homepage.
+- To upload new food, click Upload Food button
+  - On the Upload Food Page, fill in all the required data then click Select Food button to return to the homepage.
+- To set your dietary restrictions, click Dietary Restrictions button 
+  - On the Your Dietary Restriction Page, fill in all the required data then click Back button to return to the homepage.
+4. To start looking for foods, click Start Swiping! button, which will take you to the Search Page
+5. On the Search page choose a food category with the drop-down menu and click the Search button.
+6. You will now be at the Swiping Page which will display foods based on your preferred category and your dietary restrictions.
+- If you are interested in a trade with the food displayed, click Yes.
+- If you are not interested in a trade with the food displayed, click No.
+7. Repeat step 6 until you are satisfied.
+- You will be brought to a Matched Page when you've clicked Yes on a food of a user that have also clicked Yes on your food.
+- Or, you can exit the app and wait for an email notification if a match have been made.
+8. If you got an email notification, run the app again and login into your account and view your matches with the Your Foods/Matches button. 
+9. After a match have been made, do the trade! And enjoy your food! Don't forget to leave a rating on our Rating Page :)
 
 
-License
+**License**
 
 
-Feedback
+**Feedback**
 Please leave us any feedback you have on our app by this link:
-https://forms.gle/YksYmetamPNLH1By6
+https://forms.gle/YksYmetamPNLH1By6.
 
 
-Contribution
+
+
+**Contribution**
+We welcome contributions! Fork this repository, make your changes, and submit a pull request. 
