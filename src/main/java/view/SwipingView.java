@@ -20,6 +20,7 @@ import java.util.List;
 
 public class SwipingView extends JPanel{
     private User user;
+    private Food currentFood;
 
     public SwipingView(User user) {
         this.user = user;
@@ -157,4 +158,5 @@ public class SwipingView extends JPanel{
 
         add(mainpanel);
     }
+
 }

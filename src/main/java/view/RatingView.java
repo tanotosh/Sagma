@@ -2,13 +2,18 @@ package view;
 
 import entity.Food;
 import entity.User;
+import interface_adapter.rating.RatingController;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -16,14 +21,24 @@ import java.util.Arrays;
  */
 
 public class RatingView extends JPanel {
-    public RatingView() {
+    private RatingController ratingController;
+    private Food food;
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
+
+    public RatingView(Food food) {
+        this.food = food;
+
+        initializeView();
+    }
+    private void initializeView() {
 
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86,	61);
         Color pink = new Color(234,	223,	214);
-
-        User user = new User("123", "temp@gmail.com", "password"); // THIS IS TEMPORARY WHILE THINGS ARENT CONNECTED
-        Food food = new Food("poutine", user,5, "fries, gravy", Arrays.asList("dietary restrictions"), "/home/gaia/Photos/LunarNewYearPhotos/DSC_0563.JPG", "category");
+//
+//        User user = new User("123", "temp@gmail.com", "password"); // THIS IS TEMPORARY WHILE THINGS ARENT CONNECTED
+//        Food food = new Food("poutine", user,5, "fries, gravy", Arrays.asList("dietary restrictions"), "/home/gaia/University of Toronto/Courses/CSC 207/PoutinePicture.jpg", "category");
 
         setBackground(green);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -48,29 +63,30 @@ public class RatingView extends JPanel {
             starButton.addActionListener(e -> {
                 starButton.setBackground(pink);
                 starButton.setForeground(brown);
-                user.rateFood(food, rating);
+                if (ratingController != null) {
+                    ratingController.execute(food, rating);
+                }
             });
 
             starsPanel.add(starButton);
         }
 
-        JPanel whiteSquare = new JPanel();
-        whiteSquare.setBackground(Color.WHITE);
-        whiteSquare.setPreferredSize(new Dimension(200, 200));
+        JLabel imageLabel = new JLabel();
+        imageLabel.setPreferredSize(new Dimension(200, 200)); // Set the size of the image
+        imageLabel.setOpaque(true);
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        JButton continueButton = new JButton("Continue");
-        continueButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Container parent = RatingView.this.getParent();
-                if (parent != null) {
-                    CardLayout cl = (CardLayout) parent.getLayout();
-                    cl.show(parent, "HOME");
-                }
-            }
-        });
-        continueButton.setBackground(brown);
-        continueButton.setForeground(pink);
+        // Load the image from the food object
+        String imagePath = food.getImagePath();  // Assuming `Food` class has a `getImagePath()` method
+        try {
+            BufferedImage img = ImageIO.read(new File(imagePath));
+            ImageIcon imageIcon = new ImageIcon(img);
+            imageLabel.setIcon(imageIcon);
+        } catch (IOException e) {
+            e.printStackTrace();
+            imageLabel.setText("Error loading image");
+        }
+
 
         JPanel mainpanel = new JPanel();
         mainpanel.setBackground(green);
@@ -85,7 +101,7 @@ public class RatingView extends JPanel {
         mainpanel.add(titleText, c);
 
         c.gridy = 1;
-        mainpanel.add(whiteSquare, c);
+        mainpanel.add(imageLabel, c);
 
         c.gridy = 2;
         mainpanel.add(reviewText, c);
@@ -93,9 +109,11 @@ public class RatingView extends JPanel {
         c.gridy = 3;
         mainpanel.add(starsPanel, c);
 
-        c.gridy = 4;
-        mainpanel.add(continueButton, c);
 
         add(mainpanel);
+    }
+
+    public void setController(RatingController controller) {
+        this.ratingController = controller;
     }
 }
