@@ -5,33 +5,33 @@ import entity.User;
 import api.GmailAPI;
 
 public class Swiping {
-    public User currentuser;
+    public User user;
     public Food currentfood;
 
-    public Swiping(User currentuser, Food currentfood) {
-        this.currentuser = currentuser;
+    public Swiping(User user, Food currentfood) {
+        this.user = user;
         this.currentfood = currentfood;
     }
 
     public void swipeRight() {
-        currentuser.swipeRight(currentfood);
+        user.swipeRight(currentfood);
     }
 
     public void swipeLeft() {
-        currentuser.swipeLeft(currentfood);
+        user.swipeLeft(currentfood);
     }
 
     public boolean checkMatch() {
-        return currentuser.isMatch(currentfood.getOwner());
+        return user.isMatch(currentfood.getOwner());
     }
 
     public void matchMade() throws Exception{
 
         try {
             // Code that throws Exception
-            Food user1food = currentuser.getCurrentFood();
+            Food user1food = user.getCurrentFood();
             Food user2food = currentfood;
-            User user1 = currentuser;
+            User user1 = user;
             User user2 = currentfood.getOwner();
 
             user1food.setQuantity(user1food.getQuantity() - 1);
@@ -45,7 +45,7 @@ public class Swiping {
                 user2.setCurrentFood(null);
             }
 
-            GmailAPI mailer = new GmailAPI();
+            GmailAPI mailer = new GmailAPI(user1);
             mailer.sendMail("Exciting News!!", "You've got a match! Log on to see!!");
         } catch (Exception e) {
             e.printStackTrace(); // Handle the exception
@@ -60,7 +60,7 @@ public class Swiping {
             return false;
         }
 
-        for (String userRestriction : currentuser.getDietaryRestrictions()) {
+        for (String userRestriction : user.getDietaryRestrictions()) {
             if (!currentfood.getDietaryRestrictions().contains(userRestriction)) {
                 return false;
             }
