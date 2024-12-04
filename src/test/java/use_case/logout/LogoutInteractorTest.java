@@ -2,7 +2,7 @@ package use_case.logout;
 
 import data_access.UserDAO;
 import entity.User;
-import interface_adapter.session.LoginSessionState;
+import interface_adapter.state.LoginSessionState;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import interface_adapter.session.LoginSessionState;
+import interface_adapter.state.LoginSessionState;
 import interface_adapter.logout.LogoutController;
 
 /**

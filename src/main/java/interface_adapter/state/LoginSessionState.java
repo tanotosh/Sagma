@@ -1,4 +1,4 @@
-package interface_adapter.session;
+package interface_adapter.state;
 
 import entity.User;
 

@@ -1,4 +1,4 @@
-package interface_adapter.session;
+package interface_adapter.state;
 
 import entity.User;
 
@@ -36,7 +36,7 @@ public class SignupSessionState {
     public void setSignupDetails(User user) {
         this.username = user.getName();
         this.email = user.getEmail();
-        this.password = user.getPassword();
+        this.password = user.getPassword(); // If you store plain passwords (not recommended)
         this.signupSuccessful = true;
     }
 }

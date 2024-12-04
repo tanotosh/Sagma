@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.awt.Font;
 import java.awt.FontFormatException;
 
-public class LoginPage extends JPanel {
-    public LoginPage() {
+public class SignupView extends JPanel {
+    public SignupView() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
@@ -44,12 +44,10 @@ public class LoginPage extends JPanel {
             welcomePanel.setBackground(green);
 
             // Split the welcome text into parts
-            JLabel welcomeToLabel = new JLabel("Welcome to ");
+            JLabel welcomeToLabel = new JLabel("Signup to");
             welcomeToLabel.setForeground(darkGreen);
             JLabel swapLabel = new JLabel("SWAP");
             swapLabel.setForeground(darkGreen);
-            JLabel bySagmaLabel = new JLabel(" by Sagma");
-            bySagmaLabel.setForeground(darkGreen);
 
             // Set the Faster One font only for SWAP
             swapLabel.setFont(fasterOne);
@@ -57,7 +55,6 @@ public class LoginPage extends JPanel {
             // Add all parts to the welcome panel
             welcomePanel.add(welcomeToLabel);
             welcomePanel.add(swapLabel);
-            welcomePanel.add(bySagmaLabel);
 
             // Add welcome panel to main panel
             gbc.gridx = 0;
@@ -68,14 +65,6 @@ public class LoginPage extends JPanel {
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
         }
-
-
-        // Tagline Text You’ll never stop swiping for supper!
-        JLabel taglineLabel = new JLabel("You’ll never stop swiping for supper!");
-        taglineLabel.setForeground(darkGreen);
-        gbc.gridy = 1;
-        mainPanel.add(taglineLabel, gbc);
-
 
         // Username
         JTextField usernameField = new JTextField("Username", 20);
@@ -121,47 +110,47 @@ public class LoginPage extends JPanel {
             }
         });
 
-        // Signup button
-        JButton signupButton = new JButton("Sign up");
-        signupButton.addActionListener(new ActionListener() {
+        // Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = LoginPage.this.getParent();
+                Container parent = SignupView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
-                    cl.show(parent, "SIGNUP");
+                    cl.show(parent, "LOGIN");
                 }
             }
         });
-        signupButton.setBackground(brown);
-        signupButton.setForeground(pink);
-        signupButton.setOpaque(true);
+        backButton.setBackground(brown);
+        backButton.setForeground(pink);
+        backButton.setOpaque(true);
         gbc.insets = new Insets(15, 0, 0, 0); // More space above password
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 1; // Important: reset gridwidth to 1
         gbc.weightx = 0.50; // Give each button equal horizontal weight
 
-        // Login button
-        JButton loginButton = new JButton("Login");
-        loginButton.addActionListener(new ActionListener() {
+        // Signup button
+        JButton signupButton = new JButton("Sign up");
+        signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = LoginPage.this.getParent();
+                Container parent = SignupView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
                     cl.show(parent, "HOME");
                 }
             }
         });
-        loginButton.setBackground(brown);
-        loginButton.setForeground(pink);
-        loginButton.setOpaque(true);
+        signupButton.setBackground(brown);
+        signupButton.setForeground(pink);
+        signupButton.setOpaque(true);
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
         buttonPanel.setBackground(green);
+        buttonPanel.add(backButton);
         buttonPanel.add(signupButton);
-        buttonPanel.add(loginButton);
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = GridBagConstraints.REMAINDER;

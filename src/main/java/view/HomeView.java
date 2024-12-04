@@ -11,10 +11,10 @@ import java.awt.GridBagConstraints;
  * The view for the user homepage
  */
 
-public class HomeScreen extends JPanel {
+public class HomeView extends JPanel {
     private static User currentUser;
 
-    public HomeScreen() {
+    public HomeView() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);

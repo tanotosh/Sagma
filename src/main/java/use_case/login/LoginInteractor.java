@@ -2,7 +2,7 @@ package use_case.login;
 
 import entity.User;
 import data_access.UserDAO;
-import interface_adapter.session.*;
+import interface_adapter.state.*;
 
 /**
  * The Login Interactor.

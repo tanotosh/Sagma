@@ -17,28 +17,28 @@ public class SwapAppBuilder {
         mainPanel = new JPanel(cardLayout);
 
         // Initialize pages as JPanels
-        LoginPage loginPage = new LoginPage();
-        HomeScreen homePage = new HomeScreen();
-        dietaryPage dietaryPage = new dietaryPage(new User("test","email@email.com","passwrod123"));
-        SignupPage signupPage = new SignupPage();
+        LoginView loginView = new LoginView();
+        HomeView homePage = new HomeView();
+        DietaryView dietaryViewPage = new DietaryView(new User("test","email@email.com","passwrod123"));
+        SignupView signupView = new SignupView();
         SearchPageView searchPageView = new SearchPageView();
-        SwipingPage swipingPage = new SwipingPage(new User("test","email@email.com","passwrod123"));
-        MatchPage matchPage = new MatchPage();
-        ReviewPage reviewPage = new ReviewPage();
-        UploadFoodPage uploadFoodPage = new UploadFoodPage();
-        YourFoodsMatchesPage yourFoodsMatchesPage = new YourFoodsMatchesPage(new User("test","email@email.com","passwrod123"));
+        SwipingView swipingView = new SwipingView(new User("test","email@email.com","passwrod123"));
+        MatchView matchView = new MatchView();
+        RatingView reviewView = new RatingView();
+        UploadFoodView uploadFoodView = new UploadFoodView();
+        ProfileView profileView = new ProfileView(new User("test","email@email.com","passwrod123"));
 
         // Add pages to main panel
-        mainPanel.add(loginPage, "LOGIN");
-        mainPanel.add(signupPage, "SIGNUP");
+        mainPanel.add(loginView, "LOGIN");
+        mainPanel.add(signupView, "SIGNUP");
         mainPanel.add(searchPageView, "SEARCH");
         mainPanel.add(homePage, "HOME");
-        mainPanel.add(dietaryPage, "DIETARY");
-        mainPanel.add(swipingPage, "SWIPE");
-        mainPanel.add(matchPage, "MATCH");
-        mainPanel.add(reviewPage, "REVIEW");
-        mainPanel.add(uploadFoodPage, "UPLOAD");
-        mainPanel.add(yourFoodsMatchesPage,"FOODS");
+        mainPanel.add(dietaryViewPage, "DIETARY");
+        mainPanel.add(swipingView, "SWIPE");
+        mainPanel.add(matchView, "MATCH");
+        mainPanel.add(reviewView, "REVIEW");
+        mainPanel.add(uploadFoodView, "UPLOAD");
+        mainPanel.add(profileView,"FOODS");
 
         // Setup main frame
         mainFrame.add(mainPanel);

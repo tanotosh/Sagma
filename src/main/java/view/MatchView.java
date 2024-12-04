@@ -11,8 +11,8 @@ import java.awt.event.ActionListener;
  * The view when a match is made
  */
 
-public class MatchPage extends JPanel {
-    public MatchPage() {
+public class MatchView extends JPanel {
+    public MatchView() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86,    61);
         Color pink = new Color(234, 223,   214);
@@ -28,7 +28,7 @@ public class MatchPage extends JPanel {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = MatchPage.this.getParent();
+                Container parent = MatchView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
                     cl.show(parent, "REVIEW");

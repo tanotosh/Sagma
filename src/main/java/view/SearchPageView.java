@@ -70,7 +70,7 @@ public class SearchPageView extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cuisine = options.getSelectedItem().toString();
-                filteredFoods = Search.getFilteredFoods(HomeScreen.getCurrentUser(), cuisine);
+                filteredFoods = Search.getFilteredFoods(HomeView.getCurrentUser(), cuisine);
 
                 Container parent = SearchPageView.this.getParent();
                 if (parent != null) {

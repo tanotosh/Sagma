@@ -46,10 +46,8 @@ public class GmailAPI {
     private static final String CREDENTIALS_FILE_PATH = "/api/credentials.json";
 
     private Gmail service;
-    private User user;
 
-    public GmailAPI(User user) throws Exception {
-        this.user = user;
+    public GmailAPI() throws Exception {
         NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName("Swipe by Sagma")
@@ -90,7 +88,7 @@ public class GmailAPI {
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress("swipebysagma@gmail.com"));
         email.addRecipient(javax.mail.Message.RecipientType.TO,
-                new InternetAddress(user.getEmail()));
+                new InternetAddress(User.getEmail()));
         email.setSubject(subject);
         email.setText(message);
 

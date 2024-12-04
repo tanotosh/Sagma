@@ -1,7 +1,7 @@
 package interface_adapter.login;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.session.LoginSessionState;
+import interface_adapter.state.LoginSessionState;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 

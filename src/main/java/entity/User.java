@@ -3,7 +3,11 @@ package entity;
 import data_access.UserDAO;
 import data_access.FoodDAO;
 
+import java.io.File;
 import java.util.*;
+
+import data_access.UserDAO;
+import interface_adapter.state.*;
 
 public class User {
     private int userID;
