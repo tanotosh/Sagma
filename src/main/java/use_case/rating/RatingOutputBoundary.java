@@ -3,7 +3,7 @@ package use_case.rating;
 /**
  * The output boundary for the Rating Use Case.
  */
-public class RatingOutputBoundary {
+public interface RatingOutputBoundary {
 
     /**
      * Switches to the Home View.

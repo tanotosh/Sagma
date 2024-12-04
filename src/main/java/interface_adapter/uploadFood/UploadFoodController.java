@@ -15,7 +15,7 @@ public class UploadFoodController {
     }
 
     /**
-     * Executes the Signup Use Case.
+     * Executes the Upload Food Use Case.
      * the params
      */
     public void execute(User owner, String name, int quantity, String ingredients, List<String> dietaryRestrictions, String imagePath, String category) {
