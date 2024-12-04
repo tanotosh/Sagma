@@ -46,26 +46,7 @@ public class SwipingPage extends JPanel{
 
         Integer[] index = {0};
         Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
-//        if (!userFoodPair.checkFood()) {
-//            do {
-//                index[0]++;
-//                userFoodPair.currentfood = foodsList.get(index[0]);
-//            } while (!userFoodPair.checkFood());
-//        }
-
-
-
-//        JLabel titleText = new JLabel(foodsList.get(index[0]).getName());
-//        JLabel titleText = new JLabel(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-//        titleText.setFont(new Font("Arial", Font.PLAIN, 16));
-
-//        JLabel ratingText = new JLabel(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-//        ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));
-//
-//        JLabel ingredientsText = new JLabel(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
-//        ingredientsText.setFont(new Font("Arial", Font.PLAIN, 16));
-//        JLabel titleText = new JLabel("<html><b>Poutine</b> by <b>Twilightsparkles23</b></html>\n");
-        JLabel titleText = new JLabel(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
+         JLabel titleText = new JLabel(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
         titleText.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JLabel ratingText = new JLabel("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
@@ -87,20 +68,7 @@ public class SwipingPage extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-//                userFoodPair.swipeLeft();
                 index[0]++;
-
-//                userFoodPair.currentfood = foodsList.get(index[0]);
-//                if (!userFoodPair.checkFood()) {
-//                    do {
-//                        index[0]++;
-//                        userFoodPair.currentfood = foodsList.get(index[0]);
-//                    } while (!userFoodPair.checkFood());
-//                }
-//                titleText.setText(foodsList.get(index[0]));
-//                titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-//                ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-//                ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
 
                 userFoodPair.currentfood = foodsList.get(index[0]);
                 if (!userFoodPair.checkFood()) {
@@ -120,24 +88,6 @@ public class SwipingPage extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-//                userFoodPair.swipeRight();
-//                if (userFoodPair.checkFood()) {
-//                    userFoodPair.matchMade();
-//                    CONNECT TO MATCH MADE PAGE
-//                } else {
-//                    userFoodPair.currentfood = foodsList.get(index[0]);
-//                    if (!userFoodPair.checkFood()) {
-//                        do {
-//                            index[0]++;
-//                            userFoodPair.currentfood = foodsList.get(index[0]);
-//                        } while (!userFoodPair.checkFood());
-//                    }
-//                titleText.setText(foodsList.get(index[0]));
-//                    titleText.setText(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-//                    ratingText.setText(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
-//                    ingredientsText.setText(STR."Ingredients: \{foodsList.get(index[0]).getIngredients()}");
-
-//                }
 
                 userFoodPair.swipeRight();
                 if (userFoodPair.checkMatch()) {
