@@ -25,11 +25,12 @@ public class RatingInteractor implements RatingInputBoundary {
         float ownerRating = foodOwner.getRating();
         int ownerRatingsCount = foodOwner.getRatingsCount();
         float count = ownerRating * ownerRatingsCount;
-        count = count + rating;
+
+        count += rating;
         ownerRatingsCount += 1;
         foodOwner.setRating(count/ownerRatingsCount);
         foodOwner.setRatingsCount(ownerRatingsCount);
-        UserDAO.updateUser(foodOwner);
+        // not updating the databse here. that is the responsibility of a higher-level layer as per clean architecture and SOLID principles
 
     }
 
