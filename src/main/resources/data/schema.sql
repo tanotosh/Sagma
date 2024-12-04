@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS Foods (
     quantity INTEGER NOT NULL,
     ingredients TEXT,
     dietary_restrictions TEXT,
-    cuisine TEXT,
+    category TEXT,
     owner_id INTEGER NOT NULL,
     image_path TEXT,
     FOREIGN KEY (owner_id) REFERENCES Users(user_id) ON DELETE CASCADE

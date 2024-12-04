@@ -1,6 +1,5 @@
 package use_case.uploadFood;
 
-import data_access.DataManager;
 import data_access.FoodDAO;
 import data_access.UserDAO;
 import entity.Food;
