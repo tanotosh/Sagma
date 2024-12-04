@@ -25,7 +25,7 @@ public class User {
         this.password = password;
         this.rating = 0;
         this.ratingsCount = 0;
-        this.dietaryRestrictions = null;
+        this.dietaryRestrictions = new ArrayList<>();
         this.currentFood = null;
     }
 
