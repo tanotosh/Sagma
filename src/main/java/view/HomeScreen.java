@@ -18,6 +18,7 @@ public class HomeScreen extends JPanel {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
+//        setPreferredSize(new Dimension(600, 400));
 
         setBackground(green);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -46,7 +47,7 @@ public class HomeScreen extends JPanel {
         Dimension buttonSize = new Dimension(175, 30);
 
         // Create buttons with action listeners
-        JButton yourFoodsButton = createStyledButton("Your foods", brown, pink, buttonSize);
+        JButton yourFoodsButton = createStyledButton("Your foods/matches", brown, pink, buttonSize);
         yourFoodsButton.addActionListener(e -> {
             CardLayout cl = (CardLayout) getParent().getLayout();
             cl.show(getParent(), "FOODS");
@@ -56,12 +57,6 @@ public class HomeScreen extends JPanel {
         uploadButton.addActionListener(e -> {
             CardLayout cl = (CardLayout) getParent().getLayout();
             cl.show(getParent(), "UPLOAD");
-        });
-
-        JButton matchesButton = createStyledButton("Your matches", brown, pink, buttonSize);
-        matchesButton.addActionListener(e -> {
-            CardLayout cl = (CardLayout) getParent().getLayout();
-            cl.show(getParent(), "MATCHES");
         });
 
         JButton dietaryRestButton = createStyledButton("Dietary restrictions", brown, pink, buttonSize);
@@ -93,14 +88,9 @@ public class HomeScreen extends JPanel {
 
         c.gridx = 0;
         c.gridy = 1;
-        buttonPanel.add(matchesButton, c);
-
-        c.gridx = 1;
         buttonPanel.add(dietaryRestButton, c);
 
-        c.gridy = 2;
-        c.gridx = 0;
-        c.gridwidth = 2;
+        c.gridx = 1;
         buttonPanel.add(swipingButton, c);
 
         add(textPanel);

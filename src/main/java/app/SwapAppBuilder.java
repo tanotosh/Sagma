@@ -2,6 +2,8 @@ package app;
 
 import javax.swing.*;
 import java.awt.*;
+
+import entity.User;
 import view.*;
 
 public class SwapAppBuilder {
@@ -17,13 +19,14 @@ public class SwapAppBuilder {
         // Initialize pages as JPanels
         LoginPage loginPage = new LoginPage();
         HomeScreen homePage = new HomeScreen();
-        dietaryPage dietaryPage = new dietaryPage();
+        dietaryPage dietaryPage = new dietaryPage(new User("test","email@email.com","passwrod123"));
         SignupPage signupPage = new SignupPage();
         SearchPageView searchPageView = new SearchPageView();
         SwipingPage swipingPage = new SwipingPage();
         MatchPage matchPage = new MatchPage();
         ReviewPage reviewPage = new ReviewPage();
         UploadFoodPage uploadFoodPage = new UploadFoodPage();
+        YourFoodsMatchesPage yourFoodsMatchesPage = new YourFoodsMatchesPage(new User("test","email@email.com","passwrod123"));
 
         // Add pages to main panel
         mainPanel.add(loginPage, "LOGIN");
@@ -35,10 +38,11 @@ public class SwapAppBuilder {
         mainPanel.add(matchPage, "MATCH");
         mainPanel.add(reviewPage, "REVIEW");
         mainPanel.add(uploadFoodPage, "UPLOAD");
+        mainPanel.add(yourFoodsMatchesPage,"FOODS");
 
         // Setup main frame
         mainFrame.add(mainPanel);
-        mainFrame.setSize(600, 400);
+        mainFrame.setSize(1000, 600);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setLocationRelativeTo(null);
         cardLayout.show(mainPanel, "LOGIN");
