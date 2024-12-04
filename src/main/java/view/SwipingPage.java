@@ -95,7 +95,7 @@ public class SwipingPage extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 userFoodPair.swipeRight();
-                if (userFoodPair.checkFood()) {
+                if (userFoodPair.checkMatch()) {
                     try {
                         userFoodPair.matchMade();
                         Container parent = SwipingPage.this.getParent();
@@ -108,6 +108,7 @@ public class SwipingPage extends JPanel{
                         JOptionPane.showMessageDialog(null, "An error occurred while making the match.");
                     }
                 } else {
+                    index[0]++;
                     userFoodPair.currentfood = foodsList.get(index[0]);
                     if (!userFoodPair.checkFood()) {
                         do {
