@@ -1,6 +1,7 @@
 package entity;
 
 import data_access.UserDAO;
+import data_access.FoodDAO;
 
 import java.io.File;
 import java.util.*;
@@ -44,6 +45,7 @@ public class User {
     public void uploadFood(String name, int quantity, String ingredients, List<String> dietaryRestrictions,
                            String image_path, String category) {
         this.currentFood = new Food(name, this, quantity, ingredients, dietaryRestrictions, image_path, category);
+        FoodDAO.addFood(this.currentFood);
     }
 
     public void swipeRight(Food food) {
