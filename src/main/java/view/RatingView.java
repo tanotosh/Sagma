@@ -15,8 +15,8 @@ import java.util.Arrays;
  * The view when a user is asked for a rating
  */
 
-public class ReviewView extends JPanel {
-    public ReviewView() {
+public class RatingView extends JPanel {
+    public RatingView() {
 
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86,	61);
@@ -62,7 +62,7 @@ public class ReviewView extends JPanel {
         continueButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = ReviewView.this.getParent();
+                Container parent = RatingView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
                     cl.show(parent, "HOME");

@@ -24,7 +24,7 @@ public class SwapAppBuilder {
         SearchPageView searchPageView = new SearchPageView();
         SwipingView swipingView = new SwipingView();
         MatchView matchView = new MatchView();
-        ReviewView reviewView = new ReviewView();
+        RatingView reviewView = new RatingView();
         UploadFoodView uploadFoodView = new UploadFoodView();
         ProfileView profileView = new ProfileView(new User("test","email@email.com","passwrod123"));
 
