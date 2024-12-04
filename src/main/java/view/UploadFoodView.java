@@ -1,7 +1,6 @@
 package view;
 
 import entity.User;
-import use_case.Search;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,15 +15,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 /**
  * The view when a user is asked for a rating
  */
 
-public class UploadFoodPage extends JPanel {
-    public UploadFoodPage() {
+public class UploadFoodView extends JPanel {
+    public UploadFoodView() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
@@ -74,7 +71,7 @@ public class UploadFoodPage extends JPanel {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = UploadFoodPage.this.getParent();
+                Container parent = UploadFoodView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
                     cl.show(parent, "HOME");

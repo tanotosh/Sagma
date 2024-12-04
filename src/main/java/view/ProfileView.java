@@ -7,8 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class YourFoodsMatchesPage extends JPanel {
-    public YourFoodsMatchesPage(User user) {
+public class ProfileView extends JPanel {
+    public ProfileView(User user) {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
@@ -56,7 +56,7 @@ public class YourFoodsMatchesPage extends JPanel {
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = YourFoodsMatchesPage.this.getParent();
+                Container parent = ProfileView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
                     cl.show(parent, "HOME");

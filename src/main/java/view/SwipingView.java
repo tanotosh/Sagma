@@ -1,9 +1,7 @@
 package view;
 
-import data_access.DataManager;
 import entity.Food;
 import entity.User;
-import use_case.Swiping;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,8 +17,8 @@ import java.util.List;
  */
 
 
-public class SwipingPage extends JPanel{
-    public SwipingPage() {
+public class SwipingView extends JPanel{
+    public SwipingView() {
 
         User user = null;
 
@@ -142,7 +140,7 @@ public class SwipingPage extends JPanel{
                 if (userFoodPair.checkMatch()) {
                     try {
                         userFoodPair.matchMade();
-                        Container parent = SwipingPage.this.getParent();
+                        Container parent = SwipingView.this.getParent();
                         if (parent != null) {
                             CardLayout cl = (CardLayout) parent.getLayout();
                             cl.show(parent, "MATCH");

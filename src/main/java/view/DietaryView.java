@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class dietaryPage extends JPanel {
+public class DietaryView extends JPanel {
 
     private final User user;
 
-    public dietaryPage(User user) {
+    public DietaryView(User user) {
         this.user = user;
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
@@ -113,7 +113,7 @@ public class dietaryPage extends JPanel {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Container parent = dietaryPage.this.getParent();
+                Container parent = DietaryView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
                     cl.show(parent, "HOME");

@@ -2,7 +2,6 @@ package use_case.signup;
 
 import data_access.UserDAO;
 import entity.User;
-import entity.SagmaFactory;
 import interface_adapter.state.SignupSessionState;
 
 /**
