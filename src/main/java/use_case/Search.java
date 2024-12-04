@@ -28,7 +28,7 @@ public class Search {
 
     }
 
-    public static List<String> getCategory(){
+    public static ArrayList<String> getCategory(){
         Set<String> setCategories = categoryToFood.keySet();
         return new ArrayList<>(setCategories);
     }

@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.List.*;
+import java.util.ArrayList;
 
 /**
  * The View for the Search Page
@@ -38,7 +41,7 @@ public class SearchPageView extends JPanel{
         mainPanel.add(title, c);
 
         //dropdown mainPanel
-        List choices = (List) Search.getCategory();
+        java.util.List choices = Arrays.asList(Search.getCategory());
         JComboBox<String> options = new JComboBox<String>((ComboBoxModel<String>) choices);
         options.setFont(new Font("Arial", Font.PLAIN, 13));
         options.setBackground(new Color(234, 223, 214));

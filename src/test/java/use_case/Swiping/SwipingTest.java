@@ -1,4 +1,4 @@
-package use_case.Swiping;
+//package use_case.Swiping;
 
-public class SwipingTest {
-}
+//public class SwipingTest {
+//}
