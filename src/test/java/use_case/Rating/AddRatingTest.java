@@ -44,6 +44,20 @@ public class AddRatingTest {
 
     }
 
+    @Test
+    void addRatingTest() {
+        User jiya  = UserDAO.getUserById(1);
+        Food pasta = FoodDAO.getFoodById(2);
+        jiya.rateFood(pasta, 2);
+        User gaia = UserDAO.getUserById(2);
+        float gaiaNewRating = gaia.getRating();
+        assertEquals(gaiaNewRating, 4.5);
+        float gaiaNewRatingsCount = gaia.getRatingsCount();
+        assertEquals(gaiaNewRatingsCount, 6);
+
+    }
+
+
     // adding this so that at the end of all tests, the database is empty
     @AfterAll
     static void tearDownAll() throws Exception {
