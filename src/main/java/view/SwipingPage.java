@@ -20,18 +20,19 @@ import java.util.List;
 
 
 public class SwipingPage extends JPanel{
-    public SwipingPage() {
+    private User user;
 
-        User user = null;
+    public SwipingPage(User user) {
+        this.user = user;
 
-        List<String> foodsList = new ArrayList<>(); //
-        foodsList.add("Poutine"); //
-        foodsList.add("Ramen"); //
-        foodsList.add("Sushi"); //
-        foodsList.add("Sushi"); //
-        foodsList.add("Soup"); //
-        foodsList.add("Shawarma"); //
-        foodsList.add("Tacos"); //
+//        List<String> foodsList = new ArrayList<>(); //
+//        foodsList.add("Poutine"); //
+//        foodsList.add("Ramen"); //
+//        foodsList.add("Sushi"); //
+//        foodsList.add("Sushi"); //
+//        foodsList.add("Soup"); //
+//        foodsList.add("Shawarma"); //
+//        foodsList.add("Tacos"); //
 
         List<Food> foodsList= (List<Food>) SearchPageView.getFilteredFoods();
 
@@ -44,7 +45,7 @@ public class SwipingPage extends JPanel{
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         Integer[] index = {0};
-//        Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
+        Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
 //        if (!userFoodPair.checkFood()) {
 //            do {
 //                index[0]++;
@@ -54,9 +55,9 @@ public class SwipingPage extends JPanel{
 
 
 
-        JLabel titleText = new JLabel(foodsList.get(index[0]));
+//        JLabel titleText = new JLabel(foodsList.get(index[0]).getName());
 //        JLabel titleText = new JLabel(STR."\{foodsList.get(index[0]).getName()} by \{foodsList.get(index[0]).getOwner().getName()}");
-        titleText.setFont(new Font("Arial", Font.PLAIN, 16));
+//        titleText.setFont(new Font("Arial", Font.PLAIN, 16));
 
 //        JLabel ratingText = new JLabel(STR."User Rating: \{foodsList.get(index[0]).getOwner().getRating()}");
 //        ratingText.setFont(new Font("Dialog", Font.PLAIN, 16));

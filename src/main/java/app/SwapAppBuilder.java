@@ -22,7 +22,7 @@ public class SwapAppBuilder {
         dietaryPage dietaryPage = new dietaryPage(new User("test","email@email.com","passwrod123"));
         SignupPage signupPage = new SignupPage();
         SearchPageView searchPageView = new SearchPageView();
-        SwipingPage swipingPage = new SwipingPage();
+        SwipingPage swipingPage = new SwipingPage(new User("test","email@email.com","passwrod123"));
         MatchPage matchPage = new MatchPage();
         ReviewPage reviewPage = new ReviewPage();
         UploadFoodPage uploadFoodPage = new UploadFoodPage();
