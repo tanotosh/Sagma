@@ -41,7 +41,7 @@ class LoginInteractorTest {
     @BeforeEach
     void populateDatabase() {
         UserDAO.addUser("Paul", "paul@email.com", "password", 4.5f, 10,
-                null);
+                null, null);
     }
 
     @AfterEach

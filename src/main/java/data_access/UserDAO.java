@@ -24,27 +24,35 @@ public class UserDAO {
     private static final String EXISTS_BY_EMAIL =
             "SELECT 1 FROM Users WHERE email = ?";
     private static final String INSERT_USER =
-            "INSERT INTO Users (name, email, password, rating, ratings_count, dietary_restrictions) VALUES " +
-                    "(?, ?, ?, ?, ?, ?)";
+            "INSERT INTO Users (name, email, password, rating, ratings_count, dietary_restrictions, current_food_id) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_USER =
             "UPDATE Users SET rating = ?, ratings_count = ?, dietary_restrictions = ?, current_food_id = ? " +
                     "WHERE user_id = ?";
 
     public static void addUser(User user){
-        addUser(user.getName(), user.getEmail(), user.getPassword(), 0, 0, null);
+        addUser(user.getName(), user.getEmail(), user.getPassword(), user.getRating(), user.getRatingsCount(),
+                user.getDietaryRestrictions(), user.getCurrentFood());
     }
 
     // Add a new user
     public static void addUser(String name, String email, String password, float rating, int ratingsCount,
-                               List<String> dietaryRestrictions) {
+                               List<String> dietaryRestrictions, Food food) {
         String sql = INSERT_USER;
         try (Connection connection = DatabaseConnection.connect();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            // Validate the referenced food ID (currentFoodID)
+            if (food == null) {
+                throw new IllegalArgumentException("Referenced food does not exist.");
+            }
+
             stmt.setString(1, name);
             stmt.setString(2, email);
             stmt.setString(3, password);
             stmt.setFloat(4, rating);
             stmt.setInt(5, ratingsCount);
+            stmt.setInt(6, food.getFoodID());
 
             String dietaryRestrictionsString = dietaryRestrictions != null ? String.join(",",
                     dietaryRestrictions) : "";
