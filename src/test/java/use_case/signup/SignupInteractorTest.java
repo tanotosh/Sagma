@@ -1,29 +1,19 @@
 package use_case.signup;
 
+import data_access.DatabaseDAO;
 import data_access.UserDAO;
 import entity.User;
+import interface_adapter.session.SignupSessionState;
 import org.junit.jupiter.api.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SignupInteractorTest {
 
-
-    private static final String DB_URL = "jdbc:sqlite:test.db";
-
-    @BeforeEach
-    void setUp() throws Exception {
-        // Reset the database before each test
-        try (Connection connection = DriverManager.getConnection(DB_URL);
-             Statement stmt = connection.createStatement()) {
-            stmt.execute("DELETE FROM Users");
-        }
-    }
+    private DatabaseDAO DB = new DatabaseDAO();
+    private UserDAO userDAO = new UserDAO(DB);
 
     @Test
     void successTest() {
@@ -35,7 +25,7 @@ class SignupInteractorTest {
             @Override
             public void prepareSuccessView(SignupOutputData user) {
                 // Verify the user exists in the database and matches expected values
-                User createdUser = UserDAO.getUserByEmail("paul@email.com");
+                User createdUser = userDAO.getUserByEmail("paul@email.com");
                 assertNotNull(createdUser);
                 assertEquals("Paul", createdUser.getName());
                 assertEquals("paul@email.com", createdUser.getEmail());
@@ -53,7 +43,7 @@ class SignupInteractorTest {
             }
         };
 
-        SignupInputBoundary interactor = new SignupInteractor(successPresenter);
+        SignupInputBoundary interactor = new SignupInteractor(successPresenter, userDAO, new SignupSessionState());
         interactor.execute(inputData);
     }
 
@@ -80,14 +70,14 @@ class SignupInteractorTest {
             }
         };
 
-        SignupInputBoundary interactor = new SignupInteractor(failurePresenter);
+        SignupInputBoundary interactor = new SignupInteractor(failurePresenter, userDAO, new SignupSessionState());
         interactor.execute(inputData);
     }
 
     @Test
     void failureUserExistsTest() {
         // Add Paul to the database
-        UserDAO.addUser(new User("Paul", "paul@email.com", "pwd"));
+        userDAO.addUser(new User("Paul", "paul@email.com", "pwd"));
 
         SignupInputData inputData = new SignupInputData("Paul", "paul@email.com", "password",
                 "password");
@@ -110,7 +100,7 @@ class SignupInteractorTest {
             }
         };
 
-        SignupInputBoundary interactor = new SignupInteractor(failurePresenter);
+        SignupInputBoundary interactor = new SignupInteractor(failurePresenter, userDAO, new SignupSessionState());
         interactor.execute(inputData);
     }
 }
