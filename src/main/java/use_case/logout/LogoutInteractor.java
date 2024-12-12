@@ -14,7 +14,7 @@ public class LogoutInteractor implements LogoutInputBoundary {
     public LogoutInteractor(LogoutOutputBoundary logoutOutputBoundary, UserDAO userDAO, LoginSessionState sessionState) {
         this.logoutPresenter = logoutOutputBoundary;
         this.userDAO = userDAO;
-        this.sessionState;
+        this.sessionState = sessionState;
     }
 
     @Override

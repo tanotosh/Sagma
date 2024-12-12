@@ -43,12 +43,12 @@ public class SignupInteractor implements SignupInputBoundary {
         userDAO.addUser(user);
 
         signupSessionState.setSignupDetails(user); // Set session details
-        SignupOutputData signupOutputData = new SignupOutputData(email, true);
+        SignupOutputData signupOutputData = new SignupOutputData(email, false);
         userPresenter.prepareSuccessView(signupOutputData);
     }
 
     @Override
-    public void switchToLoginView() {
-        userPresenter.switchToLoginView();
+    public void switchToHomeView() {
+        userPresenter.switchToHomeView();
     }
 }
