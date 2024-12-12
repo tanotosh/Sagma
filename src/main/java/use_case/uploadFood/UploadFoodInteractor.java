@@ -13,9 +13,10 @@ import java.util.List;
 public class UploadFoodInteractor implements UploadFoodInputBoundary{
     private final UploadFoodOutputBoundary uploadFoodPresenter;
 
-    public UploadFoodInteractor(UploadFoodOutputBoundary uploadFoodOutputBoundary) {
-        this.uploadFoodPresenter = uploadFoodOutputBoundary;
+    public UploadFoodInteractor(UploadFoodOutputBoundary uploadFoodPresenter) {
+        this.uploadFoodPresenter = uploadFoodPresenter;
     }
+
 
     @Override
     public void execute(UploadFoodInputData uploadFoodInputData) {
@@ -27,15 +28,14 @@ public class UploadFoodInteractor implements UploadFoodInputBoundary{
         String imagePath = uploadFoodInputData.getImagePath();
         String category = uploadFoodInputData.getCategory();
 
+        // Create food object
         Food food = new Food(name, owner, quantity, ingredients, dietaryRestrictions, imagePath, category);
-        FoodDAO.addFood(food);
+
+        // Set the uploaded food to the User
         owner.setCurrentFood(food);
-        UserDAO.updateUser(owner);
 
-    }
-
-    @Override
-    public void switchToHomeView() {
         uploadFoodPresenter.switchToHomeView();
+
     }
+
 }
