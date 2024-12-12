@@ -39,7 +39,7 @@ This program implements a swipe-based interface, similar to dating apps, to faci
 User decides she wants to join the app so she runs it and creates a profile. She is added as a user to the database. She can leave and log back in to access her information. \[Jiya's story\]
 
 ##### 2. Upload Food
-User wants to upload the food she made for others to see. She clicks the upload food button on the user home page and is prompted to enter the food's name, ingredients, number of servings, dietary restrictions, type of cuisine, and an image. When she clicks upload food, the program stores the food in the database. \[Gaia's story\]
+User wants to upload the food she made for others to see. She clicks the upload food button on the user home page and is prompted to enter the food's name, ingredients, number of servings, dietary restrictions, type of cuisine, and an image. When she clicks upload food, it is stored as her current food. \[Gaia's story\]
 
 ##### 3. Set Dietary Restrictions
 User wants to register her dietary restriction of being dairy free. She clicks on dietary restrictions and is able to select her dietary restrictions. \[Abeera's story\]
