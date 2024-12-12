@@ -2,7 +2,7 @@ package use_case.signup;
 
 import data_access.UserDAO;
 import entity.User;
-import interface_adapter.session.SignupSessionState;
+import interface_adapter.state.SignupSessionState;
 
 /**
  * The Signup Interactor.

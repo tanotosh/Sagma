@@ -88,7 +88,7 @@ public class GmailAPI {
         MimeMessage email = new MimeMessage(session);
         email.setFrom(new InternetAddress("swipebysagma@gmail.com"));
         email.addRecipient(javax.mail.Message.RecipientType.TO,
-                new InternetAddress(User.getEmail()));
+                new InternetAddress("swipebysagma@gmail.com"));
         email.setSubject(subject);
         email.setText(message);
 
