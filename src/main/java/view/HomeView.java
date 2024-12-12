@@ -1,5 +1,6 @@
 package view;
 
+import entity.Food;
 import entity.User;
 
 import javax.swing.*;
@@ -110,4 +111,6 @@ public class HomeView extends JPanel {
     public static User getCurrentUser(){
         return currentUser;
     }
+
+
 }

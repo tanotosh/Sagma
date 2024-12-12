@@ -1,7 +1,9 @@
 package use_case.rating;
 
+import data_access.UserDAO;
 import entity.Food;
 
+import entity.User;
 import use_case.uploadFood.UploadFoodInputBoundary;
 
 /**
@@ -19,8 +21,16 @@ public class RatingInteractor implements RatingInputBoundary {
         Food food = ratingInputData.getFood();
         int rating = ratingInputData.getRating();
 
+        User foodOwner = food.getOwner();
+        float ownerRating = foodOwner.getRating();
+        int ownerRatingsCount = foodOwner.getRatingsCount();
+        float count = ownerRating * ownerRatingsCount;
 
-
+        count += rating;
+        ownerRatingsCount += 1;
+        foodOwner.setRating(count/ownerRatingsCount);
+        foodOwner.setRatingsCount(ownerRatingsCount);
+        // not updating the databse here. that is the responsibility of a higher-level layer as per clean architecture and SOLID principles
 
     }
 

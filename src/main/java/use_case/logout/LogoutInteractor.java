@@ -1,15 +1,20 @@
 package use_case.logout;
 
-import interface_adapter.state.LoginSessionState;
+import data_access.UserDAO;
+import interface_adapter.session.LoginSessionState;
 
 /**
  * The Logout Interactor.
  */
 public class LogoutInteractor implements LogoutInputBoundary {
     private final LogoutOutputBoundary logoutPresenter;
+    UserDAO userDAO;
+    LoginSessionState sessionState;
 
-    public LogoutInteractor( LogoutOutputBoundary logoutOutputBoundary) {
+    public LogoutInteractor(LogoutOutputBoundary logoutOutputBoundary, UserDAO userDAO, LoginSessionState sessionState) {
         this.logoutPresenter = logoutOutputBoundary;
+        this.userDAO = userDAO;
+        this.sessionState;
     }
 
     @Override

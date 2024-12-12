@@ -1,57 +1,31 @@
 package use_case.login;
 
+import data_access.DatabaseDAO;
 import data_access.UserDAO;
 import entity.User;
-import interface_adapter.state.LoginSessionState;
+import interface_adapter.session.LoginSessionState;
 import org.junit.jupiter.api.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LoginInteractorTest {
 
-    private static final String TEST_DB_URL = "jdbc:sqlite:test.db";
 
-    @BeforeAll
-    static void setupTestDatabase() {
-        try (Connection connection = DriverManager.getConnection(TEST_DB_URL);
-             Statement statement = connection.createStatement()) {
-            // Create the test schema
-            statement.executeUpdate(
-                    "CREATE TABLE IF NOT EXISTS Users (" +
-                            "user_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                            "name TEXT NOT NULL," +
-                            "email TEXT UNIQUE NOT NULL," +
-                            "password TEXT NOT NULL," +
-                            "rating FLOAT DEFAULT 0," +
-                            "ratings_count INTEGER DEFAULT 0," +
-                            "dietary_restrictions TEXT," +
-                            "current_food_id INTEGER DEFAULT 0" +
-                            ");"
-            );
-
-            statement.executeUpdate("DELETE FROM Users;"); // Clean slate
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to set up test database", e);
-        }
-    }
+    private UserDAO userDAO;
+    private LoginSessionState sessionState;
 
     @BeforeEach
-    void populateDatabase() {
-        UserDAO.addUser("Paul", "paul@email.com", "password", 4.5f, 10,
-                null, null);
-    }
+    void setUp() {
+        // Initialize an empty UserDAO with hardcoded data
+        DatabaseDAO DB = new DatabaseDAO();
+        userDAO = new UserDAO(DB);
+        sessionState = LoginSessionState.getInstance();
+        sessionState.clearSession(); // Reset session state before each test
 
-    @AfterEach
-    void clearDatabase() {
-        try (Connection connection = DriverManager.getConnection(TEST_DB_URL);
-             Statement statement = connection.createStatement()) {
-            statement.executeUpdate("DELETE FROM Users;");
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to clear test database", e);
-        }
+        // Add hardcoded users for testing
+        userDAO.addUser(new User(1, "Paul", "paul@email.com", "password", 4.5f, 10, List.of("vegan"), null));
+        userDAO.addUser(new User(2, "Alice", "alice@email.com", "alice123", 4.0f, 8, List.of("vegetarian"), null));
     }
 
     @Test
@@ -70,7 +44,7 @@ class LoginInteractorTest {
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(successPresenter);
+        LoginInputBoundary interactor = new LoginInteractor(successPresenter, userDAO, sessionState);
         interactor.execute(inputData);
     }
     @Test
@@ -81,7 +55,6 @@ class LoginInteractorTest {
         LoginOutputBoundary successPresenter = new LoginOutputBoundary() {
             @Override
             public void prepareSuccessView(LoginOutputData user) {
-                // Assert that the user's username matches the one in the database
                 assertEquals("paul@email.com", LoginSessionState.getInstance().getEmail());
             }
 
@@ -91,7 +64,7 @@ class LoginInteractorTest {
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(successPresenter);
+        LoginInputBoundary interactor = new LoginInteractor(successPresenter, userDAO, sessionState);
 
         // Assert the session is initially empty
         assertFalse(LoginSessionState.getInstance().isLoggedIn());
@@ -122,7 +95,7 @@ class LoginInteractorTest {
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(failurePresenter);
+        LoginInputBoundary interactor = new LoginInteractor(failurePresenter, userDAO, sessionState);
         interactor.execute(inputData);
     }
 
@@ -142,7 +115,7 @@ class LoginInteractorTest {
             }
         };
 
-        LoginInputBoundary interactor = new LoginInteractor(failurePresenter);
+        LoginInputBoundary interactor = new LoginInteractor(failurePresenter, userDAO, sessionState);
         interactor.execute(inputData);
     }
 }

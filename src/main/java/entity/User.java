@@ -1,13 +1,12 @@
 package entity;
 
+import data_access.DatabaseDAO;
 import data_access.UserDAO;
 import data_access.FoodDAO;
 
-import java.io.File;
 import java.util.*;
 
-import data_access.UserDAO;
-import interface_adapter.state.*;
+import interface_adapter.session.*;
 
 public class User {
     private int userID;
@@ -19,13 +18,16 @@ public class User {
     private int ratingsCount;
     private List<String> dietaryRestrictions;
 
+    private DatabaseDAO DB = new DatabaseDAO();
+    private FoodDAO foodDAO = new FoodDAO(DB);
+
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.rating = 0;
         this.ratingsCount = 0;
-        this.dietaryRestrictions = null;
+        this.dietaryRestrictions = new ArrayList<>();
         this.currentFood = null;
     }
 
@@ -45,7 +47,7 @@ public class User {
     public void uploadFood(String name, int quantity, String ingredients, List<String> dietaryRestrictions,
                            String image_path, String category) {
         this.currentFood = new Food(name, this, quantity, ingredients, dietaryRestrictions, image_path, category);
-        FoodDAO.addFood(this.currentFood);
+        foodDAO.addFood(this.currentFood);
     }
 
     public void swipeRight(Food food) {
@@ -72,7 +74,6 @@ public class User {
         count = count + rating;
         this.ratingsCount = this.ratingsCount + 1;
         this.rating = count/this.ratingsCount;
-        UserDAO.updateUser(this);
     }
 
     public List<Food> getMatches() {
