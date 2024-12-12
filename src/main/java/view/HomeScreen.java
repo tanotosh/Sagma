@@ -29,7 +29,7 @@ public class HomeScreen extends JPanel {
         GridBagConstraints textConstraints = new GridBagConstraints();
 
         // Username formatting
-        JLabel usernameText = new JLabel("Username: Peppapig14");
+        JLabel usernameText = new JLabel("Username: MaxNguyen5040");
         usernameText.setFont(new Font("Arial", Font.PLAIN, 20));
         textConstraints.gridx = 0;
         textConstraints.gridy = 0;
