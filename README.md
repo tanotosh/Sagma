@@ -96,21 +96,12 @@ Searching for foods that match your preferences.
 Swiping right (Yes) on meals you're interested in.
 When two users like each other's meals, a match is made, and you can swap foods.
 
-Q: Is there a way to provide feedback or report issues?
+Q: I got this error "java: invalid source release 22 with --enable-preview
+  (preview language features are only supported for release 23)" or something similar
 
 
-A: Yes, we welcome feedback! You can fill out our feedback form at https://forms.gle/YksYmetamPNLH1By6. We accept suggestions for new features and bug reports on user experience and functionality.
-
-Q: Can I contribute to the project?
-
-
-A: Absolutely! We welcome contributions. To contribute:
-Fork the repository.
-Clone your forked repository.
-Implement your changes or new features.
-Commit and push your changes.
-Submit a pull request with a clear description of your implementation.
-Our team will review your contribution and provide feedback if necessary.
+A: Go to your settings -> Project structure -> Modules -> and change your language level to X- Experimental features
+  
 
 ### Usage Guide
 1. Run the main file on your preferred Java IDE
