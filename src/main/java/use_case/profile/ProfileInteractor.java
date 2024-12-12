@@ -8,27 +8,20 @@ import entity.User;
  */
 public class ProfileInteractor implements ProfileInputBoundary {
     private final ProfileOutputBoundary profilePresenter;
-    private final UserDAO userDAO;
 
-    /**
-     * Constructor for the ProfileInteractor.
-     *
-     * @param profilePresenter The presenter to handle output logic.
-     * @param userDAO          The data access object for users.
-     */
-    public ProfileInteractor(ProfileOutputBoundary profilePresenter, UserDAO userDAO) {
-        this.profilePresenter = profilePresenter;
-        this.userDAO = userDAO;
+    public ProfileInteractor(ProfileOutputBoundary profileOutputBoundary) {
+        this.profilePresenter = profileOutputBoundary;
     }
 
     @Override
     public void execute(ProfileInputData profileInputData) {
-        final String email = profileInputData.getEmail();
+        User profileUser = profileInputData.getUser();
+        String userFood = profileUser.getCurrentFood().getName();
+        String userMatches = profileUser.getMatches().toString();
 
-        // Fetch user by email
-        User user = userDAO.getUserByEmail(email);
+        ProfileOutputData profileOutputData = new ProfileOutputData(userFood, userMatches);
 
-        profilePresenter.prepareSuccessView(new ProfileOutputData(user.getCurrentFood().getName(), user.getMatches().toString()));
+        profilePresenter.presentProfileData(profileOutputData);
     }
 
 }

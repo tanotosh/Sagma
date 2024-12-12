@@ -7,14 +7,14 @@ import entity.User;
  */
 public class ProfileInputData {
 
-    private final String email;
+    private final User user;
 
-    public ProfileInputData(String email) {
-        this.email = email;
+    public ProfileInputData(User user) {
+        this.user = user;
     }
 
-    String getEmail() {
-        return email;
+    User getUser() {
+        return user;
     }
 
 }

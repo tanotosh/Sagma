@@ -20,7 +20,7 @@ public class ProfileController {
      *
      * @param user the user logging in
      */
-    public void execute(String user) {
+    public void execute(User user) {
         final ProfileInputData profileInputData = new ProfileInputData(user);
 
         profileUseCaseInteractor.execute(profileInputData);

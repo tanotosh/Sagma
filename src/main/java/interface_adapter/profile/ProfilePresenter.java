@@ -28,4 +28,9 @@ public class ProfilePresenter implements ProfileOutputBoundary {
     public void prepareFailView(String errorMessage) {
         return;
     }
+
+    @Override
+    public void presentProfileData(ProfileOutputData profileOutputData) {
+        return;
+    }
 }

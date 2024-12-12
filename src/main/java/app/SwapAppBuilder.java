@@ -61,10 +61,9 @@ public class SwapAppBuilder {
         RatingView ratingView = new RatingView(food);
 
         // Profile Use Case code
-        UserDAO userDAO = new UserDAO(new DatabaseDAO());
         ProfileViewModel profileViewModel = new ProfileViewModel();
         ProfileOutputBoundary profilePresenter = new ProfilePresenter(new ViewManagerModel(), profileViewModel);
-        ProfileInputBoundary profileInteractor = new ProfileInteractor(profilePresenter, userDAO);
+        ProfileInputBoundary profileInteractor = new ProfileInteractor(profilePresenter);
         ProfileController profileController = new ProfileController(profileInteractor);
         ProfileView profileView = new ProfileView(new User("test","email@email.com","passwrod123"), profileViewModel);
 
