@@ -25,8 +25,10 @@ public class SwipingInteractor implements SwipingInputBoundary {
         SwipingOutputData outputData = new SwipingOutputData(user, food);
 
         if (!swipedYes) {
+            user.swipeLeft(food);
             swipePresenter.prepareFailView(user);
         } else {
+            user.swipeRight(food);
             if(food.getSwipedYes().contains(user)) {
                 swipePresenter.prepareSuccessView(outputData);
             }
@@ -37,5 +39,4 @@ public class SwipingInteractor implements SwipingInputBoundary {
 //        swipePresenter.prepareSuccessView();
 
 //    display next food: swipePresenter.prepareFailureView
-    }
 }
