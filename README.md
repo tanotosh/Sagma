@@ -57,13 +57,60 @@ Later, the user is prompted to leave a rating for the food they tried. They can 
 The user wants to see their matches and the food they have uploaded. They can click the view foods and matches buttons on the user homepage and see this. \[Max's story\]
 
 
-
 ### Installation Instructions
 This program is designed to run on any operating system with Java installed. Before running the application, ensure you have enabled the Gmail API on your Google Cloud Console and downloaded the credentials.json file. In order to install the program, simply fork this repository. Then, replace our credentials.json file with your downloaded file and also replace the email address "swipebysagma@gmail.com" in GmailAPI.java line 89 with yours. Finally, run the program with your preferred Java IDE! 
 
 ##### FAQ 
+Q: How do I install Swap by Sagma?
 
 
+A: To install Swap by Sagma, follow these steps:
+Fork the repository on GitHub.
+Clone the forked repository to your local machine.
+Enable the Gmail API on your Google Cloud Console and download the credentials.json file.
+Replace the existing credentials.json file in the project with your downloaded file.
+In GmailAPI.java, replace the email address "swipebysagma@gmail.com" on line 89 with your own email address.
+Run the program using your preferred Java IDE.
+
+Q: What are the system requirements?
+
+
+A: Swap by Sagma is designed to run on any operating system with Java installed. Ensure you have a compatible Java Development Kit (JDK) installed on your machine.
+
+Q: How do I start using the app?
+
+
+A: After installation, follow these steps to start using Swap by Sagma:
+Run the main file in your Java IDE.
+The app will open on the login page.
+If you're a new user, click the Signup button to create an account.
+Once logged in, you'll be on the UserHomepage where you can access various features like uploading food, setting dietary restrictions, and starting to swipe.
+
+Q: How does the food swapping process work?
+
+
+A: The food swapping process involves:
+Uploading your prepared meals.
+Setting your dietary restrictions.
+Searching for foods that match your preferences.
+Swiping right (Yes) on meals you're interested in.
+When two users like each other's meals, a match is made, and you can swap foods.
+
+Q: Is there a way to provide feedback or report issues?
+
+
+A: Yes, we welcome feedback! You can fill out our feedback form at https://forms.gle/YksYmetamPNLH1By6. We accept suggestions for new features and bug reports on user experience and functionality.
+
+Q: Can I contribute to the project?
+
+
+A: Absolutely! We welcome contributions. To contribute:
+Fork the repository.
+Clone your forked repository.
+Implement your changes or new features.
+Commit and push your changes.
+Submit a pull request with a clear description of your implementation.
+Our team will review your contribution and provide feedback if necessary.
 
 ### Usage Guide
 1. Run the main file on your preferred Java IDE
@@ -91,7 +138,14 @@ This program is designed to run on any operating system with Java installed. Bef
 Here is a link to a tutorial video on how to use our app......
 
 ### License
+This project is licensed under the MIT License.
 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ### Feedback
 We value your feedback! Help us improve our app by sharing your experiences. We'd love to hear about your thoughts, experiences or issues you've encountered. 
