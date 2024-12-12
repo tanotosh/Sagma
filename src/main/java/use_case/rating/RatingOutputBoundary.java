@@ -9,6 +9,6 @@ public interface RatingOutputBoundary {
      */
     void presentRating(RatingOutputData ratingOutputData);
 
-    void switchToHomeView();
+    void successPopUp();
 
 }
