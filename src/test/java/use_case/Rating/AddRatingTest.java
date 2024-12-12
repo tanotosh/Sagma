@@ -95,7 +95,7 @@ class AddRatingTest {
 
 
         @Override
-        public void switchToHomeView() {
+        public void successPopUp() {
 
         }
     }

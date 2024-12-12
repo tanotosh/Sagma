@@ -8,24 +8,17 @@ import use_case.rating.RatingOutputData;
 import javax.swing.*;
 
 public class RatingPresenter implements RatingOutputBoundary {
-    private final ViewManagerModel viewManagerModel;
-    private final HomeViewModel homeViewModel;
     private String message; // Store the presentRating message
 
-    public RatingPresenter(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel) {
-        this.viewManagerModel = viewManagerModel;
-        this.homeViewModel = homeViewModel;
+    public RatingPresenter() {
     }
 
     @Override
-    public void switchToHomeView() {
+    public void successPopUp() {
 
         // Show a pop-up with the presentRating message
         JOptionPane.showMessageDialog(null, message, "Rating Submitted", JOptionPane.INFORMATION_MESSAGE);
 
-
-        viewManagerModel.setState(homeViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
     }
 
     @Override
