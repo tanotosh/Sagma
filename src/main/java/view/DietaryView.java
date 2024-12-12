@@ -139,5 +139,20 @@ public class DietaryView extends JPanel {
         return button;
     }
 
+    // code for if running separately from the rest of the program
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            User testUser = new User("123", "temp@gmail.com", "password");
+
+            JFrame frame = new JFrame("Dietary Restrictions View");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            frame.setContentPane(new DietaryView(testUser));
+
+            frame.setSize(800, 600);
+            frame.setVisible(true);
+        });
+    }
+
 }
 
