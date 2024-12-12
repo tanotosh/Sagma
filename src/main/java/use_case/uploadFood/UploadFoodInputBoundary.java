@@ -11,8 +11,4 @@ public interface UploadFoodInputBoundary {
      */
     void execute(UploadFoodInputData uploadFoodInputData);
 
-    /**
-     * Executes the switch to home page
-     */
-    void switchToHomeView();
 }
