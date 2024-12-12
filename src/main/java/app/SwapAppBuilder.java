@@ -21,17 +21,17 @@ public class SwapAppBuilder {
         HomeScreen homePage = new HomeScreen();
         dietaryPage dietaryPage = new dietaryPage(new User("test","email@email.com","passwrod123"));
         SignupPage signupPage = new SignupPage();
-//        SearchPageView searchPageView = new SearchPageView();
+        SearchPageView searchPageView = new SearchPageView();
 //        SwipingPage swipingPage = new SwipingPage();
         MatchPage matchPage = new MatchPage();
         ReviewPage reviewPage = new ReviewPage();
         UploadFoodPage uploadFoodPage = new UploadFoodPage();
-        YourFoodsMatchesPage yourFoodsMatchesPage = new YourFoodsMatchesPage(new User("test","email@email.com","passwrod123"));
+        ProfileView yourFoodsMatchesPage = new ProfileView(new User("test","email@email.com","passwrod123"));
 
         // Add pages to main panel
         mainPanel.add(loginPage, "LOGIN");
         mainPanel.add(signupPage, "SIGNUP");
-//        mainPanel.add(searchPageView, "SEARCH");
+        mainPanel.add(searchPageView, "SEARCH");
         mainPanel.add(homePage, "HOME");
         mainPanel.add(dietaryPage, "DIETARY");
 //        mainPanel.add(swipingPage, "SWIPE");
