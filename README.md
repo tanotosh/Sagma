@@ -22,10 +22,15 @@ This program implements a swipe-based interface, similar to dating apps, to faci
 
 ### Table of Contents
 [Software Features](#software-features)
+
 [Installation Instructions](#installation-instructions)
+
 [Usage Guide](#usage-guide)
+
 [License](#license)
+
 [Feedback](#feedback)
+
 [Contribution](#contribution)
 
 ### Software Features
