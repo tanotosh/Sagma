@@ -64,6 +64,9 @@ public class RatingView extends JPanel {
                 if (ratingController != null) {
                     ratingController.execute(food, rating);
                 }
+
+                // Provide feedback
+                JOptionPane.showMessageDialog(this, "Rating uploaded successfully!");
                 starButton.setBackground(pink);
                 starButton.setForeground(brown);
 
@@ -109,11 +112,6 @@ public class RatingView extends JPanel {
         c.gridy = 3;
         mainpanel.add(starsPanel, c);
 
-        messageLabel = new JLabel(); // Initialize message label
-        messageLabel.setFont(new Font("Arial", Font.ITALIC, 12));
-        c.gridy = 4;
-        mainpanel.add(messageLabel, c);
-
         add(mainpanel);
     }
 
@@ -121,10 +119,5 @@ public class RatingView extends JPanel {
         this.ratingController = controller;
     }
 
-    public void refresh() {
-        String message = viewModel.getMessage();
-        if (message != null && !message.isEmpty()) {
-            messageLabel.setText(message);
-        }
-    }
+
 }

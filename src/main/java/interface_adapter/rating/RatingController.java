@@ -24,7 +24,5 @@ public class RatingController {
 
         ratingUseCaseInteractor.execute(ratingInputData);
 
-        view.refresh();
-
     }
 }

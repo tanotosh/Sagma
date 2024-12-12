@@ -2,12 +2,16 @@ package use_case.Rating;
 
 import entity.Food;
 import entity.User;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.home.HomeViewModel;
 import interface_adapter.rating.RatingController;
 import interface_adapter.rating.RatingPresenter;
 import interface_adapter.rating.RatingViewModel;
+import org.junit.jupiter.api.BeforeEach;
 import use_case.rating.RatingInteractor;
 import view.HomeView;
 import view.RatingView;
+import view.SearchPageView;
 import view.UploadFoodView;
 
 import javax.swing.*;
@@ -22,6 +26,10 @@ public class RatingViewTest {
             e.printStackTrace();
         }
 
+
+        ViewManagerModel viewManagerModel = new ViewManagerModel();
+        HomeViewModel homeView = new HomeViewModel();
+
         // Create a test User object
         User gaia = new User(2, "Gaia", "gaia@email.com", "password", 5.0f, 5, Arrays.asList("vegan"), null);
 
@@ -31,7 +39,7 @@ public class RatingViewTest {
 
         // Create the necessary layers
         RatingViewModel ratingViewModel = new RatingViewModel();
-        RatingPresenter ratingPresenter = new RatingPresenter(ratingViewModel);
+        RatingPresenter ratingPresenter = new RatingPresenter(viewManagerModel, homeView);
         RatingInteractor ratingInteractor = new RatingInteractor(ratingPresenter);
 
         // Controller

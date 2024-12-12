@@ -92,5 +92,11 @@ class AddRatingTest {
         public void presentRating(RatingOutputData outputData) {
             this.outputData = outputData; // Capture the output data for verification
         }
+
+
+        @Override
+        public void switchToHomeView() {
+
+        }
     }
 }

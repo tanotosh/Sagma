@@ -33,6 +33,7 @@ public class RatingInteractor implements RatingInputBoundary {
 
         RatingOutputData outputData = new RatingOutputData(foodOwner.getRating(), foodOwner.getName(), food.getName());
         outputBoundary.presentRating(outputData);
+        outputBoundary.switchToHomeView();
 
 
     } }
