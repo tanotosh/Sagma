@@ -7,11 +7,9 @@ import view.RatingView;
 
 public class RatingController {
     private final RatingInputBoundary ratingUseCaseInteractor;
-    private final RatingView view;
 
-    public RatingController(RatingInputBoundary ratingUseCaseInteractor, RatingView view) {
+    public RatingController(RatingInputBoundary ratingUseCaseInteractor) {
         this.ratingUseCaseInteractor = ratingUseCaseInteractor;
-        this.view = view;
     }
 
     /**

@@ -39,17 +39,17 @@ public class RatingViewTest {
 
         // Create the necessary layers
         RatingViewModel ratingViewModel = new RatingViewModel();
-        RatingPresenter ratingPresenter = new RatingPresenter(viewManagerModel, homeView);
+        RatingPresenter ratingPresenter = new RatingPresenter();
         RatingInteractor ratingInteractor = new RatingInteractor(ratingPresenter);
 
         // Controller
-        RatingController ratingController = new RatingController(ratingInteractor, null); // Temporary null for the view
+        RatingController ratingController = new RatingController(ratingInteractor); // Temporary null for the view
 
         // View
         RatingView ratingView = new RatingView(testFood, ratingController);
 
         // Link controller and view
-        ratingController = new RatingController(ratingInteractor, ratingView);
+        ratingController = new RatingController(ratingInteractor);
 
 
         // Set up the JFrame for visual testing
