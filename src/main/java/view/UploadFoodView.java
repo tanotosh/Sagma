@@ -1,6 +1,7 @@
 package view;
 
 import entity.User;
+import interface_adapter.uploadFood.UploadFoodController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -223,8 +224,9 @@ public class UploadFoodView extends JPanel {
             String name = nameField.getText();
             String ingredients = ingredientsField.getText();
             int quantity = Integer.parseInt((String) servingsBox.getSelectedItem());
-
             String category = (String) options.getSelectedItem();
+
+            // Call the use case upload food
 
             user.uploadFood(name, quantity, ingredients, dietaryRestrictions, uploadedImageFilePath[0], category);
             uploadButton.setBackground(pink);

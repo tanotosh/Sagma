@@ -38,32 +38,30 @@ public class SwapAppBuilder {
         UploadFoodView uploadFoodView = new UploadFoodView();
         ProfileView profileView = new ProfileView(new User("test","email@email.com","passwrod123"));
 
-        // Gaia changes trying to connect ratings stuff
+//        // first 2 lines aren't necessary once all tied in together
+//        User foodOwner = new User(2, "Gaia", "gaia@email.com", "password", 5.0f, 5, Arrays.asList("vegan"), null);
+//        Food tempfood = new Food("pasta", foodOwner, 3, "cheese", Arrays.asList("vegan"), null, "italian");
+//        RatingOutputBoundary ratingPresenter = new RatingPresenter();
+//        RatingInputBoundary ratingInteractor = new RatingInteractor(ratingPresenter);
+//        RatingController ratingController = new RatingController(ratingInteractor);
+//        RatingView ratingView = new RatingView(tempfood, )
 
-
-        // Create the Use Case Interactor and Output Boundary (Presenter)
-        RatingOutputBoundary ratingPresenter = new RatingPresenter(new RatingViewModel(), new ViewManagerModel(), new HomeViewModel());
-        RatingInputBoundary ratingInteractor = new RatingInteractor(ratingPresenter);
-
-        // Create RatingController
-        RatingController ratingController = new RatingController(ratingInteractor);
-
-        User foodOwner = new User(2, "Gaia", "gaia@email.com", "password", 5.0f, 5, Arrays.asList("vegan"), null);
-        Food food = new Food("pasta", foodOwner, 3, "cheese", Arrays.asList("vegan"), null, "italian");
-
-        RatingView ratingView = new RatingView(food);
-
-//        Food uploadedFood = SwipingView.getCurrentFood();
+        // Create the Use Case Interactor and Output Boundary (Presenter) for Rating Use Case (Gaia)
+//        RatingOutputBoundary ratingPresenter = new RatingPresenter();
+//        RatingInputBoundary ratingInteractor = new RatingInteractor(ratingPresenter);
+//
+//        // Create RatingController
+//        RatingController ratingController = new RatingController(ratingInteractor);
+//
+//        // Requires SwipingView to have getCurrentFood() method which returns the matched food.
+//        Food food = matchView.getCurrentFood();
 //        RatingView ratingView = null;
-//        if (uploadedFood != null) {
+//
+//        if (food != null) {
 //            // Pass the Food object to RatingView constructor
-//            ratingView = new RatingView(uploadedFood);  // Pass Food to the RatingView constructor
-//            ratingView.setController(ratingController); // Set the controller for communication
-//        } I will eventually need to be able to get the food from swiping page. - Gaia
-
-        // Pass RatingController to RatingView (for communication)
-        ratingView.setController(ratingController); // You need to create a setter in RatingView to allow this.
-
+//            ratingView = new RatingView(food, ratingController);
+//            ratingView.setController(ratingController);
+//        }
 
         // Add pages to main panel
         mainPanel.add(loginView, "LOGIN");
@@ -73,7 +71,7 @@ public class SwapAppBuilder {
         mainPanel.add(dietaryViewPage, "DIETARY");
         mainPanel.add(swipingView, "SWIPE");
         mainPanel.add(matchView, "MATCH");
-        mainPanel.add(ratingView, "RATING");
+//        mainPanel.add(ratingView, "RATING");
         mainPanel.add(uploadFoodView, "UPLOAD");
         mainPanel.add(profileView,"FOODS");
 

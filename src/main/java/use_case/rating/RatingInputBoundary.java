@@ -14,5 +14,5 @@ public interface RatingInputBoundary {
     /**
      * Executes the switch to home page
      */
-    void switchToHomeView();
+
 }

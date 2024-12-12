@@ -3,12 +3,15 @@ package interface_adapter.rating;
 import entity.Food;
 import use_case.rating.RatingInputBoundary;
 import use_case.rating.RatingInputData;
+import view.RatingView;
 
 public class RatingController {
     private final RatingInputBoundary ratingUseCaseInteractor;
+    private final RatingView view;
 
-    public RatingController(RatingInputBoundary ratingUseCaseInteractor) {
+    public RatingController(RatingInputBoundary ratingUseCaseInteractor, RatingView view) {
         this.ratingUseCaseInteractor = ratingUseCaseInteractor;
+        this.view = view;
     }
 
     /**
@@ -20,6 +23,8 @@ public class RatingController {
         RatingInputData ratingInputData = new RatingInputData(food, rating);
 
         ratingUseCaseInteractor.execute(ratingInputData);
+
+        view.refresh();
 
     }
 }

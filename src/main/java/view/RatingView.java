@@ -3,6 +3,7 @@ package view;
 import entity.Food;
 import entity.User;
 import interface_adapter.rating.RatingController;
+import interface_adapter.rating.RatingViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,28 +18,27 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * The view when a user is asked for a rating
+ * The view when a user is asked for a rating. Uses RatingController to trigger Rating Use Case.
  */
 
 public class RatingView extends JPanel {
     private RatingController ratingController;
     private Food food;
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
+    private JLabel messageLabel; // For displaying the success message after Rating Use Case
+    private RatingViewModel viewModel;
 
-    public RatingView(Food food) {
+
+    public RatingView(Food food, RatingController ratingController) {
         this.food = food;
-
+        this.ratingController = ratingController;
         initializeView();
     }
+
     private void initializeView() {
 
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86,	61);
         Color pink = new Color(234,	223,	214);
-//
-//        User user = new User("123", "temp@gmail.com", "password"); // THIS IS TEMPORARY WHILE THINGS ARENT CONNECTED
-//        Food food = new Food("poutine", user,5, "fries, gravy", Arrays.asList("dietary restrictions"), "/home/gaia/University of Toronto/Courses/CSC 207/PoutinePicture.jpg", "category");
 
         setBackground(green);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -61,11 +61,12 @@ public class RatingView extends JPanel {
 
             int rating = i;
             starButton.addActionListener(e -> {
-                starButton.setBackground(pink);
-                starButton.setForeground(brown);
                 if (ratingController != null) {
                     ratingController.execute(food, rating);
                 }
+                starButton.setBackground(pink);
+                starButton.setForeground(brown);
+
             });
 
             starsPanel.add(starButton);
@@ -83,7 +84,6 @@ public class RatingView extends JPanel {
             ImageIcon imageIcon = new ImageIcon(img);
             imageLabel.setIcon(imageIcon);
         } catch (IOException e) {
-            e.printStackTrace();
             imageLabel.setText("Error loading image");
         }
 
@@ -109,11 +109,22 @@ public class RatingView extends JPanel {
         c.gridy = 3;
         mainpanel.add(starsPanel, c);
 
+        messageLabel = new JLabel(); // Initialize message label
+        messageLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+        c.gridy = 4;
+        mainpanel.add(messageLabel, c);
 
         add(mainpanel);
     }
 
     public void setController(RatingController controller) {
         this.ratingController = controller;
+    }
+
+    public void refresh() {
+        String message = viewModel.getMessage();
+        if (message != null && !message.isEmpty()) {
+            messageLabel.setText(message);
+        }
     }
 }
