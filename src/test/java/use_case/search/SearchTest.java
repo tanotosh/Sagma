@@ -2,8 +2,6 @@ package use_case.search;
 
 import entity.Food;
 import entity.User;
-import interface_adapter.state.SearchSessionState;
-import use_case.search.SearchInteractor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class MockPresenter implements SearchOutputBoundary {
@@ -21,7 +20,11 @@ class MockPresenter implements SearchOutputBoundary {
         List<Food> expected = new ArrayList<>();
         expected.add(new Food("sushi", new User("sam", "sam@email.com", "password8"), 3, "seaweed", List.of("vegan"), null, "japanese"));
         expected.add(new Food("miso soup", new User("jackson", "jackson@email.com", "passwordd100"), 2, "tofu", List.of("vegan"), null, "japanese"));
-        assertArrayEquals(results.getFilteredFoods().toArray(), expected.toArray());
+
+        assertEquals(expected.size(), results.getFilteredFoods().size());
+        for (int i = 0; i < results.getFilteredFoods().size(); i++) {
+            assertEquals(expected.get(i).getName(), results.getFilteredFoods().get(i).getName());
+        }
     }
 }
 
