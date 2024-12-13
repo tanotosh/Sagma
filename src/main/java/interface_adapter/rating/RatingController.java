@@ -3,6 +3,7 @@ package interface_adapter.rating;
 import entity.Food;
 import use_case.rating.RatingInputBoundary;
 import use_case.rating.RatingInputData;
+import view.RatingView;
 
 public class RatingController {
     private final RatingInputBoundary ratingUseCaseInteractor;
