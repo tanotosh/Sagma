@@ -36,7 +36,7 @@ This program implements a swipe-based interface, similar to dating apps, to faci
 ### Software Features
 
 ##### 1. Login/Signup
-User decides she wants to join the app so she runs it and creates a profile. She is added as a user to the database. She can leave and log back in to access her information. \[Jiya's story\]
+User decides she wants to log in or sign up to access and interact with the app, ensuring that her data is saved and used effectively for app functionalities like swiping, matching, and notifications.. \[Jiya's story\]
 
 ##### 2. Upload Food
 User wants to upload the food she made for others to see. She clicks the upload food button on the user home page and is prompted to enter the food's name, ingredients, number of servings, dietary restrictions, type of cuisine, and an image. When she clicks upload food, it is stored as her current food. \[Gaia's story\]
