@@ -1,85 +1,54 @@
 package use_case.search;
 
-import data_access.UserDAO;
-import entity.User;
 import entity.Food;
-import org.junit.jupiter.api.AfterAll;
+import entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import use_case.Search;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.util.Arrays;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+class MockPresenter implements SearchOutputBoundary {
+
+    @Override
+    public void prepareSuccessView(SearchOutputData results) {
+        List<Food> expected = new ArrayList<>();
+        expected.add(new Food("sushi", new User("sam", "sam@email.com", "password8"), 3, "seaweed", List.of("vegan"), null, "japanese"));
+        expected.add(new Food("miso soup", new User("jackson", "jackson@email.com", "passwordd100"), 2, "tofu", List.of("vegan"), null, "japanese"));
+
+        assertEquals(expected.size(), results.getFilteredFoods().size());
+        for (int i = 0; i < results.getFilteredFoods().size(); i++) {
+            assertEquals(expected.get(i).getName(), results.getFilteredFoods().get(i).getName());
+        }
+    }
+}
+
 public class SearchTest {
-    private static final String DB_URL = "jdbc:sqlite:test.db";
-
-    // this will be the code that all test cases need to copy to reset the test database to the original 5
     @BeforeEach
-    void setUp() throws Exception {
-        // populate database with data before each test
-        try (Connection connection = DriverManager.getConnection(DB_URL);
-             Statement stmt = connection.createStatement()) {
-            // can add less values like for rating the execute statement could look like this:
-            // stmt.execute("INSERT into User (user_id, rating, ratings_count, current_food_id) VALUES (1,'jiya', 5," +
-            //                    " 5, 1) ");
-            // the statement will only populate the attributes / columns that are needed for testing specific use cases
-            // this stays true for food and swipes table as well
-            stmt.execute("INSERT into User (user_id, name, email, password, rating, ratings_count, " +
-                    "dietary_restrictions, current_food_id) VALUES " +
-                    "(1,'jiya', 'jiya@email.com', 'password', 5, 5, 'vegetarian', 1)," +
-                    "(2,'gaia', 'gaia@email.com', 'passwordd', 5, 5,'vegan', 2)");
-
-            stmt.execute("INSERT into Foods (food_id, name, quantity, ingredients, dietary_restrictions, cuisine, " +
-                    "owner_id, image_path) VALUES " +
-                    "(1, 'pizza', 2, 'cheese', 'vegetarian', 'italian', 1, NULL)," +
-                    "(2, 'pasta', 3, 'cheese', 'vegan', 'italian', 2, NULL)," +
-                    "(3, 'bimbimbap', 5, 'rice', 'halal', 'korean', 2, NULL)");
-
-            stmt.execute("INSERT into Swipes (swipe_id, user_id, food_id, is_right_swipe) VALUES " +
-                    "(1, 1, 2, 1), " +
-                    "(2, 2, 1, 1)");
-        }
-
-    }
-
-    // adding this so that at the end of all tests, the database is empty
-    @AfterAll
-    static void tearDownAll() throws Exception {
-        try (Connection connection = DriverManager.getConnection(DB_URL);
-             Statement stmt = connection.createStatement()) {
-
-            // Delete from parent tables; cascading will clean up child tables
-            stmt.execute("DELETE FROM Users;");
-            stmt.execute("DELETE FROM Foods;");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    void setUp() {
+         SearchInteractor.mockdb= List.of(
+                new Food("pasta", new User("jiya", "jiya@email.com", "password"), 3, "cheese", List.of("vegan"), null, "italian"),
+                new Food("pizza", new User("gaia", "gaia@email.com", "passwordd"), 2, "cheese", List.of("vegatarian"), null, "italian"),
+                new Food("rice cake", new User("ava", "ava@email.com", "password3"), 3, "gluten", List.of("vegan"), null, "korean"),
+                new Food("kimbap", new User("ron", "ron@email.com", "passwordd5"), 2, "rice", List.of("vegatarian"), null, "korean"),
+                new Food("sushi", new User("sam", "sam@email.com", "password8"), 3, "seaweed", List.of("vegan"), null, "japanese"),
+                new Food("miso soup", new User("jackson", "jackson@email.com", "passwordd100"), 2, "tofu", List.of("vegan"), null, "japanese"));
     }
 
     @Test
-    void getCategoryTest() {
-        List<String> categories = Search.getCategory();
-        assertEquals(2, categories.size());
-        List<String> expectedCategories = Arrays.asList("italian", "korean");
-        assertEquals(expectedCategories, categories);
+    void search() {
+        // Mock Presenter is used to check the resulting filtered list.
+        SearchOutputBoundary mockPresenter = new MockPresenter();
 
+        User currentUser = new User(1,"june", "june@email.com", "password", 5, 5, List.of("vegan"), null);
+
+        SearchInteractor interactor = new SearchInteractor(mockPresenter);
+
+        interactor.execute(new SearchInputData(currentUser, "japanese"));
     }
-
-    @Test
-    void getFilteredFoodsTest() {
-        User gaia = UserDAO.getUserById(1);
-        List<Food> filteredFoods = Search.getFilteredFoods(gaia, "italian");
-        assertEquals(1, filteredFoods.size());
-        assertEquals("pasta", filteredFoods.get(0).getName());
-    }
-
-
-    // here you write the test. You can add a user and food as necessary to check your functionality
 }

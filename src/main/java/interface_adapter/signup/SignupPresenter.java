@@ -31,7 +31,7 @@ public class SignupPresenter implements SignupOutputBoundary {
         this.loginViewModel.setState(loginState);
         loginViewModel.firePropertyChanged();
 
-        viewManagerModel.setState("HOME");
+        viewManagerModel.setState(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
@@ -43,8 +43,8 @@ public class SignupPresenter implements SignupOutputBoundary {
     }
 
     @Override
-    public void switchToHomeView() {
-        viewManagerModel.setState("HOME");
+    public void switchToLoginView() {
+        viewManagerModel.setState(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

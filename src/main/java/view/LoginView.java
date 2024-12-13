@@ -1,14 +1,5 @@
 package view;
 
-import data_access.DatabaseDAO;
-import data_access.UserDAO;
-import interface_adapter.ViewManagerModel;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginPresenter;
-import interface_adapter.login.LoginViewModel;
-import interface_adapter.session.LoginSessionState;
-import use_case.login.LoginInteractor;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -86,24 +77,24 @@ public class LoginView extends JPanel {
         mainPanel.add(taglineLabel, gbc);
 
 
-        // Email
-        JTextField emailField = new JTextField("Email", 20);
-        emailField.setForeground(green);
-        emailField.setBackground(pink);
+        // Username
+        JTextField usernameField = new JTextField("Username", 20);
+        usernameField.setForeground(green);
+        usernameField.setBackground(pink);
         gbc.gridy = 2;
-        gbc.insets = new Insets(15, 10, 0, 10); // More space above email
-        mainPanel.add(emailField, gbc);
+        gbc.insets = new Insets(15, 10, 0, 10); // More space above username
+        mainPanel.add(usernameField, gbc);
 
-        emailField.addFocusListener(new FocusListener() {
+        usernameField.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if(emailField.getText().equals("Email")){
-                    emailField.setText("");
+                if(usernameField.getText().equals("Username")){
+                    usernameField.setText("");
                 }
             }
 
             public void focusLost(FocusEvent e) {
-                if(emailField.getText().equals("")){
-                    emailField.setText("Email");
+                if(usernameField.getText().equals("")){
+                    usernameField.setText("Username");
                 }
             }
         });
@@ -156,23 +147,6 @@ public class LoginView extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String email = emailField.getText().trim();
-                String password = passwordField.getText().trim();
-
-                // Initialize backend components
-                UserDAO userDAO = new UserDAO(new DatabaseDAO()); // Replace with actual DAO implementation
-                LoginSessionState sessionState = new LoginSessionState();
-                LoginPresenter loginPresenter = new LoginPresenter(
-                        new ViewManagerModel(), // Replace with your actual ViewManagerModel
-                        new LoginViewModel()
-                );
-                LoginInteractor loginInteractor = new LoginInteractor(loginPresenter, userDAO, sessionState);
-                LoginController loginController = new LoginController(loginInteractor);
-
-                // Call the controller
-                loginController.execute(email, password);
-
-                // Navigate to Home on success
                 Container parent = LoginView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
