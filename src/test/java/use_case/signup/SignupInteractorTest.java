@@ -38,7 +38,7 @@ class SignupInteractorTest {
             }
 
             @Override
-            public void switchToLoginView() {
+            public void switchToHomeView() {
                 // This is expected
             }
         };
@@ -65,7 +65,7 @@ class SignupInteractorTest {
             }
 
             @Override
-            public void switchToLoginView() {
+            public void switchToHomeView() {
                 // This is expected
             }
         };
@@ -95,8 +95,8 @@ class SignupInteractorTest {
             }
 
             @Override
-            public void switchToLoginView() {
-                // This is expected
+            public void switchToHomeView() {
+                // this is expected
             }
         };
 
