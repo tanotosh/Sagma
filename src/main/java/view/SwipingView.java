@@ -11,7 +11,6 @@ import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,22 +25,16 @@ public class SwipingView extends JPanel{
     public SwipingView(User user) {
         this.user = user;
 
-        List<Food> foodsList = new ArrayList<>(); //
+//        List<String> foodsList = new ArrayList<>(); //
+//        foodsList.add("Poutine"); //
+//        foodsList.add("Ramen"); //
+//        foodsList.add("Sushi"); //
+//        foodsList.add("Sushi"); //
+//        foodsList.add("Soup"); //
+//        foodsList.add("Shawarma"); //
+//        foodsList.add("Tacos"); //
 
-        Food poutine = new Food("Poutine", new User("user99", "temp1@gmail.com", "password"),5, "Fries, Gravy", Arrays.asList("dietary restrictions"), "C:/Users/abeer/OneDrive/Desktop/sagma_foods/poutine.jpg", "category");
-        Food sushi = new Food("Sushi", new User("sushiluvr", "temp2@gmail.com", "password"),3, "Fish, Rice, Soya sauce", Arrays.asList("dietary restrictions"), "C:/Users/abeer/OneDrive/Desktop/sagma_foods/sushi.jpg", "category");
-        Food shawarma = new Food("Shawarma", new User("shawarmachef34", "temp6@gmail.com", "password"),5, "Chicken, Pita", Arrays.asList("dietary restrictions"), "C:/Users/abeer/OneDrive/Desktop/sagma_foods/shawarma.jpg", "category");
-        Food tacos = new Food("Taco", new User("anotheruser", "temp3@gmail.com", "password"),4, "Salsa, Tortilla", Arrays.asList("dietary restrictions"), "C:/Users/abeer/OneDrive/Desktop/sagma_foods/tacos.jpg", "category");
-
-
-        foodsList.add(poutine);
-        foodsList.add(sushi);
-        foodsList.add(shawarma);
-        foodsList.add(tacos);
-
-        user.uploadFood("test food", 4, "Fries, Gravy", Arrays.asList("dietary restrictions"), "C:/Users/abeer/OneDrive/Desktop/sagma_foods/tacos.jpg", "category");
-        user.setCurrentFood(poutine);
-        user.getCurrentFood().addSwipedYes(shawarma.getOwner());
+        List<Food> foodsList= (List<Food>) SearchPageView.getFilteredFoods();
 
 
         Color green = new Color(164, 179, 148);
@@ -53,7 +46,7 @@ public class SwipingView extends JPanel{
 
         Integer[] index = {0};
         Swiping userFoodPair = new Swiping(user, foodsList.get(index[0]));
-        JLabel titleText = new JLabel(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
+         JLabel titleText = new JLabel(foodsList.get(index[0]).getName() + " by " + foodsList.get(index[0]).getOwner().getName());
         titleText.setFont(new Font("Arial", Font.PLAIN, 16));
 
         JLabel ratingText = new JLabel("User Rating: " + foodsList.get(index[0]).getOwner().getRating());
@@ -101,7 +94,6 @@ public class SwipingView extends JPanel{
                     try {
                         userFoodPair.matchMade();
                         Container parent = SwipingView.this.getParent();
-
                         if (parent != null) {
                             CardLayout cl = (CardLayout) parent.getLayout();
                             cl.show(parent, "MATCH");
@@ -154,31 +146,17 @@ public class SwipingView extends JPanel{
         c.insets = new Insets(3, 3, 3, 3);
         c.gridx = 1;
         c.gridy = 2;
-        mainpanel.add(ratingText, c);
+//        mainpanel.add(ratingText, c);
 
         c.gridx = 1;
         c.gridy = 3;
-        mainpanel.add(ingredientsText, c);
+//        mainpanel.add(ingredientsText, c);
 
         c.gridx = 2;
         c.gridy = 0;
         mainpanel.add(yesButton, c);
 
         add(mainpanel);
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            User testUser = new User("sagmauser44", "temp66@gmail.com", "password");
-
-            JFrame frame = new JFrame("Swiping Page");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            frame.setContentPane(new SwipingView(testUser));
-
-            frame.setSize(800, 600);
-            frame.setVisible(true);
-        });
     }
 
 }

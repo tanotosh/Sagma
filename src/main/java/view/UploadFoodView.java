@@ -1,7 +1,6 @@
 package view;
 
 import entity.User;
-import interface_adapter.uploadFood.UploadFoodController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -22,12 +21,7 @@ import java.util.List;
  */
 
 public class UploadFoodView extends JPanel {
-    private final UploadFoodController controller;
-    private final User user;
-    public UploadFoodView(User user, UploadFoodController controller) {
-        this.controller = controller;
-        this.user = user;
-
+    public UploadFoodView() {
         Color green = new Color(164, 179, 148);
         Color brown = new Color(123, 86, 61);
         Color pink = new Color(234, 223, 214);
@@ -36,6 +30,8 @@ public class UploadFoodView extends JPanel {
 
         setBackground(green);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        User user = new User("123", "temp@gmail.com", "password"); // THIS IS TEMPORARY WHILE THINGS ARENT CONNECTED
 
         // Create the main frame
         JFrame frame = new JFrame("Upload New Food");
@@ -227,22 +223,8 @@ public class UploadFoodView extends JPanel {
             String name = nameField.getText();
             String ingredients = ingredientsField.getText();
             int quantity = Integer.parseInt((String) servingsBox.getSelectedItem());
+
             String category = (String) options.getSelectedItem();
-
-            // Call the use case upload food
-            // Call the controller to handle the upload logic
-            controller.execute(
-                    user,
-                    name,
-                    quantity,
-                    ingredients,
-                    dietaryRestrictions,
-                    uploadedImageFilePath[0],
-                    category
-            );
-
-            // Provide feedback
-            JOptionPane.showMessageDialog(this, "Food uploaded successfully!");
 
             user.uploadFood(name, quantity, ingredients, dietaryRestrictions, uploadedImageFilePath[0], category);
             uploadButton.setBackground(pink);

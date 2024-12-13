@@ -8,10 +8,12 @@ import use_case.uploadFood.UploadFoodOutputBoundary;
  * The Presenter for the Upload Food Use Case.
  */
 public class UploadFoodPresenter implements UploadFoodOutputBoundary {
+    private final UploadFoodViewModel uploadFoodViewModel;
     private final ViewManagerModel viewManagerModel;
     private final HomeViewModel homeViewModel;
 
-    public UploadFoodPresenter(ViewManagerModel viewManagerModel, HomeViewModel homeViewModel) {
+    public UploadFoodPresenter(UploadFoodViewModel uploadFoodViewModel, ViewManagerModel viewManagerModel, HomeViewModel homeViewModel) {
+        this.uploadFoodViewModel = uploadFoodViewModel;
         this.viewManagerModel = viewManagerModel;
         this.homeViewModel = homeViewModel;
     }

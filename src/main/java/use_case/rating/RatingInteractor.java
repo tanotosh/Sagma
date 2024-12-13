@@ -10,10 +10,10 @@ import use_case.uploadFood.UploadFoodInputBoundary;
  * The Rating Interactor.
  */
 public class RatingInteractor implements RatingInputBoundary {
-    private final RatingOutputBoundary outputBoundary;
+    private final RatingOutputBoundary ratePresenter;
 
     public RatingInteractor(RatingOutputBoundary ratingOutputBoundary) {
-        this.outputBoundary = ratingOutputBoundary;
+        this.ratePresenter = ratingOutputBoundary;
     }
 
     @Override
@@ -30,10 +30,12 @@ public class RatingInteractor implements RatingInputBoundary {
         ownerRatingsCount += 1;
         foodOwner.setRating(count/ownerRatingsCount);
         foodOwner.setRatingsCount(ownerRatingsCount);
+        // not updating the databse here. that is the responsibility of a higher-level layer as per clean architecture and SOLID principles
 
-        RatingOutputData outputData = new RatingOutputData(foodOwner.getRating(), foodOwner.getName(), food.getName());
-        outputBoundary.presentRating(outputData);
-        outputBoundary.successPopUp();
+    }
 
-
-    } }
+    @Override
+    public void switchToHomeView() {
+        ratePresenter.switchToHomeView();
+    }
+}

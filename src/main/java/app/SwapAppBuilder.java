@@ -4,21 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
-import data_access.DatabaseDAO;
-import data_access.UserDAO;
 import entity.Food;
 import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home.HomeViewModel;
-import interface_adapter.profile.ProfileController;
-import interface_adapter.profile.ProfilePresenter;
-import interface_adapter.profile.ProfileViewModel;
 import interface_adapter.rating.RatingController;
 import interface_adapter.rating.RatingPresenter;
 import interface_adapter.rating.RatingViewModel;
-import use_case.profile.ProfileInputBoundary;
-import use_case.profile.ProfileInteractor;
-import use_case.profile.ProfileOutputBoundary;
 import use_case.rating.RatingInputBoundary;
 import use_case.rating.RatingInteractor;
 import use_case.rating.RatingOutputBoundary;
@@ -44,6 +36,7 @@ public class SwapAppBuilder {
         SwipingView swipingView = new SwipingView(new User("test","email@email.com","passwrod123"));
         MatchView matchView = new MatchView();
         UploadFoodView uploadFoodView = new UploadFoodView();
+        ProfileView profileView = new ProfileView(new User("test","email@email.com","passwrod123"));
 
         // Gaia changes trying to connect ratings stuff
 
@@ -59,14 +52,6 @@ public class SwapAppBuilder {
         Food food = new Food("pasta", foodOwner, 3, "cheese", Arrays.asList("vegan"), null, "italian");
 
         RatingView ratingView = new RatingView(food);
-
-        // Profile Use Case code
-        ProfileViewModel profileViewModel = new ProfileViewModel();
-        ProfileOutputBoundary profilePresenter = new ProfilePresenter(new ViewManagerModel(), profileViewModel);
-        ProfileInputBoundary profileInteractor = new ProfileInteractor(profilePresenter);
-        ProfileController profileController = new ProfileController(profileInteractor);
-        ProfileView profileView = new ProfileView(new User("test","email@email.com","passwrod123"), profileViewModel);
-
 
 //        Food uploadedFood = SwipingView.getCurrentFood();
 //        RatingView ratingView = null;

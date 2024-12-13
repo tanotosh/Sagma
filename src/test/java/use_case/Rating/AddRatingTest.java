@@ -7,15 +7,15 @@ import org.junit.jupiter.api.Test;
 import use_case.rating.RatingInputData;
 import use_case.rating.RatingInteractor;
 import use_case.rating.RatingOutputBoundary;
-import use_case.rating.RatingOutputData;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Arrays;
 
 class AddRatingTest {
 
     private RatingInteractor interactor;
-    private MockRatingPresenter mockPresenter;
+    private RatingOutputBoundary ratePresenter;
 
     // Hardcoded objects
     private User foodOwner;
@@ -27,9 +27,15 @@ class AddRatingTest {
         foodOwner = new User(2, "Gaia", "gaia@email.com", "password", 5.0f, 5, Arrays.asList("vegan"), null);
         food = new Food("pasta", foodOwner, 3, "cheese", Arrays.asList("vegan"), null, "italian");
 
-        // Initialize the interactor with a mocked presenter
-        mockPresenter = new MockRatingPresenter();
-        interactor = new RatingInteractor(mockPresenter);
+        // Initialize the interactor with a simple output boundary (we won't use it in this test)
+        ratePresenter = new RatingOutputBoundary() {
+            @Override
+            public void switchToHomeView() {
+                // Stub method for switching to the home view (no-op for testing)
+            }
+        };
+
+        interactor = new RatingInteractor(ratePresenter);
     }
 
     @Test
@@ -43,10 +49,6 @@ class AddRatingTest {
         // Assert the food owner's rating and ratings count
         assertEquals(4.833f, foodOwner.getRating(), 0.001, "Rating should be updated correctly.");
         assertEquals(6, foodOwner.getRatingsCount(), "Ratings count should increase.");
-
-        // Assert presenter output
-        assertNotNull(mockPresenter.outputData, "Presenter should receive output data.");
-        assertEquals(4.833f, mockPresenter.outputData.getRating(), 0.001, "Output data rating should match.");
     }
 
     @Test
@@ -60,10 +62,6 @@ class AddRatingTest {
         // Assert the food owner's rating and ratings count
         assertEquals(4.333f, foodOwner.getRating(), 0.001, "Rating should be updated correctly.");
         assertEquals(6, foodOwner.getRatingsCount(), "Ratings count should increase.");
-
-        // Assert presenter output
-        assertNotNull(mockPresenter.outputData, "Presenter should receive output data.");
-        assertEquals(4.333f, mockPresenter.outputData.getRating(), 0.001, "Output data rating should match.");
     }
 
     @Test
@@ -76,27 +74,11 @@ class AddRatingTest {
         interactor.execute(inputData); // Second rating
 
         // Assert the food owner's rating and ratings count
-        assertEquals(4.714f, foodOwner.getRating(), 0.001, "Rating should be updated correctly.");
-        assertEquals(7, foodOwner.getRatingsCount(), "Ratings count should increase.");
-
-        // Assert presenter output
-        assertNotNull(mockPresenter.outputData, "Presenter should receive output data.");
-        assertEquals(4.714f, mockPresenter.outputData.getRating(), 0.001, "Output data rating should match.");
+        assertEquals(4.714f, foodOwner.getRating(), 0.001, "Rating should remain the same.");
+        assertEquals(7, foodOwner.getRatingsCount(), "Ratings count should remain the same.");
     }
 
-    // Mock Presenter for testing purposes
-    private static class MockRatingPresenter implements RatingOutputBoundary {
-        RatingOutputData outputData;
-
-        @Override
-        public void presentRating(RatingOutputData outputData) {
-            this.outputData = outputData; // Capture the output data for verification
-        }
 
 
-        @Override
-        public void successPopUp() {
-
-        }
-    }
 }
+

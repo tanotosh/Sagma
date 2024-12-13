@@ -1,15 +1,12 @@
 package view;
 
-import entity.User;
 import entity.Food;
-import interface_adapter.search.SearchController;
-import interface_adapter.state.SearchSessionState;
+import use_case.Search;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Vector;
 
 /**
@@ -17,10 +14,7 @@ import java.util.Vector;
  */
 
 public class SearchPageView extends JPanel{
-    //instantiated a current user here, since previous page wasn't fully implemented to send User data here.
-    private User currentUser;
     private static java.util.List<Food> filteredFoods = null;
-    private SearchController searchController;
 
     public SearchPageView(){
         Color green = new Color(164, 179, 148);
@@ -46,10 +40,7 @@ public class SearchPageView extends JPanel{
         mainPanel.add(title, c);
 
         //dropdown mainPanel
-        java.util.List<String> choices = new ArrayList<>();
-        choices.add("Korean");
-        choices.add("Japanese");
-        choices.add("Italian");
+        java.util.List<String> choices = Search.getCategory();
         JComboBox<String> options = new JComboBox<String>(new Vector<>(choices));
         options.setFont(new Font("Arial", Font.PLAIN, 13));
         options.setBackground(new Color(234, 223, 214));
@@ -79,18 +70,13 @@ public class SearchPageView extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cuisine = options.getSelectedItem().toString();
+                filteredFoods = Search.getFilteredFoods(HomeView.getCurrentUser(), cuisine);
 
-                searchController.execute(currentUser,  cuisine);
-
-                //since next page (swiping page) uses the global variable declared here, i need to set the value here.
-                SearchSessionState sessionState = SearchSessionState.getInstance();
-                filteredFoods = sessionState.getFoods();
-
-//                Container parent = SearchPageView.this.getParent();
-//                if (parent != null) {
-//                    CardLayout cl = (CardLayout) parent.getLayout();
-//                    cl.show(parent, "SWIPE");
-//                }
+                Container parent = SearchPageView.this.getParent();
+                if (parent != null) {
+                    CardLayout cl = (CardLayout) parent.getLayout();
+                    cl.show(parent, "SWIPE");
+                }
             }
         });
 
