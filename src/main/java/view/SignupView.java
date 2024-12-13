@@ -1,5 +1,13 @@
 package view;
 
+import data_access.DatabaseDAO;
+import data_access.UserDAO;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.session.SignupSessionState;
+import interface_adapter.signup.*;
+import use_case.signup.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -70,20 +78,41 @@ public class SignupView extends JPanel {
         JTextField usernameField = new JTextField("Username", 20);
         usernameField.setForeground(green);
         usernameField.setBackground(pink);
-        gbc.gridy = 2;
-        gbc.insets = new Insets(15, 10, 0, 10); // More space above username
+        gbc.gridy = 1; // Adjust position
         mainPanel.add(usernameField, gbc);
 
         usernameField.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                if(usernameField.getText().equals("Username")){
+                if (usernameField.getText().equals("Username")) {
                     usernameField.setText("");
                 }
             }
 
             public void focusLost(FocusEvent e) {
-                if(usernameField.getText().equals("")){
+                if (usernameField.getText().equals("")) {
                     usernameField.setText("Username");
+                }
+            }
+        });
+
+        // Email
+        JTextField emailField = new JTextField("Email", 20);
+        emailField.setForeground(green);
+        emailField.setBackground(pink);
+        gbc.gridy = 2;
+        gbc.insets = new Insets(15, 10, 0, 10); // More space above email
+        mainPanel.add(emailField, gbc);
+
+        emailField.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if(emailField.getText().equals("Email")){
+                    emailField.setText("");
+                }
+            }
+
+            public void focusLost(FocusEvent e) {
+                if(emailField.getText().equals("")){
+                    emailField.setText("Email");
                 }
             }
         });
@@ -136,6 +165,25 @@ public class SignupView extends JPanel {
         signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText(); // Retrieve username
+                String email = emailField.getText();       // Retrieve email
+                String password = passwordField.getText(); // Retrieve password
+
+                // Create backend components
+                UserDAO userDAO = new UserDAO(new DatabaseDAO()); // Replace with actual DAO implementation
+                SignupSessionState signupSessionState = new SignupSessionState();
+                SignupPresenter signupPresenter = new SignupPresenter(
+                        new ViewManagerModel(), // Pass your actual ViewManagerModel
+                        new SignupViewModel(),
+                        new LoginViewModel()   // Pass your actual LoginViewModel
+                );
+                SignupInteractor signupInteractor = new SignupInteractor(signupPresenter, userDAO, signupSessionState);
+                SignupController signupController = new SignupController(signupInteractor);
+
+                // Execute sign-up process
+                signupController.execute(username, email, password, password);
+
+                // Navigate to Home view upon success (handled by presenter logic)
                 Container parent = SignupView.this.getParent();
                 if (parent != null) {
                     CardLayout cl = (CardLayout) parent.getLayout();
@@ -143,6 +191,7 @@ public class SignupView extends JPanel {
                 }
             }
         });
+
         signupButton.setBackground(brown);
         signupButton.setForeground(pink);
         signupButton.setOpaque(true);
