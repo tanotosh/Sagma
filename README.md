@@ -126,7 +126,6 @@ A: Go to your settings -> Project structure -> Modules -> and change your langua
 8. If you got an email notification, run the app again and login into your account and view your matches with the Your Foods/Matches button. 
 9. After a match have been made, do the trade! And enjoy your food! Don't forget to leave a rating on our Rating Page :)
 
-Here is a link to a tutorial video on how to use our app......
 
 ### License
 This project is licensed under the MIT License.
