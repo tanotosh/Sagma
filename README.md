@@ -129,7 +129,9 @@ A: Go to your settings -> Project structure -> Modules -> and change your langua
 Here is a link to a tutorial video on how to use our app
 
 
-https://github.com/user-attachments/assets/a1783a03-fec5-44b9-b10f-7bf0c9800204
+https://github.com/user-attachments/assets/17154a54-ff50-4ff6-a54e-509dbbadd80f
+
+
 
 
 ### License
